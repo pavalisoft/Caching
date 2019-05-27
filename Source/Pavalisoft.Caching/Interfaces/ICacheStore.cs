@@ -18,9 +18,20 @@ using System;
 
 namespace Pavalisoft.Caching.Interfaces
 {
+    /// <summary>
+    /// Represents <see cref="ICacheStore{T}"/> implementation
+    /// </summary>
+    /// <typeparam name="T">Cache Store type</typeparam>
     public interface ICacheStore<T>
     {
+        /// <summary>
+        /// Gets or Sets Cache Options
+        /// </summary>
         Action<T> CacheOptions { get; set; }
+        
+        /// <summary>
+        /// Gets Cache Type
+        /// </summary>
         Type CacheType { get; }
     }
 }

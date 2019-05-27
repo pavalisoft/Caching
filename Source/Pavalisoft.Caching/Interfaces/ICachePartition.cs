@@ -19,15 +19,50 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Pavalisoft.Caching.Interfaces
 {
+    /// <summary>
+    /// Represents <see cref="ICachePartition"/> implementation
+    /// </summary>
     public interface ICachePartition
     {
+        /// <summary>
+        /// Gets <see cref="ICachePartition"/> name
+        /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// Gets an absolute expiration date for the cache entry in this <see cref="ICachePartition"/>.
+        /// </summary>
         DateTimeOffset? AbsoluteExpiration { get; }
+
+        /// <summary>
+        /// Gets an absolute expiration time, relative to now in this <see cref="ICachePartition"/>.
+        /// </summary>
         TimeSpan? AbsoluteExpirationRelativeToNow { get; }
+
+        /// <summary>
+        /// Gets how long a cache entry can be inactive (e.g. not accessed) before it will be removed in this <see cref="ICachePartition"/>.
+        /// This will not extend the entry lifetime beyond the absolute expiration (if set).
+        /// </summary>
         TimeSpan? SlidingExpiration { get; }
+
+        /// <summary>
+        /// Gets the Cache Store in this <see cref="ICachePartition"/>
+        /// </summary>
         object Store { get; }
+
+        /// <summary>
+        /// Gets the <see cref="CacheItemPriority"/> applicable for this <see cref="ICachePartition"/>
+        /// </summary>
         CacheItemPriority Priority { get; }
+
+        /// <summary>
+        /// Gets the Size of the <see cref="ICachePartition"/>
+        /// </summary>
         long? Size { get; }
+
+        /// <summary>
+        /// Gets or Sets the <see cref="ICache"/> instance.
+        /// </summary>
         ICache Cache { get; set; }
     }
 }
