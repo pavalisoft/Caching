@@ -21,9 +21,19 @@ using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Stores
 {
+    /// <summary>
+    /// Provides <see cref="ExtendedRedisCache"/> version of the <see cref="ICacheStore{T}"/>
+    /// </summary>
     public class RedisDistributedCacheStore : ICacheStore<RedisCacheOptions>
     {
+        /// <summary>
+        /// Gets or Sets <see cref="RedisCacheOptions"/>
+        /// </summary>
         public Action<RedisCacheOptions> CacheOptions { get; set; }
+
+        /// <summary>
+        /// Gets Cache Type <see cref="ExtendedRedisCache"/>
+        /// </summary>
         public Type CacheType => typeof(ExtendedRedisCache);
     }
 }

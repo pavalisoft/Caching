@@ -17,10 +17,14 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
+using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching
 {
     /// <summary>
+    /// Provides configuration structure for the Cache manager and its partitions including Cache stores.
+    /// </summary>
+    /// <example>
     /// {
     ///     "Caching" : {
     ///         "Stores" : [
@@ -34,52 +38,106 @@ namespace Pavalisoft.Caching
     ///         ]
     ///     }
     /// }
-    /// </summary>
+    /// </example>
     public class CacheSettings
     {
+        /// <summary>
+        /// Gets or Sets Cache Stores Information
+        /// </summary>
         public List<CacheStoreInfo> Stores { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Cache Partition Configuration Information
+        /// </summary>
         public List<CachePartitionInfo> Partitions { get; set; }
     }
 
+    /// <summary>
+    /// Represents Cache Store Information
+    /// </summary>
     public class CacheStoreInfo
     {
+        /// <summary>
+        /// Gets or Sets Cache Store Type
+        /// </summary>
         public StoreType Type { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Cache Store Name
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Cache Store parameters configuration
+        /// </summary>
         public string StoreConfig { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Cache Store Type Information
+        /// </summary>
         public string TypeInfo { get; set; }
     }
 
+    /// <summary>
+    /// Represents in-Memory Store Configuration Information
+    /// </summary>
     public class MemoryStoreInfo
     {
+        /// <summary>
+        /// Gets or Sets expiration scan frequency of the cache items
+        /// </summary>
         public TimeSpan ExpirationScanFrequency { get; set; } = TimeSpan.FromMinutes(1.0);
-        public long? SizeLimit { get; set; }
-        public double CompactionPercentage { get; set; }
 
+        /// <summary>
+        /// Gets or Sets the In-Memory Store size
+        /// </summary>
+        public long? SizeLimit { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the cache items compaction percentage
+        /// </summary>
+        public double CompactionPercentage { get; set; }
     }
 
+    /// <summary>
+    /// Represents Redis Cache Store Configuration Information
+    /// </summary>
     public class RedisStoreInfo
     {
-        /// <summary>The configuration used to connect to Redis.</summary>
+        /// <summary>
+        /// Gets or Sets the configuration used to connect to Redis.
+        /// </summary>
         public string Configuration { get; set; }
 
-        /// <summary>The Redis instance name.</summary>
+        /// <summary>
+        /// Gets or Sets the Redis instance name.
+        /// </summary>
         public string InstanceName { get; set; }
     }
 
+    /// <summary>
+    /// Represents SQL Server Cache Store Configuration Information
+    /// </summary>
     public class SqlServerStoreInfo
     {
         /// <summary>
-        /// The periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
+        /// Gets ot Sets the periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
         /// </summary>
         public TimeSpan? ExpiredItemsDeletionInterval { get; set; }
 
-        /// <summary>The connection string to the database.</summary>
+        /// <summary>
+        /// Gets or Sets the connection string to the database.
+        /// </summary>
         public string ConnectionString { get; set; }
 
-        /// <summary>The schema name of the table.</summary>
+        /// <summary>
+        /// Gets or Sets the schema name of the cache table.
+        /// </summary>
         public string SchemaName { get; set; }
 
-        /// <summary>Name of the table where the cache items are stored.</summary>
+        /// <summary>
+        /// Gets or Sets the Name of the table where the cache items are stored.
+        /// </summary>
         public string TableName { get; set; }
 
         /// <summary>
@@ -89,23 +147,68 @@ namespace Pavalisoft.Caching
         public TimeSpan DefaultSlidingExpiration { get; set; } = TimeSpan.FromMinutes(20.0);
     }
 
-
+    /// <summary>
+    /// Represents the Cache Partition Configuration Information
+    /// </summary>
     public class CachePartitionInfo
     {
+        /// <summary>
+        /// Gets <see cref="ICachePartition"/> name
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets an absolute expiration date for the cache entry in this <see cref="ICachePartition"/>.
+        /// </summary>
         public DateTimeOffset? AbsoluteExpiration { get; set; }
+
+        /// <summary>
+        /// Gets an absolute expiration time, relative to now in this <see cref="ICachePartition"/>.
+        /// </summary>
         public TimeSpan? AbsoluteExpirationRelativeToNow { get; set; }
+
+        /// <summary>
+        /// Gets how long a cache entry can be inactive (e.g. not accessed) before it will be removed in this <see cref="ICachePartition"/>.
+        /// This will not extend the entry lifetime beyond the absolute expiration (if set).
+        /// </summary>
         public TimeSpan? SlidingExpiration { get; set; }
+
+        /// <summary>
+        /// Gets the Cache Store name in this <see cref="ICachePartition"/>
+        /// </summary>
         public string StoreName { get; set; }
+
+        /// <summary>
+        /// Gets the <see cref="CacheItemPriority"/> applicable for this <see cref="ICachePartition"/>
+        /// </summary>
         public CacheItemPriority Priority { get; set; }
+
+        /// <summary>
+        /// Gets the Size of the <see cref="ICachePartition"/>
+        /// </summary>
         public long? Size { get; set; }
     }
 
+    /// <summary>
+    /// Represents the Cache Store Type
+    /// </summary>
     public enum StoreType
     {
+        /// <summary>
+        /// Represents In-Memory Cache Store
+        /// </summary>
         Memory,
+        /// <summary>
+        /// Represents Redis Cache Store
+        /// </summary>
         Redis,
+        /// <summary>
+        /// Represents SQLServer Cache Store
+        /// </summary>
         SqlServer,
+        /// <summary>
+        /// Represents the Custom Cache Store
+        /// </summary>
         Custom
     }
 }

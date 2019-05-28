@@ -19,14 +19,29 @@ using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Stores
 {
+    /// <summary>
+    /// Provides extension to implement custom <see cref="ICacheStore{T}"/>
+    /// </summary>
+    /// <typeparam name="T">Custom Cache Store Type</typeparam>
     public class CustomDistributedCacheStore<T> : ICacheStore<T>
     {
+        /// <summary>
+        /// Creates an instance of <see cref="CustomDistributedCacheStore{T}"/>
+        /// </summary>
+        /// <param name="cacheType">Cache Store type</param>
         public CustomDistributedCacheStore(Type cacheType)
         {
             CacheType = cacheType;
         }
 
+        /// <summary>
+        /// Gets or Sets Custom Distributed Cache Options
+        /// </summary>
         public Action<T> CacheOptions { get; set; }
+
+        /// <summary>
+        /// Gets Cache Type
+        /// </summary>
         public Type CacheType { get; }
     }
 }

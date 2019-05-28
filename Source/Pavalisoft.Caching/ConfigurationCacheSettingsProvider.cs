@@ -18,15 +18,26 @@ using Microsoft.Extensions.Configuration;
 
 namespace Pavalisoft.Caching
 {
+    /// <summary>
+    /// Provides Json based <see cref="CacheSettings"/> configuration
+    /// </summary>
     public class ConfigurationCacheSettingsProvider : CacheSettingsProvider
     {
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Creates an instance of <see cref="ConfigurationCacheSettingsProvider"/> with <see cref="IConfiguration"/>
+        /// </summary>
+        /// <param name="configuration"><see cref="IConfiguration"/> object to read appSettings.json</param>
         public ConfigurationCacheSettingsProvider(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Loads <see cref="CacheSettings"/> object from "Caching" configuration section in appSettings.json
+        /// </summary>
+        /// <returns></returns>
         public override CacheSettings LoadCacheSettings()
         {
             return _configuration.GetSection("Caching").Get<CacheSettings>();

@@ -21,9 +21,19 @@ using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Stores
 {
+    /// <summary>
+    /// Provides <see cref="ExtendedSqlServerCache"/> version of the <see cref="ICacheStore{T}"/>
+    /// </summary>
     public class SqlServerDistributedCacheStore : ICacheStore<SqlServerCacheOptions>
     {
+        /// <summary>
+        /// Gets or Sets <see cref="SqlServerCacheOptions"/>
+        /// </summary>
         public Action<SqlServerCacheOptions> CacheOptions { get; set; }
+
+        /// <summary>
+        /// Gets Cache Type as <see cref="ExtendedSqlServerCache"/>
+        /// </summary>
         public Type CacheType => typeof(ExtendedSqlServerCache);
     }
 }

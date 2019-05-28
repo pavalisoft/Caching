@@ -20,9 +20,19 @@ using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Stores
 {
+    /// <summary>
+    /// Provides <see cref="MemoryCache"/> version of the <see cref="ICacheStore{T}"/>
+    /// </summary>
     public class InMemoryStore : ICacheStore<MemoryCacheOptions>
     {
+        /// <summary>
+        /// Gets or Sets <see cref="MemoryCacheOptions"/>
+        /// </summary>
         public Action<MemoryCacheOptions> CacheOptions { get; set; }
+
+        /// <summary>
+        /// Gets Cache Type as <see cref="MemoryCache"/>
+        /// </summary>
         public Type CacheType => typeof(MemoryCache);
     }
 }

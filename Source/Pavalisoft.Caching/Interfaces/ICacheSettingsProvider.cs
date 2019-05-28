@@ -18,12 +18,41 @@ using System.Collections.Generic;
 
 namespace Pavalisoft.Caching.Interfaces
 {
+    /// <summary>
+    /// Represents <see cref="ICacheSettingsProvider"/>
+    /// </summary>
     public interface ICacheSettingsProvider
     {
+        /// <summary>
+        /// Gets Cache Manager Settings
+        /// </summary>
+        /// <returns><see cref="CacheSettings"/></returns>
         CacheSettings GetCacheSettings();
+
+        /// <summary>
+        /// Gets Cache Stores in Cache Manager
+        /// </summary>
+        /// <returns>List of Cache Stores</returns>
         IEnumerable<object> GetCacheStores();
+
+        /// <summary>
+        /// Gets Cache store having <paramref name="storeName"/>
+        /// </summary>
+        /// <param name="storeName">Cache Store Name</param>
+        /// <returns>Cache Store</returns>
         object GetCacheStore(string storeName);
+
+        /// <summary>
+        /// Gets <see cref="ICachePartition"/>s in the Cache Manager
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<ICachePartition> GetCachePartitions();
+
+        /// <summary>
+        /// Gets <see cref="ICachePartition"/> having partition <paramref name="name"/>
+        /// </summary>
+        /// <param name="name">Cache Partition Name</param>
+        /// <returns><see cref="ICachePartition"/></returns>
         ICachePartition GetCachePartition(string name);
     }
 }

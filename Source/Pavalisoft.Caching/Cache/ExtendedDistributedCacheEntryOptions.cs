@@ -22,6 +22,9 @@ using Microsoft.Extensions.Primitives;
 
 namespace Pavalisoft.Caching.Cache
 {
+    /// <summary>
+    /// Provides the cache options in <see cref="DistributedCacheEntryOptions"/> with Expiration tokens support
+    /// </summary>
     public class ExtendedDistributedCacheEntryOptions : DistributedCacheEntryOptions
     {
         private long? _size;

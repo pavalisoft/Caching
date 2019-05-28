@@ -23,17 +23,37 @@ using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Cache
 {
+    /// <summary>
+    /// Provides <see cref="RedisCache"/> version implementation of <see cref="IExtendedDistributedCache"/>
+    /// </summary>
     public class ExtendedRedisCache : RedisCache, IExtendedDistributedCache
     {
+        /// <summary>
+        /// Creates an instance of <see cref="ExtendedRedisCache"/> with <see cref="RedisCacheOptions"/>
+        /// </summary>
+        /// <param name="optionsAccessor"></param>
         public ExtendedRedisCache(IOptions<RedisCacheOptions> optionsAccessor) : base(optionsAccessor)
         {
         }
 
+        /// <summary>
+        /// Adds the Cache object binary stream to distributed cache
+        /// </summary>
+        /// <param name="key">Cache key</param>
+        /// <param name="value">Cache object in binary stream</param>
+        /// <param name="options"><see cref="ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
         public void Set(string key, byte[] value, ExtendedDistributedCacheEntryOptions options)
         {
             Set(key, value, options as DistributedCacheEntryOptions);
         }
 
+        /// <summary>
+        /// Adds the Cache object binary stream to distributed cache asynchronously
+        /// </summary>
+        /// <param name="key">Cache key</param>
+        /// <param name="value">Cache object in binary stream</param>
+        /// <param name="options"><see cref="ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+        /// <param name="token"><see cref="CancellationToken"/> to be used while adding cache object to distributed cache.</param>
         public async Task SetAsync(string key, byte[] value, ExtendedDistributedCacheEntryOptions options,
             CancellationToken token = default)
         {

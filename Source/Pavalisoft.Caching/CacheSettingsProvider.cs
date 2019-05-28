@@ -23,6 +23,9 @@ using Pavalisoft.Caching.Stores;
 
 namespace Pavalisoft.Caching
 {
+    /// <summary>
+    /// Provides base implementation for <see cref="ICacheSettingsProvider"/>
+    /// </summary>
     public abstract class CacheSettingsProvider : ICacheSettingsProvider
     {
         private CacheSettings _cacheSettings;
@@ -31,36 +34,66 @@ namespace Pavalisoft.Caching
 
         private CacheSettings CacheSettings => _cacheSettings ?? (_cacheSettings = LoadCacheSettings());
 
+        /// <summary>
+        /// Loads Cache Settings Configuration
+        /// </summary>
+        /// <returns><see cref="CacheSettings"/> object</returns>
         public abstract CacheSettings LoadCacheSettings();
 
+        /// <summary>
+        /// Gets <see cref="CacheSettings"/> from configuration
+        /// </summary>
+        /// <returns><see cref="CacheSettings"/> object</returns>
         public CacheSettings GetCacheSettings()
         {
             return CacheSettings;
         }
+
+        /// <summary>
+        /// Gets <see cref="ICacheStore{T}"/> from <see cref="CacheSettings"/>
+        /// </summary>
+        /// <returns>Cache Stores</returns>
         public IEnumerable<object> GetCacheStores()
         {
             LoadCacheStores();
             return _cacheStores.Values;
         }
 
+        /// <summary>
+        /// Gets Cache Store having cache store name <paramref name="storeName"/>
+        /// </summary>
+        /// <param name="storeName">Cache Store Name</param>
+        /// <returns>Cache Store</returns>
         public object GetCacheStore(string storeName)
         {
             LoadCacheStores();
             return _cacheStores.TryGetValue(storeName, out object cacheValue) ? cacheValue : null;
         }
 
+        /// <summary>
+        /// Gets Cache Partitions in the <see cref="CacheSettings"/>
+        /// </summary>
+        /// <returns>List of <see cref="ICachePartition"/>s</returns>
         public IEnumerable<ICachePartition> GetCachePartitions()
         {
             LoadCachePartitions();
             return _cachePartitions.Values;
         }
 
+        /// <summary>
+        /// Gets Cache Partition having cache partition name <paramref name="name"/>
+        /// </summary>
+        /// <param name="name">Cache Partition Name</param>
+        /// <returns><see cref="ICachePartition"/></returns>
         public ICachePartition GetCachePartition(string name)
         {
             LoadCachePartitions();
             return _cachePartitions.TryGetValue(name, out ICachePartition partitionValue) ? partitionValue : null;
         }
 
+        /// <summary>
+        /// Loads Cache Partitions from <see cref="CacheSettings"/> configuration
+        /// </summary>
         private void LoadCachePartitions()
         {
             if (_cachePartitions == null || !_cachePartitions.Any())
@@ -74,6 +107,11 @@ namespace Pavalisoft.Caching
             }
         }
 
+        /// <summary>
+        /// Creates <see cref="ICachePartition"/> instance from <see cref="CachePartitionInfo"/> configuration
+        /// </summary>
+        /// <param name="partitionInfo"><see cref="CachePartitionInfo"/> configuration</param>
+        /// <returns><see cref="ICachePartition"/> object</returns>
         private ICachePartition ConstructCachePartition(CachePartitionInfo partitionInfo)
         {
             return new CachePartition(partitionInfo.Name, partitionInfo.AbsoluteExpiration,
@@ -81,6 +119,9 @@ namespace Pavalisoft.Caching
                 GetCacheStore(partitionInfo.StoreName), partitionInfo.Priority, partitionInfo.Size);
         }
 
+        /// <summary>
+        /// Loads Cache Stores from <see cref="CacheSettings"/> configuration
+        /// </summary>
         private void LoadCacheStores()
         {
             if (_cacheStores == null || !_cacheStores.Any())
@@ -94,6 +135,11 @@ namespace Pavalisoft.Caching
             }
         }
 
+        /// <summary>
+        /// Creates <see cref="ICacheStore{T}"/> from <see cref="CacheStoreInfo"/>
+        /// </summary>
+        /// <param name="cacheStoreInfo"><see cref="CacheStoreInfo"/> configuration</param>
+        /// <returns><see cref="ICacheStore{T}"/> object</returns>
         private object ConstructCacheStore(CacheStoreInfo cacheStoreInfo)
         {
             object cacheStore = null;
@@ -116,6 +162,11 @@ namespace Pavalisoft.Caching
             return cacheStore;
         }
 
+        /// <summary>
+        /// Creates <see cref="SqlServerDistributedCacheStore"/> from <see cref="CacheStoreInfo"/>
+        /// </summary>
+        /// <param name="cacheStoreInfo">SQL Server <see cref="CacheStoreInfo"/> configuration</param>
+        /// <returns><see cref="SqlServerDistributedCacheStore"/> object</returns>
         private object GetSqlCacheStore(CacheStoreInfo cacheStoreInfo)
         {
             object cacheStore;
@@ -142,6 +193,11 @@ namespace Pavalisoft.Caching
             return cacheStore;
         }
 
+        /// <summary>
+        /// Creates <see cref="RedisDistributedCacheStore"/> from <see cref="CacheStoreInfo"/> configuration
+        /// </summary>
+        /// <param name="cacheStoreInfo">Redis <see cref="CacheStoreInfo"/> configuration</param>
+        /// <returns><see cref="RedisDistributedCacheStore"/> object</returns>
         private object GetRedisCacheStore(CacheStoreInfo cacheStoreInfo)
         {
             object cacheStore;
@@ -165,6 +221,11 @@ namespace Pavalisoft.Caching
             return cacheStore;
         }
 
+        /// <summary>
+        /// Creates <see cref="MemoryDistributedCacheStore"/> from <see cref="CacheStoreInfo"/> configuration
+        /// </summary>
+        /// <param name="cacheStoreInfo">In-Memory <see cref="CacheStoreInfo"/> configuration</param>
+        /// <returns></returns>
         private object GetMemoryCacheStore(CacheStoreInfo cacheStoreInfo)
         {
             object cacheStore;

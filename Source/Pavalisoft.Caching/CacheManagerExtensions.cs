@@ -18,13 +18,32 @@ using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching
 {
+    /// <summary>
+    /// Provides <see cref="ICacheManager"/> extensions which encapsulates the complexity
+    /// </summary>
     public static class CacheManagerExtensions
     {
+        /// <summary>
+        /// Gets Cached object for the specified <paramref name="key"/> in <paramref name="partitionName"/> cache partition
+        /// </summary>
+        /// <param name="cacheManager"><see cref="ICacheManager"/> instance</param>
+        /// <param name="partitionName">Cache Partition Name</param>
+        /// <param name="key">Cache key</param>
+        /// <returns>Cached object</returns>
         public static object Get(this ICacheManager cacheManager, string partitionName, string key)
         {
             return cacheManager.Get<object>(partitionName, key);
         }
 
+        /// <summary>
+        /// Tries to get the cached object with <paramref name="key"/> present in the <paramref name="partitionName"/>
+        /// </summary>
+        /// <typeparam name="TItem">Cached object type</typeparam>
+        /// <param name="cacheManager"><see cref="ICacheManager"/> instance</param>
+        /// <param name="partitionName">Cache Partition Name</param>
+        /// <param name="key">Cache key</param>
+        /// <param name="value">Cached object</param>
+        /// <returns>True if key present otherwise false.</returns>
         public static bool TryGetValue<TItem>(this ICacheManager cacheManager, string partitionName, string key,
             out TItem value)
         {

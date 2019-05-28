@@ -26,12 +26,19 @@ using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Cache
 {
+    /// <summary>
+    /// Provides distributed cache implementation using <see cref="MemoryCache"/>
+    /// </summary>
     public class ExtendedMemoryDistributedCache : IExtendedDistributedCache
     {
         private static readonly Task CompletedTask = Task.FromResult<object>(null);
 
         private readonly IMemoryCache _memCache;
 
+        /// <summary>
+        /// Creates an instance of <see cref="ExtendedMemoryDistributedCache"/> with <see cref="MemoryDistributedCacheOptions"/>
+        /// </summary>
+        /// <param name="optionsAccessor"></param>
         public ExtendedMemoryDistributedCache(IOptions<MemoryDistributedCacheOptions> optionsAccessor)
         {
             if (optionsAccessor == null)
@@ -42,6 +49,11 @@ namespace Pavalisoft.Caching.Cache
             _memCache = new MemoryCache(optionsAccessor.Value);
         }
 
+        /// <summary>
+        /// Gets Cache object in binary representation for the given <paramref name="key"/>
+        /// </summary>
+        /// <param name="key">Cache Key</param>
+        /// <returns>Cached object in binary format</returns>
         public byte[] Get(string key)
         {
             if (key == null)
@@ -52,6 +64,12 @@ namespace Pavalisoft.Caching.Cache
             return (byte[])_memCache.Get(key);
         }
 
+        /// <summary>
+        /// Gets Cached object in binary format asynchronously
+        /// </summary>
+        /// <param name="key">Cache Key</param>
+        /// <param name="token"><see cref="CancellationToken"/> used</param>
+        /// <returns></returns>
         public Task<byte[]> GetAsync(string key, CancellationToken token = default)
         {
             if (key == null)
@@ -62,6 +80,12 @@ namespace Pavalisoft.Caching.Cache
             return Task.FromResult(Get(key));
         }
 
+        /// <summary>
+        /// Adds an object to distributed cache
+        /// </summary>
+        /// <param name="key">Cache Key</param>
+        /// <param name="value">Cache object</param>
+        /// <param name="options">Distributed cache options. <see cref="DistributedCacheEntryOptions"/></param>
         public void Set(string key, byte[] value, DistributedCacheEntryOptions options)
         {
             if (key == null)
@@ -90,6 +114,13 @@ namespace Pavalisoft.Caching.Cache
             Set(key, value, cacheEntryOptions);
         }
 
+        /// <summary>
+        /// Adds an object to distributed cache asynchronously
+        /// </summary>
+        /// <param name="key">Cache Key</param>
+        /// <param name="value">Cache object</param>
+        /// <param name="options">Distributed cache options. <see cref="DistributedCacheEntryOptions"/></param>
+        /// <param name="token"><see cref="CancellationToken"/> to be used while setting cache item</param>
         public Task SetAsync(string key, byte[] value, DistributedCacheEntryOptions options, CancellationToken token = default)
         {
             if (key == null)
@@ -111,6 +142,10 @@ namespace Pavalisoft.Caching.Cache
             return CompletedTask;
         }
 
+        /// <summary>
+        /// Refreshes the cache item of the specified cache key
+        /// </summary>
+        /// <param name="key">Cache key</param>
         public void Refresh(string key)
         {
             if (key == null)
@@ -121,6 +156,11 @@ namespace Pavalisoft.Caching.Cache
             _memCache.TryGetValue(key, out object value);
         }
 
+        /// <summary>
+        /// Refreshes the cache item asynchronously for the specified cache key
+        /// </summary>
+        /// <param name="key">Cache Key</param>
+        /// <param name="token"><see cref="CancellationToken"/> to be used while refreshing cache item</param>
         public Task RefreshAsync(string key, CancellationToken token = default)
         {
             if (key == null)
@@ -132,6 +172,9 @@ namespace Pavalisoft.Caching.Cache
             return CompletedTask;
         }
 
+        /// <summary>
+        /// Removes the Cache object from the cache for the specified cache key
+        /// </summary>
         public void Remove(string key)
         {
             if (key == null)
@@ -142,6 +185,11 @@ namespace Pavalisoft.Caching.Cache
             _memCache.Remove(key);
         }
 
+        /// <summary>
+        /// Removes the Cache object asynchronously from the cache for the specified cache key
+        /// </summary>
+        /// <param name="key">Cache key</param>
+        /// <param name="token"><see cref="CancellationToken"/> to be used while removing cache item</param>
         public Task RemoveAsync(string key, CancellationToken token = default)
         {
             if (key == null)
@@ -153,6 +201,12 @@ namespace Pavalisoft.Caching.Cache
             return CompletedTask;
         }
 
+        /// <summary>
+        /// Adds an object to distributed cache
+        /// </summary>
+        /// <param name="key">Cache Key</param>
+        /// <param name="value">Cache object</param>
+        /// <param name="options">Distributed cache options. <see cref="ExtendedDistributedCacheEntryOptions"/></param>
         public void Set(string key, byte[] value, ExtendedDistributedCacheEntryOptions options)
         {
             if (key == null)
@@ -175,6 +229,13 @@ namespace Pavalisoft.Caching.Cache
             _memCache.Set(key, value, memoryCacheEntryOptions);
         }
 
+        /// <summary>
+        /// Adds an object to distributed cache asynchronously
+        /// </summary>
+        /// <param name="key">Cache Key</param>
+        /// <param name="value">Cache object</param>
+        /// <param name="options">Distributed cache options. <see cref="ExtendedDistributedCacheEntryOptions"/></param>
+        /// <param name="token"><see cref="CancellationToken"/> to be used while setting cache item</param>
         public Task SetAsync(string key, byte[] value, ExtendedDistributedCacheEntryOptions options, CancellationToken token = default)
         {
             if (key == null)

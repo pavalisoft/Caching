@@ -24,8 +24,17 @@ using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching
 {
+    /// <summary>
+    /// Provides <see cref="IServiceCollection"/> extensions for Cache Manger integration
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Adds Caching Middleware to pipeline with Cache Manager functionality
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/> instance</param>
+        /// <param name="configuration"><see cref="IConfiguration"/> instance</param>
+        /// <returns><see cref="IServiceCollection"/> add with Cache Manager</returns>
         public static IServiceCollection AddCaching(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<ICacheManager, CacheManager>();

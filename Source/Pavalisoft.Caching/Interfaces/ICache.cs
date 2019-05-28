@@ -91,7 +91,7 @@ namespace Pavalisoft.Caching.Interfaces
         /// Gets the <see cref="ICacheStore{T}"/> for the type <typeparamref name="T"/> from cache manager
         /// </summary>
         /// <typeparam name="T">Cache Store Type</typeparam>
-        /// <returns></returns>
+        /// <returns><see cref="ICacheStore{T}"/></returns>
         ICacheStore<T> GetCacheStore<T>();
 
         /// <summary>

@@ -21,9 +21,19 @@ using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Stores
 {
+    /// <summary>
+    /// Provides <see cref="ExtendedMemoryDistributedCache"/> version of the <see cref="ICacheStore{T}"/>
+    /// </summary>
     public class MemoryDistributedCacheStore : ICacheStore<MemoryDistributedCacheOptions>
     {
+        /// <summary>
+        /// Gets or Sets <see cref="MemoryDistributedCacheOptions"/>
+        /// </summary>
         public Action<MemoryDistributedCacheOptions> CacheOptions { get; set; }
+
+        /// <summary>
+        /// Gets Cache Type as <see cref="ExtendedMemoryDistributedCache"/>
+        /// </summary>
         public Type CacheType => typeof(ExtendedMemoryDistributedCache);
     }
 }

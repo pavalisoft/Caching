@@ -21,10 +21,26 @@ using Pavalisoft.Caching.Cache;
 
 namespace Pavalisoft.Caching.Interfaces
 {
+    /// <summary>
+    /// Represents the distributed cache
+    /// </summary>
     public interface IExtendedDistributedCache : IDistributedCache
     {
+        /// <summary>
+        /// Adds the Cache object binary stream to distributed cache
+        /// </summary>
+        /// <param name="key">Cache key</param>
+        /// <param name="value">Cache object in binary stream</param>
+        /// <param name="options"><see cref="ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
         void Set(string key, byte[] value, ExtendedDistributedCacheEntryOptions options);
 
+        /// <summary>
+        /// Adds the Cache object binary stream to distributed cache asynchronously
+        /// </summary>
+        /// <param name="key">Cache key</param>
+        /// <param name="value">Cache object in binary stream</param>
+        /// <param name="options"><see cref="ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+        /// <param name="token"><see cref="CancellationToken"/> to be used while adding cache object to distributed cache.</param>
         Task SetAsync(string key, byte[] value, ExtendedDistributedCacheEntryOptions options,
             CancellationToken token = default);
     }
