@@ -73,9 +73,9 @@ Refer https://pavalisoft.github.io/Caching/ for [Pavalisoft.Caching](https://www
 
 	namespace Pavalisoft.Caching.Sample
 	{
-		private const string CachePartitionName = "FrequentData";
 		public class CachingSample
 		{
+			private const string CachePartitionName = "FrequentData";		
 			private readonly ICacheManager _cacheManager;
 			public CachingSample(ICacheManager cacheManager)
 			{
