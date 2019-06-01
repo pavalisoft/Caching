@@ -48,24 +48,24 @@ namespace Pavalisoft.Caching
     ///             {
     ///                 "Name": "MySql",
     ///                 "Type": "MySql",
-    ///                 "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+    ///                 "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
     ///             }    
     ///         ],
     ///         "Partitions":
     ///         [
     ///             {
     ///                 "Name": "FrequentData",
-    ///                 "StoreName": "DistributedInMemory",
+    ///                 "StoreName": "InMemory",
     ///                 "SlidingExpiration": "00:05:00"
     ///             },
     ///             {
     ///                 "Name": "LocalizationData",
-    ///                 "StoreName": "DistributedSqlServer",
+    ///                 "StoreName": "SqlServer",
     ///                 "Priority": "NeverRemove"
     ///             },
     ///             {
     ///                 "Name": "MasterData",
-    ///                 "StoreName": "DistributedRedis",
+    ///                 "StoreName": "Redis",
     ///                 "SlidingExpiration": "00:05:00"
     ///             }
     ///         ]
