@@ -24,19 +24,52 @@ namespace Pavalisoft.Caching
     /// <summary>
     /// Provides configuration structure for the Cache manager and its partitions including Cache stores.
     /// </summary>
-    /// <example>
+    /// <example> The below is the sample configuration
     /// {
-    ///     "Caching" : {
-    ///         "Stores" : [
-    ///             { "Name" : "DistributedInMemory", "Type" : "Memory", "StoreConfig" : "{\"ExpirationScanFrequency\":\"00:05:00\"}"},
-    ///             { "Name" : "DistributedRedis", "Type" : "Redis", "StoreConfig" : "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"}
+    ///     "Caching":
+    ///     {
+    ///         "Stores":
+    ///         [
+    ///             {
+    ///                 "Name": "InMemory",
+    ///                 "Type": "Memory",
+    ///                 "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+    ///             },
+    ///             {
+    ///                 "Name": "SqlServer",
+    ///                 "Type": "SqlServer",
+    ///                 "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+    ///             },
+    ///             {
+    ///                 "Name": "Redis",
+    ///                 "Type": "Redis",
+    ///                 "StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
+    ///             },
+    ///             {
+    ///                 "Name": "MySql",
+    ///                 "Type": "MySql",
+    ///                 "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+    ///             }    
     ///         ],
-    ///         "Partitions" : [
-    ///             { "Name" : "MasterData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" },
-    ///             { "Name" : "LocalizationData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" },
-    ///             { "Name" : "IncrementalData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" }
+    ///         "Partitions":
+    ///         [
+    ///             {
+    ///                 "Name": "FrequentData",
+    ///                 "StoreName": "DistributedInMemory",
+    ///                 "SlidingExpiration": "00:05:00"
+    ///             },
+    ///             {
+    ///                 "Name": "LocalizationData",
+    ///                 "StoreName": "DistributedSqlServer",
+    ///                 "Priority": "NeverRemove"
+    ///             },
+    ///             {
+    ///                 "Name": "MasterData",
+    ///                 "StoreName": "DistributedRedis",
+    ///                 "SlidingExpiration": "00:05:00"
+    ///             }
     ///         ]
-    ///     }
+    ///    }
     /// }
     /// </example>
     public class CacheSettings
@@ -148,6 +181,38 @@ namespace Pavalisoft.Caching
     }
 
     /// <summary>
+    /// Represents MySQL Cache Store Configuration Information
+    /// </summary>
+    public class MySqlStoreInfo
+    {
+        /// <summary>
+        /// Gets ot Sets the periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
+        /// </summary>
+        public TimeSpan? ExpiredItemsDeletionInterval { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the connection string to the database.
+        /// </summary>
+        public string ConnectionString { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the schema name of the cache table.
+        /// </summary>
+        public string SchemaName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the Name of the table where the cache items are stored.
+        /// </summary>
+        public string TableName { get; set; }
+
+        /// <summary>
+        /// The default sliding expiration set for a cache entry if neither Absolute or SlidingExpiration has been set explicitly.
+        /// By default, its 20 minutes.
+        /// </summary>
+        public TimeSpan DefaultSlidingExpiration { get; set; } = TimeSpan.FromMinutes(20.0);
+    }
+
+    /// <summary>
     /// Represents the Cache Partition Configuration Information
     /// </summary>
     public class CachePartitionInfo
@@ -206,6 +271,10 @@ namespace Pavalisoft.Caching
         /// Represents SQLServer Cache Store
         /// </summary>
         SqlServer,
+        /// <summary>
+        /// Represents MySql Cache Store
+        /// </summary>
+        MySql,
         /// <summary>
         /// Represents the Custom Cache Store
         /// </summary>

@@ -3,6 +3,9 @@ var hierarchy =
     [ "Pavalisoft.Caching.CachePartitionInfo", "class_pavalisoft_1_1_caching_1_1_cache_partition_info.html", null ],
     [ "Pavalisoft.Caching.CacheSettings", "class_pavalisoft_1_1_caching_1_1_cache_settings.html", null ],
     [ "Pavalisoft.Caching.CacheStoreInfo", "class_pavalisoft_1_1_caching_1_1_cache_store_info.html", null ],
+    [ "CacheTagHelperBase", null, [
+      [ "Pavalisoft.Caching.TagHelpers.CacheTagHelper", "class_pavalisoft_1_1_caching_1_1_tag_helpers_1_1_cache_tag_helper.html", null ]
+    ] ],
     [ "DistributedCacheEntryOptions", null, [
       [ "Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions", "class_pavalisoft_1_1_caching_1_1_cache_1_1_extended_distributed_cache_entry_options.html", null ]
     ] ],
@@ -29,6 +32,9 @@ var hierarchy =
     [ "Pavalisoft.Caching.Interfaces.ICacheStore< MemoryDistributedCacheOptions >", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html", [
       [ "Pavalisoft.Caching.Stores.MemoryDistributedCacheStore", "class_pavalisoft_1_1_caching_1_1_stores_1_1_memory_distributed_cache_store.html", null ]
     ] ],
+    [ "Pavalisoft.Caching.Interfaces.ICacheStore< MySqlCacheOptions >", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html", [
+      [ "Pavalisoft.Caching.Stores.MySqlDistributedCacheStore", "class_pavalisoft_1_1_caching_1_1_stores_1_1_my_sql_distributed_cache_store.html", null ]
+    ] ],
     [ "Pavalisoft.Caching.Interfaces.ICacheStore< RedisCacheOptions >", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html", [
       [ "Pavalisoft.Caching.Stores.RedisDistributedCacheStore", "class_pavalisoft_1_1_caching_1_1_stores_1_1_redis_distributed_cache_store.html", null ]
     ] ],
@@ -38,11 +44,16 @@ var hierarchy =
     [ "IDistributedCache", null, [
       [ "Pavalisoft.Caching.Interfaces.IExtendedDistributedCache", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_extended_distributed_cache.html", [
         [ "Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache", "class_pavalisoft_1_1_caching_1_1_cache_1_1_extended_memory_distributed_cache.html", null ],
+        [ "Pavalisoft.Caching.Cache.ExtendedMySqlCache", "class_pavalisoft_1_1_caching_1_1_cache_1_1_extended_my_sql_cache.html", null ],
         [ "Pavalisoft.Caching.Cache.ExtendedRedisCache", "class_pavalisoft_1_1_caching_1_1_cache_1_1_extended_redis_cache.html", null ],
         [ "Pavalisoft.Caching.Cache.ExtendedSqlServerCache", "class_pavalisoft_1_1_caching_1_1_cache_1_1_extended_sql_server_cache.html", null ]
       ] ]
     ] ],
     [ "Pavalisoft.Caching.MemoryStoreInfo", "class_pavalisoft_1_1_caching_1_1_memory_store_info.html", null ],
+    [ "MySqlCache", null, [
+      [ "Pavalisoft.Caching.Cache.ExtendedMySqlCache", "class_pavalisoft_1_1_caching_1_1_cache_1_1_extended_my_sql_cache.html", null ]
+    ] ],
+    [ "Pavalisoft.Caching.MySqlStoreInfo", "class_pavalisoft_1_1_caching_1_1_my_sql_store_info.html", null ],
     [ "RedisCache", null, [
       [ "Pavalisoft.Caching.Cache.ExtendedRedisCache", "class_pavalisoft_1_1_caching_1_1_cache_1_1_extended_redis_cache.html", null ]
     ] ],

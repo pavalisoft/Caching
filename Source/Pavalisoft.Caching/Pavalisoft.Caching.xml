@@ -197,19 +197,52 @@
             <summary>
             Provides configuration structure for the Cache manager and its partitions including Cache stores.
             </summary>
-            <example>
+            <example> The below is the sample configuration
             {
-                "Caching" : {
-                    "Stores" : [
-                        { "Name" : "DistributedInMemory", "Type" : "Memory", "StoreConfig" : "{\"ExpirationScanFrequency\":\"00:05:00\"}"},
-                        { "Name" : "DistributedRedis", "Type" : "Redis", "StoreConfig" : "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"}
+                "Caching":
+                {
+                    "Stores":
+                    [
+                        {
+                            "Name": "InMemory",
+                            "Type": "Memory",
+                            "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+                        },
+                        {
+                            "Name": "SqlServer",
+                            "Type": "SqlServer",
+                            "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+                        },
+                        {
+                            "Name": "Redis",
+                            "Type": "Redis",
+                            "StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
+                        },
+                        {
+                            "Name": "MySql",
+                            "Type": "MySql",
+                            "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+                        }    
                     ],
-                    "Partitions" : [
-                        { "Name" : "MasterData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" },
-                        { "Name" : "LocalizationData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" },
-                        { "Name" : "IncrementalData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" }
+                    "Partitions":
+                    [
+                        {
+                            "Name": "FrequentData",
+                            "StoreName": "DistributedInMemory",
+                            "SlidingExpiration": "00:05:00"
+                        },
+                        {
+                            "Name": "LocalizationData",
+                            "StoreName": "DistributedSqlServer",
+                            "Priority": "NeverRemove"
+                        },
+                        {
+                            "Name": "MasterData",
+                            "StoreName": "DistributedRedis",
+                            "SlidingExpiration": "00:05:00"
+                        }
                     ]
-                }
+               }
             }
             </example>
         </member>
@@ -314,6 +347,37 @@
             By default, its 20 minutes.
             </summary>
         </member>
+        <member name="T:Pavalisoft.Caching.MySqlStoreInfo">
+            <summary>
+            Represents MySQL Cache Store Configuration Information
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.ExpiredItemsDeletionInterval">
+            <summary>
+            Gets ot Sets the periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.ConnectionString">
+            <summary>
+            Gets or Sets the connection string to the database.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.SchemaName">
+            <summary>
+            Gets or Sets the schema name of the cache table.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.TableName">
+            <summary>
+            Gets or Sets the Name of the table where the cache items are stored.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.DefaultSlidingExpiration">
+            <summary>
+            The default sliding expiration set for a cache entry if neither Absolute or SlidingExpiration has been set explicitly.
+            By default, its 20 minutes.
+            </summary>
+        </member>
         <member name="T:Pavalisoft.Caching.CachePartitionInfo">
             <summary>
             Represents the Cache Partition Configuration Information
@@ -373,6 +437,11 @@
         <member name="F:Pavalisoft.Caching.StoreType.SqlServer">
             <summary>
             Represents SQLServer Cache Store
+            </summary>
+        </member>
+        <member name="F:Pavalisoft.Caching.StoreType.MySql">
+            <summary>
+            Represents MySql Cache Store
             </summary>
         </member>
         <member name="F:Pavalisoft.Caching.StoreType.Custom">
@@ -447,12 +516,19 @@
             <param name="cacheStoreInfo"><see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
             <returns><see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/> object</returns>
         </member>
-        <member name="M:Pavalisoft.Caching.CacheSettingsProvider.GetSqlCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+        <member name="M:Pavalisoft.Caching.CacheSettingsProvider.GetSqlServerCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
             <summary>
             Creates <see cref="T:Pavalisoft.Caching.Stores.SqlServerDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/>
             </summary>
             <param name="cacheStoreInfo">SQL Server <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
             <returns><see cref="T:Pavalisoft.Caching.Stores.SqlServerDistributedCacheStore"/> object</returns>
+        </member>
+        <member name="M:Pavalisoft.Caching.CacheSettingsProvider.GetMySqlCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+            <summary>
+            Creates <see cref="T:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/>
+            </summary>
+            <param name="cacheStoreInfo">MySQL <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
+            <returns><see cref="T:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore"/> object</returns>
         </member>
         <member name="M:Pavalisoft.Caching.CacheSettingsProvider.GetRedisCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
             <summary>
@@ -665,6 +741,34 @@
             <param name="value">Cache object</param>
             <param name="options">Distributed cache options. <see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/></param>
             <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while setting cache item</param>
+        </member>
+        <member name="T:Pavalisoft.Caching.Cache.ExtendedMySqlCache">
+            <summary>
+            Provides <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCache"/> version implementation of <see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/>
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.Cache.ExtendedMySqlCache.#ctor(Microsoft.Extensions.Options.IOptions{Pomelo.Extensions.Caching.MySql.MySqlCacheOptions})">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.Cache.ExtendedMySqlCache"/> with <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCacheOptions"/>
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Pavalisoft.Caching.Cache.ExtendedMySqlCache.Set(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
+            <summary>
+            Adds the Cache object binary stream to distributed cache
+            </summary>
+            <param name="key">Cache key</param>
+            <param name="value">Cache object in binary stream</param>
+            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+        </member>
+        <member name="M:Pavalisoft.Caching.Cache.ExtendedMySqlCache.SetAsync(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
+            <summary>
+            Adds the Cache object binary stream to distributed cache asynchronously
+            </summary>
+            <param name="key">Cache key</param>
+            <param name="value">Cache object in binary stream</param>
+            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while adding cache object to distributed cache.</param>
         </member>
         <member name="T:Pavalisoft.Caching.Cache.ExtendedRedisCache">
             <summary>
@@ -1103,6 +1207,21 @@
         <member name="P:Pavalisoft.Caching.Stores.MemoryDistributedCacheStore.CacheType">
             <summary>
             Gets Cache Type as <see cref="T:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache"/>
+            </summary>
+        </member>
+        <member name="T:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore">
+            <summary>
+            Provides <see cref="T:Pavalisoft.Caching.Cache.ExtendedMySqlCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore.CacheOptions">
+            <summary>
+            Gets or Sets <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCacheOptions"/>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore.CacheType">
+            <summary>
+            Gets Cache Type as <see cref="T:Pavalisoft.Caching.Cache.ExtendedSqlServerCache"/>
             </summary>
         </member>
         <member name="T:Pavalisoft.Caching.Stores.RedisDistributedCacheStore">

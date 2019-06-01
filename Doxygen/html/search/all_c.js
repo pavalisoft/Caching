@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['tablename',['TableName',['../class_pavalisoft_1_1_caching_1_1_sql_server_store_info.html#a6b25d015da6219be175c9b56a78fbe83',1,'Pavalisoft::Caching::SqlServerStoreInfo']]],
+  ['tablename',['TableName',['../class_pavalisoft_1_1_caching_1_1_sql_server_store_info.html#a6b25d015da6219be175c9b56a78fbe83',1,'Pavalisoft.Caching.SqlServerStoreInfo.TableName()'],['../class_pavalisoft_1_1_caching_1_1_my_sql_store_info.html#af05ed6b0d6aef1625da59689bf0ab17e',1,'Pavalisoft.Caching.MySqlStoreInfo.TableName()']]],
   ['type',['Type',['../class_pavalisoft_1_1_caching_1_1_cache_store_info.html#a9b97e2e6e1855fdabe66d3a44b9eb343',1,'Pavalisoft::Caching::CacheStoreInfo']]],
   ['typeinfo',['TypeInfo',['../class_pavalisoft_1_1_caching_1_1_cache_store_info.html#ae68924e10a7217bee29f365afa6d3103',1,'Pavalisoft::Caching::CacheStoreInfo']]]
 ];

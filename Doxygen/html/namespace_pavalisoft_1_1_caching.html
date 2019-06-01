@@ -30,8 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.0.0.1</span>
+   &#160;<span id="projectnumber">1.0.1</span>
    </div>
+   <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
   </td>
  </tr>
  </tbody>
@@ -124,6 +125,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_memory_store_info.html">MemoryStoreInfo</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents in-Memory Store Configuration Information  <a href="class_pavalisoft_1_1_caching_1_1_memory_store_info.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_my_sql_store_info.html">MySqlStoreInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents MySQL <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store Configuration Information  <a href="class_pavalisoft_1_1_caching_1_1_my_sql_store_info.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_redis_store_info.html">RedisStoreInfo</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents Redis <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store Configuration Information  <a href="class_pavalisoft_1_1_caching_1_1_redis_store_info.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,10 +140,14 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ad3fb25687804e1995cdc84af05b42ba9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9">StoreType</a> { <a class="el" href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9a4789f23283b3a61f858b641a1bef19a3">StoreType.Memory</a>, 
+<tr class="memitem:ad3fb25687804e1995cdc84af05b42ba9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9">StoreType</a> { <br />
+&#160;&#160;<a class="el" href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9a4789f23283b3a61f858b641a1bef19a3">StoreType.Memory</a>, 
 <a class="el" href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9ae111446745a1825b862f8727ae63bce4">StoreType.Redis</a>, 
 <a class="el" href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9ae86e829e4d4c68b30a4fd26aa2bfca72">StoreType.SqlServer</a>, 
-<a class="el" href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9a90589c47f06eb971d548591f23c285af">StoreType.Custom</a>
+<a class="el" href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9a9df306f03daedccf83f5e2983dbb5422">StoreType.MySql</a>, 
+<br />
+&#160;&#160;<a class="el" href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9a90589c47f06eb971d548591f23c285af">StoreType.Custom</a>
+<br />
  }</td></tr>
 <tr class="memdesc:ad3fb25687804e1995cdc84af05b42ba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the Cache Store Type  <a href="namespace_pavalisoft_1_1_caching.html#ad3fb25687804e1995cdc84af05b42ba9">More...</a><br /></td></tr>
 <tr class="separator:ad3fb25687804e1995cdc84af05b42ba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,6 +180,8 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="ad3fb25687804e1995cdc84af05b42ba9ae111446745a1825b862f8727ae63bce4"></a>Redis&#160;</td><td class="fielddoc"><p>Represents Redis <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ad3fb25687804e1995cdc84af05b42ba9ae86e829e4d4c68b30a4fd26aa2bfca72"></a>SqlServer&#160;</td><td class="fielddoc"><p>Represents SQLServer <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad3fb25687804e1995cdc84af05b42ba9a9df306f03daedccf83f5e2983dbb5422"></a>MySql&#160;</td><td class="fielddoc"><p>Represents MySql <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ad3fb25687804e1995cdc84af05b42ba9a90589c47f06eb971d548591f23c285af"></a>Custom&#160;</td><td class="fielddoc"><p>Represents the Custom <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store </p>
 </td></tr>

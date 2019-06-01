@@ -15,24 +15,22 @@ Refer https://pavalisoft.github.io/Caching/ for complete API Documentation.
 The main goal of the Pavalisoft.Caching package is to make developer's life easier to handle even very complex caching scenarios and concentrate on functionality.  
 With Pavalisoft.Caching, it is possible to implement multiple layers of caching with multiple cache providers in one place, e.g. In-MemoryCache, distributed cache, in just a few lines of code.</Description>
     <Copyright>Copyright (c) 2019 Pavalisoft</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseFile></PackageLicenseFile>
     <PackageProjectUrl>https://www.nuget.org/packages/Pavalisoft.Caching/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pavalisoft/Caching</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>A single unified API for both MemoryCache and DistributedCache implementations. It's additional feature CacheManager supports various cache providers and implements many advanced features which can be used in single project/application.</PackageReleaseNotes>
-    <PackageTags>1.0.0.1 Caching CacheManager DotNetStandard CSharp</PackageTags>
-    <AssemblyOriginatorKeyFile>Pavalisoft.pfx</AssemblyOriginatorKeyFile>
-    <Version>1.0.0.1</Version>
+    <PackageReleaseNotes>A single unified API for both MemoryCache and DistributedCache implementations. It's additional feature CacheManager supports various cache providers and implements many advanced features which can be used in single project/application. 
+Moved CacheTagHelpers to Pavalisoft.Caching.TagHelpers</PackageReleaseNotes>
+    <PackageTags>caching;memorycache;distributedcache;caching;cache-manager;cachemanager</PackageTags>
+    <AssemblyOriginatorKeyFile>..\..\Pavalisoft.Caching.pfx</AssemblyOriginatorKeyFile>
+    <Version>1.0.1</Version>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\Work\Projects\Pavalisoft\Caching\Source\Pavalisoft.Caching\Pavalisoft.Caching.xml</DocumentationFile>
+    <DocumentationFile>Pavalisoft.Caching.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="TagHelpers\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0" />
@@ -42,13 +40,6 @@ With Pavalisoft.Caching, it is possible to implement multiple layers of caching 
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Pomelo.Extensions.Caching.MySql" Version="2.0.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-
 </Project>

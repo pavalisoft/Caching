@@ -4,5 +4,6 @@ var searchData=
   ['caching',['Caching',['../namespace_pavalisoft_1_1_caching.html',1,'Pavalisoft']]],
   ['interfaces',['Interfaces',['../namespace_pavalisoft_1_1_caching_1_1_interfaces.html',1,'Pavalisoft::Caching']]],
   ['pavalisoft',['Pavalisoft',['../namespace_pavalisoft.html',1,'']]],
-  ['stores',['Stores',['../namespace_pavalisoft_1_1_caching_1_1_stores.html',1,'Pavalisoft::Caching']]]
+  ['stores',['Stores',['../namespace_pavalisoft_1_1_caching_1_1_stores.html',1,'Pavalisoft::Caching']]],
+  ['taghelpers',['TagHelpers',['../namespace_pavalisoft_1_1_caching_1_1_tag_helpers.html',1,'Pavalisoft::Caching']]]
 ];

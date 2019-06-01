@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageTags>aspnetcore;aspnetcoremvc;taghelper;taghelpers;caching;cachemanager;pavalisoft.caching;caching;memorycache;distributedcache</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseFile></PackageLicenseFile>
+    <Authors>Venkataswamy Pavali</Authors>
+    <Company>https://github.com/pavalisoft</Company>
+    <Description>ASP.NET Core MVC Cache Tag Helper using Pavalisoft.Caching</Description>
+    <Copyright>Copyright (c) 2019 Pavalisoft</Copyright>
+    <PackageProjectUrl>https://www.nuget.org/packages/Pavalisoft.Caching.TagHelpers/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pavalisoft/Caching</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageReleaseNotes>A single unified cache tag helper using Pavalisoft.Caching</PackageReleaseNotes>
+    <NeutralLanguage>English</NeutralLanguage>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\Pavalisoft.Caching.pfx</AssemblyOriginatorKeyFile>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Pavalisoft.Caching.TagHelpers.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
+    <PackageReference Include="Pavalisoft.Caching" Version="1.0.0.1" />
+  </ItemGroup>
+</Project>

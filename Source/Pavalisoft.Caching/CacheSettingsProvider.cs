@@ -152,7 +152,10 @@ namespace Pavalisoft.Caching
                     cacheStore = GetRedisCacheStore(cacheStoreInfo);
                     break;
                 case StoreType.SqlServer:
-                    cacheStore = GetSqlCacheStore(cacheStoreInfo);
+                    cacheStore = GetSqlServerCacheStore(cacheStoreInfo);
+                    break;
+                case StoreType.MySql:
+                    cacheStore = GetMySqlCacheStore(cacheStoreInfo);
                     break;
                     // TODO : Custom Cache Store related issues needs to be fixed.
                     //case StoreType.Custom:
@@ -167,7 +170,7 @@ namespace Pavalisoft.Caching
         /// </summary>
         /// <param name="cacheStoreInfo">SQL Server <see cref="CacheStoreInfo"/> configuration</param>
         /// <returns><see cref="SqlServerDistributedCacheStore"/> object</returns>
-        private object GetSqlCacheStore(CacheStoreInfo cacheStoreInfo)
+        private object GetSqlServerCacheStore(CacheStoreInfo cacheStoreInfo)
         {
             object cacheStore;
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
@@ -189,6 +192,37 @@ namespace Pavalisoft.Caching
             else
             {
                 cacheStore = new SqlServerDistributedCacheStore { CacheOptions = options => { } };
+            }
+            return cacheStore;
+        }
+
+        /// <summary>
+        /// Creates <see cref="MySqlDistributedCacheStore"/> from <see cref="CacheStoreInfo"/>
+        /// </summary>
+        /// <param name="cacheStoreInfo">MySQL <see cref="CacheStoreInfo"/> configuration</param>
+        /// <returns><see cref="MySqlDistributedCacheStore"/> object</returns>
+        private object GetMySqlCacheStore(CacheStoreInfo cacheStoreInfo)
+        {
+            object cacheStore;
+            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
+            {
+                MySqlStoreInfo sqlServerStoreInfo =
+                    JObject.Parse(cacheStoreInfo.StoreConfig).ToObject<MySqlStoreInfo>();
+                cacheStore = new MySqlDistributedCacheStore
+                {
+                    CacheOptions = options =>
+                    {
+                        options.ConnectionString = sqlServerStoreInfo.ConnectionString;
+                        options.DefaultSlidingExpiration = sqlServerStoreInfo.DefaultSlidingExpiration;
+                        options.ExpiredItemsDeletionInterval = sqlServerStoreInfo.ExpiredItemsDeletionInterval;
+                        options.SchemaName = sqlServerStoreInfo.SchemaName;
+                        options.TableName = sqlServerStoreInfo.TableName;
+                    }
+                };
+            }
+            else
+            {
+                cacheStore = new MySqlDistributedCacheStore { CacheOptions = options => { } };
             }
             return cacheStore;
         }

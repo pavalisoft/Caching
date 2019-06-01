@@ -30,8 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.0.0.1</span>
+   &#160;<span id="projectnumber">1.0.1</span>
    </div>
+   <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
   </td>
  </tr>
  </tbody>
@@ -90,113 +91,6 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">Pavalisoft.Caching Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<article class="markdown-body entry-content p-5" itemprop="text"><h1><a id="user-content-caching" class="anchor" aria-hidden="true" href="#caching"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Caching</h1>
-<p><a href="https://www.nuget.org/packages/Pavalisoft.Caching/" rel="nofollow">Pavalisoft.Caching</a> is an open source caching extension for .NET Standard written in C#, which provides single unified API for both <a href="https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-2.2" rel="nofollow">MemoryCache</a> and <a href="https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-2.2" rel="nofollow">DistributedCache</a> implementations.</p>
-<p>The main goal of the <a href="https://www.nuget.org/packages/Pavalisoft.Caching/" rel="nofollow">Pavalisoft.Caching</a> package is to make developer's life easier to handle even very complex caching scenarios and concentrate on functionality. It's additional feature <a href="https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_manager.html" rel="nofollow">CacheManager</a> supports various cache providers and implements many advanced features which can be used in single project/application.</p>
-<p>With <a href="https://www.nuget.org/packages/Pavalisoft.Caching/" rel="nofollow">Pavalisoft.Caching</a>, it is possible to implement multiple layers of caching with multiple cache providers in one place, e.g. <a href="https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-2.2" rel="nofollow">MemoryCache</a> and <a href="https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-2.2" rel="nofollow">DistributedCache</a>, in just a few lines of code.</p>
-<p>The below diagram explains the <a href="https://www.nuget.org/packages/Pavalisoft.Caching/" rel="nofollow">Pavalisoft.Caching</a> API and its usage.</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/pavalisoft/Caching/blob/master/CacheManager.svg"><img src="https://github.com/pavalisoft/Caching/raw/master/CacheManager.svg?sanitize=true" alt="" style="max-width:100%;"></a></p>
-<h2><a id="user-content-documentation" class="anchor" aria-hidden="true" href="#documentation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Documentation</h2>
-<p>Refer <a href="https://pavalisoft.github.io/Caching/" rel="nofollow">https://pavalisoft.github.io/Caching/</a> for <a href="https://www.nuget.org/packages/Pavalisoft.Caching/" rel="nofollow">Pavalisoft.Caching</a> API documentation</p>
-<h2><a id="user-content-usage" class="anchor" aria-hidden="true" href="#usage"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
-<ol>
-<li>Define the <a href="https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#abacbfb422d22fd66190f2350901b8797" rel="nofollow">Cache Stores</a> and <a href="https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#a132238e26cb3fd3005fb2ebdcc36a36f" rel="nofollow">Partitions</a> in Caching configuration section in appSettings.json</li>
-</ol>
-<pre><code>	
-	"Caching":
-	{
-		"Stores":
-		[
-			{
-				"Name": "DistributedInMemory",
-				"Type": "Memory",
-				"StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}" 
-			},
-			{
-				"Name": "DistributedSqlServer",
-				"Type": "SqlServer",
-				"StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
-			},
-			{
-				"Name": "DistributedRedis",
-				"Type": "Redis",
-				"StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
-			}
-		],
-		"Partitions":
-		[
-			{
-				"Name": "FrequentData",
-				"StoreName": "DistributedInMemory",
-				"SlidingExpiration": "00:05:00"
-			},
-			{ 
-				"Name": "LocalizationData", 
-				"StoreName": "DistributedSqlServer", 
-				"Priority": "NeverRemove" 
-			},
-			{
-				"Name": "MasterData",
-				"StoreName": "DistributedRedis",
-				"SlidingExpiration": "00:05:00"
-			}
-		]
-	}
-</code></pre>
-<ol start="2">
-<li>Add <a href="https://www.nuget.org/packages/Pavalisoft.Caching/" rel="nofollow">Pavalisoft.Caching</a> to services</li>
-</ol>
-<pre><code>
-	public void ConfigureServices(IServiceCollection services)
-	{
-		... 
-		services.AddCaching(Configuration);
-		... 
-	}
-</code></pre>
-<ol start="3">
-<li>Use <a href="https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_manager.html" rel="nofollow">CacheManager</a> methods to add, get, refresh and remove items in Cache.</li>
-</ol>
-<pre><code>	
-	// Add required using statements
-	using Pavalisoft.Caching;
-	using Pavalisoft.Caching.Interfaces;
-	using Microsoft.Extensions.Primitives;
-	using System;
-
-	namespace Pavalisoft.Caching.Sample
-	{
-		private const string CachePartitionName = "FrequentData";
-		public class CachingSample
-		{
-			private readonly ICacheManager _cacheManager;
-			public CachingSample(ICacheManager cacheManager)
-			{
-				_cacheManager = cacheManager;
-			}
-
-			public AppUser GetAppUser(HttpContext httpContext)
-			{
-				var userName = httpContext.User.Identity.Name;
-				AppUser appUser;
-				
-				// Try to get the appUser from cache
-				if (!_cacheManager.TryGetValue(CachePartitionName, userName, out appUser))
-				{
-					// If not available in Cache then create new instance of AppUser
-					appUser = new AppUser(userName);
-
-					// Add appUser object to Cache
-					_cacheManager.Set(CachePartitionName, userName, appUser);                `
-				}
-				return appUser;
-			}
-		}
-	}
-</code></pre>
-<h2><a id="user-content-builds" class="anchor" aria-hidden="true" href="#builds"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Builds</h2>
-<p>Get latest builds from <a href="https://www.nuget.org/packages/Pavalisoft.Caching/" rel="nofollow">nuget</a></p>
-</article>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

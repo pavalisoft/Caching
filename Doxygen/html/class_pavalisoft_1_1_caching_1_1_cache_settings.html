@@ -30,8 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.0.0.1</span>
+   &#160;<span id="projectnumber">1.0.1</span>
    </div>
+   <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
   </td>
  </tr>
  </tbody>
@@ -108,8 +109,8 @@ Properties</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides configuration structure for the <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> manager and its partitions including <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> stores. </p>
-<p>{ "Caching" : { "Stores" : [ { "Name" : "DistributedInMemory", "Type" : "Memory", "StoreConfig" : "{\"ExpirationScanFrequency":"00:05:00"}"},
-            { "Name" : "DistributedRedis", "Type" : "Redis", "StoreConfig" : "{"Configuration":"00:05:00", "InstanceName":"localhost"}"} ], "Partitions" : [ { "Name" : "MasterData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" }, { "Name" : "LocalizationData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" }, { "Name" : "IncrementalData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" } ] } } </p>
+<p>The below is the sample configuration { "Caching": { "Stores": [ { "Name": "InMemory", "Type": "Memory", "StoreConfig": "{\"ExpirationScanFrequency":"00:05:00"}" }, { "Name": "SqlServer", "Type": "SqlServer", "StoreConfig": "{\"ExpiredItemsDeletionInterval":"00:05:00", "ConnectionString":"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True", "SchemaName":"store", "TableName":"<a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a>", "DefaultSlidingExpiration":"00:05:00"}" }, { "Name": "Redis", "Type": "Redis", "StoreConfig": "{\"Configuration":"00:05:00", "InstanceName":"localhost"}" }, { "Name": "MySql", "Type": "MySql", "StoreConfig": "{\"ExpiredItemsDeletionInterval":"00:05:00", "ConnectionString":"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True", "SchemaName":"store", "TableName":"<a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a>", "DefaultSlidingExpiration":"00:05:00"}" }</p>
+<p>], "Partitions": [ { "Name": "FrequentData", "StoreName": "DistributedInMemory", "SlidingExpiration": "00:05:00" }, { "Name": "LocalizationData", "StoreName": "DistributedSqlServer", "Priority": "NeverRemove" }, { "Name": "MasterData", "StoreName": "DistributedRedis", "SlidingExpiration": "00:05:00" } ] } } </p>
 </div><h2 class="groupheader">Property Documentation</h2>
 <a id="a132238e26cb3fd3005fb2ebdcc36a36f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a132238e26cb3fd3005fb2ebdcc36a36f">&#9670;&nbsp;</a></span>Partitions</h2>

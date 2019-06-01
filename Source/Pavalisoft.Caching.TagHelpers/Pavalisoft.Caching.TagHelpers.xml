@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pavalisoft.Caching.TagHelpers</name>
+    </assembly>
+    <members>
+        <member name="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper">
+            <summary>
+            Cache Tag Helper https://github.com/aspnet/AspNetCore/blob/c565386a3ed135560bc2e9017aa54a950b4e35dd/src/Mvc/Mvc.TagHelpers/src/CacheTagHelper.cs
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagHelper.#ctor(System.Text.Encodings.Web.HtmlEncoder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

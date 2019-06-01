@@ -7,6 +7,7 @@ var searchData=
   ['icachestore',['ICacheStore',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html',1,'Pavalisoft::Caching::Interfaces']]],
   ['icachestore_3c_20memorycacheoptions_20_3e',['ICacheStore&lt; MemoryCacheOptions &gt;',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html',1,'Pavalisoft::Caching::Interfaces']]],
   ['icachestore_3c_20memorydistributedcacheoptions_20_3e',['ICacheStore&lt; MemoryDistributedCacheOptions &gt;',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html',1,'Pavalisoft::Caching::Interfaces']]],
+  ['icachestore_3c_20mysqlcacheoptions_20_3e',['ICacheStore&lt; MySqlCacheOptions &gt;',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html',1,'Pavalisoft::Caching::Interfaces']]],
   ['icachestore_3c_20rediscacheoptions_20_3e',['ICacheStore&lt; RedisCacheOptions &gt;',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html',1,'Pavalisoft::Caching::Interfaces']]],
   ['icachestore_3c_20sqlservercacheoptions_20_3e',['ICacheStore&lt; SqlServerCacheOptions &gt;',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html',1,'Pavalisoft::Caching::Interfaces']]],
   ['iextendeddistributedcache',['IExtendedDistributedCache',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_extended_distributed_cache.html',1,'Pavalisoft::Caching::Interfaces']]],
