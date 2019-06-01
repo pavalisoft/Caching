@@ -14,6 +14,7 @@
    limitations under the License. 
 */
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -29,11 +30,19 @@ namespace Pavalisoft.Caching
     public abstract class CacheSettingsProvider : ICacheSettingsProvider
     {
         private CacheSettings _cacheSettings;
-        private IReadOnlyDictionary<string, object> _cacheStores;
+        private IReadOnlyDictionary<string, ICacheStore> _cacheStores;
         private IReadOnlyDictionary<string, ICachePartition> _cachePartitions;
-
+        private readonly IServiceProvider _serviceProvider;
         private CacheSettings CacheSettings => _cacheSettings ?? (_cacheSettings = LoadCacheSettings());
 
+        /// <summary>
+        /// Creates an instance of <see cref="CacheSettingsProvider"/>
+        /// </summary>
+        /// <param name="serviceProvider">Dependency Service Provider</param>
+        protected CacheSettingsProvider(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
         /// <summary>
         /// Loads Cache Settings Configuration
         /// </summary>
@@ -53,9 +62,9 @@ namespace Pavalisoft.Caching
         /// Gets <see cref="ICacheStore{T}"/> from <see cref="CacheSettings"/>
         /// </summary>
         /// <returns>Cache Stores</returns>
-        public IEnumerable<object> GetCacheStores()
+        public IEnumerable<ICacheStore> GetCacheStores()
         {
-            LoadCacheStores();
+            LoadCachePartitions();
             return _cacheStores.Values;
         }
 
@@ -64,10 +73,10 @@ namespace Pavalisoft.Caching
         /// </summary>
         /// <param name="storeName">Cache Store Name</param>
         /// <returns>Cache Store</returns>
-        public object GetCacheStore(string storeName)
+        public ICacheStore GetCacheStore(string storeName)
         {
-            LoadCacheStores();
-            return _cacheStores.TryGetValue(storeName, out object cacheValue) ? cacheValue : null;
+            LoadCachePartitions();
+            return _cacheStores.TryGetValue(storeName, out ICacheStore cacheValue) ? cacheValue : null;
         }
 
         /// <summary>
@@ -96,6 +105,7 @@ namespace Pavalisoft.Caching
         /// </summary>
         private void LoadCachePartitions()
         {
+            LoadCacheStores();
             if (_cachePartitions == null || !_cachePartitions.Any())
             {
                 Dictionary<string, ICachePartition> cachePartitions = new Dictionary<string, ICachePartition>();
@@ -114,9 +124,13 @@ namespace Pavalisoft.Caching
         /// <returns><see cref="ICachePartition"/> object</returns>
         private ICachePartition ConstructCachePartition(CachePartitionInfo partitionInfo)
         {
-            return new CachePartition(partitionInfo.Name, partitionInfo.AbsoluteExpiration,
+            ICacheStore cacheStore = GetCacheStore(partitionInfo.StoreName);
+            ICachePartition cachePartition = new CachePartition(partitionInfo.Name, partitionInfo.AbsoluteExpiration,
                 partitionInfo.AbsoluteExpirationRelativeToNow, partitionInfo.SlidingExpiration,
-                GetCacheStore(partitionInfo.StoreName), partitionInfo.Priority, partitionInfo.Size);
+                new Cache.Cache(_serviceProvider.GetService(cacheStore.CacheType) as IExtendedDistributedCache,
+                    cacheStore), partitionInfo.Priority, partitionInfo.Size);
+            cacheStore.CachePartitions[partitionInfo.Name] = cachePartition;
+            return cachePartition;
         }
 
         /// <summary>
@@ -126,12 +140,12 @@ namespace Pavalisoft.Caching
         {
             if (_cacheStores == null || !_cacheStores.Any())
             {
-                Dictionary<string, object> cacheStores = new Dictionary<string, object>();
+                Dictionary<string, ICacheStore> cacheStores = new Dictionary<string, ICacheStore>();
                 foreach (var storeInfo in CacheSettings.Stores)
                 {
                     cacheStores.Add(storeInfo.Name, ConstructCacheStore(storeInfo));
                 }
-                _cacheStores = new ReadOnlyDictionary<string, object>(cacheStores);
+                _cacheStores = new ReadOnlyDictionary<string, ICacheStore>(cacheStores);
             }
         }
 
@@ -140,9 +154,9 @@ namespace Pavalisoft.Caching
         /// </summary>
         /// <param name="cacheStoreInfo"><see cref="CacheStoreInfo"/> configuration</param>
         /// <returns><see cref="ICacheStore{T}"/> object</returns>
-        private object ConstructCacheStore(CacheStoreInfo cacheStoreInfo)
+        private ICacheStore ConstructCacheStore(CacheStoreInfo cacheStoreInfo)
         {
-            object cacheStore = null;
+            ICacheStore cacheStore = null;
             switch (cacheStoreInfo.Type)
             {
                 case StoreType.Memory:
@@ -170,9 +184,9 @@ namespace Pavalisoft.Caching
         /// </summary>
         /// <param name="cacheStoreInfo">SQL Server <see cref="CacheStoreInfo"/> configuration</param>
         /// <returns><see cref="SqlServerDistributedCacheStore"/> object</returns>
-        private object GetSqlServerCacheStore(CacheStoreInfo cacheStoreInfo)
+        private ICacheStore GetSqlServerCacheStore(CacheStoreInfo cacheStoreInfo)
         {
-            object cacheStore;
+            ICacheStore cacheStore;
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 SqlServerStoreInfo sqlServerStoreInfo =
@@ -201,9 +215,9 @@ namespace Pavalisoft.Caching
         /// </summary>
         /// <param name="cacheStoreInfo">MySQL <see cref="CacheStoreInfo"/> configuration</param>
         /// <returns><see cref="MySqlDistributedCacheStore"/> object</returns>
-        private object GetMySqlCacheStore(CacheStoreInfo cacheStoreInfo)
+        private ICacheStore GetMySqlCacheStore(CacheStoreInfo cacheStoreInfo)
         {
-            object cacheStore;
+            ICacheStore cacheStore;
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 MySqlStoreInfo sqlServerStoreInfo =
@@ -232,9 +246,9 @@ namespace Pavalisoft.Caching
         /// </summary>
         /// <param name="cacheStoreInfo">Redis <see cref="CacheStoreInfo"/> configuration</param>
         /// <returns><see cref="RedisDistributedCacheStore"/> object</returns>
-        private object GetRedisCacheStore(CacheStoreInfo cacheStoreInfo)
+        private ICacheStore GetRedisCacheStore(CacheStoreInfo cacheStoreInfo)
         {
-            object cacheStore;
+            ICacheStore cacheStore;
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 RedisStoreInfo redisStoreInfo =
@@ -260,9 +274,9 @@ namespace Pavalisoft.Caching
         /// </summary>
         /// <param name="cacheStoreInfo">In-Memory <see cref="CacheStoreInfo"/> configuration</param>
         /// <returns></returns>
-        private object GetMemoryCacheStore(CacheStoreInfo cacheStoreInfo)
+        private ICacheStore GetMemoryCacheStore(CacheStoreInfo cacheStoreInfo)
         {
-            object cacheStore;
+            ICacheStore cacheStore;
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 MemoryStoreInfo memoryStoreInfo =

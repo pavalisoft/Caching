@@ -33,14 +33,14 @@ namespace Pavalisoft.Caching.Interfaces
         /// Gets Cache Stores in Cache Manager
         /// </summary>
         /// <returns>List of Cache Stores</returns>
-        IEnumerable<object> GetCacheStores();
+        IEnumerable<ICacheStore> GetCacheStores();
 
         /// <summary>
         /// Gets Cache store having <paramref name="storeName"/>
         /// </summary>
         /// <param name="storeName">Cache Store Name</param>
         /// <returns>Cache Store</returns>
-        object GetCacheStore(string storeName);
+        ICacheStore GetCacheStore(string storeName);
 
         /// <summary>
         /// Gets <see cref="ICachePartition"/>s in the Cache Manager

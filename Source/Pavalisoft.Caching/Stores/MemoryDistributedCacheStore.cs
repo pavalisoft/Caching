@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
@@ -30,6 +31,9 @@ namespace Pavalisoft.Caching.Stores
         /// Gets or Sets <see cref="MemoryDistributedCacheOptions"/>
         /// </summary>
         public Action<MemoryDistributedCacheOptions> CacheOptions { get; set; }
+
+        /// <inheritdoc />
+        public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
 
         /// <summary>
         /// Gets Cache Type as <see cref="ExtendedMemoryDistributedCache"/>

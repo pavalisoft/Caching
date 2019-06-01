@@ -32,18 +32,18 @@ namespace Pavalisoft.Caching
         /// <param name="absoluteExpiration">An absolute expiration date for the cache entry in this <see cref="ICachePartition"/>.</param>
         /// <param name="absoluteExpirationRelativeToNow">An absolute expiration time, relative to now in this <see cref="ICachePartition"/>.</param>
         /// <param name="slidingExpiration">Sliding expiration time for the cache entry in this <see cref="ICachePartition"/>.</param>
-        /// <param name="store"><see cref="ICacheStore{T}"/> where the partition should be created</param>
+        /// <param name="cache"><see cref="ICache"/> associated with cache partition</param>
         /// <param name="priority"><see cref="CacheItemPriority"/> to be applied to the cache items in this <see cref="ICachePartition"/></param>
         /// <param name="size"><see cref="ICachePartition"/> size</param>
         public CachePartition(string name, DateTimeOffset? absoluteExpiration,
-            TimeSpan? absoluteExpirationRelativeToNow, TimeSpan? slidingExpiration, object store,
+            TimeSpan? absoluteExpirationRelativeToNow, TimeSpan? slidingExpiration, ICache cache,
             CacheItemPriority priority, long? size)
         {
             Name = name;
             AbsoluteExpiration = absoluteExpiration;
             AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow;
             SlidingExpiration = slidingExpiration;
-            Store = store;
+            Cache = cache;
             Priority = priority;
             Size = size;
         }
@@ -68,11 +68,6 @@ namespace Pavalisoft.Caching
         /// This will not extend the entry lifetime beyond the absolute expiration (if set).
         /// </summary>
         public TimeSpan? SlidingExpiration { get; }
-
-        /// <summary>
-        /// Gets the Cache Store in this <see cref="ICachePartition"/>
-        /// </summary>
-        public object Store { get; }
 
         /// <summary>
         /// Gets the <see cref="CacheItemPriority"/> applicable for this <see cref="ICachePartition"/>

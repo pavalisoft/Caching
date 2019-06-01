@@ -46,11 +46,6 @@ namespace Pavalisoft.Caching.Interfaces
         TimeSpan? SlidingExpiration { get; }
 
         /// <summary>
-        /// Gets the Cache Store in this <see cref="ICachePartition"/>
-        /// </summary>
-        object Store { get; }
-
-        /// <summary>
         /// Gets the <see cref="CacheItemPriority"/> applicable for this <see cref="ICachePartition"/>
         /// </summary>
         CacheItemPriority Priority { get; }

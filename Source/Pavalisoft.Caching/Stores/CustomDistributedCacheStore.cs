@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Stores
@@ -38,6 +39,9 @@ namespace Pavalisoft.Caching.Stores
         /// Gets or Sets Custom Distributed Cache Options
         /// </summary>
         public Action<T> CacheOptions { get; set; }
+
+        /// <inheritdoc />
+        public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
 
         /// <summary>
         /// Gets Cache Type

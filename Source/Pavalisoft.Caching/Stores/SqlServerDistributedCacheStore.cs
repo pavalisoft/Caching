@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.Caching.SqlServer;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
@@ -30,6 +31,9 @@ namespace Pavalisoft.Caching.Stores
         /// Gets or Sets <see cref="SqlServerCacheOptions"/>
         /// </summary>
         public Action<SqlServerCacheOptions> CacheOptions { get; set; }
+
+        /// <inheritdoc />
+        public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
 
         /// <summary>
         /// Gets Cache Type as <see cref="ExtendedSqlServerCache"/>

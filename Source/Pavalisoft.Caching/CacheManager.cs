@@ -19,8 +19,6 @@ using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Caching.Redis;
-using Microsoft.Extensions.Caching.SqlServer;
 using Microsoft.Extensions.Primitives;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
@@ -194,33 +192,9 @@ namespace Pavalisoft.Caching
         {
             if (!_cachePartitions.TryGetValue(partitionName, out var partition))
             {
-                partition = GetCacheFactory(partitionName);
+                partition = _cacheSettingsProvider.GetCachePartition(partitionName);
                 _cachePartitions.TryAdd(partitionName, partition);
             }
-            return partition;
-        }
-
-        private ICachePartition GetCacheFactory(string partitionName)
-        {
-            ICachePartition partition = _cacheSettingsProvider.GetCachePartition(partitionName);
-            var store = partition.Store;
-            ICache cache = null;
-            if (store is ICacheStore<MemoryDistributedCacheOptions> memoryStore)
-            {
-                cache = new Cache.Cache(_serviceProvider.GetService(memoryStore.CacheType) as IExtendedDistributedCache);
-                cache.SetCacheStore(memoryStore);
-            }
-            else if (store is ICacheStore<RedisCacheOptions> redisStore)
-            {
-                cache = new Cache.Cache(_serviceProvider.GetService(redisStore.CacheType) as IExtendedDistributedCache);
-                cache.SetCacheStore(redisStore);
-            }
-            else if (store is ICacheStore<SqlServerCacheOptions> sqlStore)
-            {
-                cache = new Cache.Cache(_serviceProvider.GetService(sqlStore.CacheType) as IExtendedDistributedCache);
-                cache.SetCacheStore(sqlStore);
-            }
-            partition.Cache = cache;
             return partition;
         }
 

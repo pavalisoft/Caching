@@ -14,6 +14,7 @@
    limitations under the License. 
 */
 
+using System;
 using Microsoft.Extensions.Configuration;
 
 namespace Pavalisoft.Caching
@@ -29,7 +30,9 @@ namespace Pavalisoft.Caching
         /// Creates an instance of <see cref="ConfigurationCacheSettingsProvider"/> with <see cref="IConfiguration"/>
         /// </summary>
         /// <param name="configuration"><see cref="IConfiguration"/> object to read appSettings.json</param>
-        public ConfigurationCacheSettingsProvider(IConfiguration configuration)
+        /// <param name="serviceProvider"><see cref="IServiceProvider"/></param>
+        public ConfigurationCacheSettingsProvider(IConfiguration configuration, IServiceProvider serviceProvider) :
+            base(serviceProvider)
         {
             _configuration = configuration;
         }

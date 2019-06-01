@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 
 namespace Pavalisoft.Caching.Interfaces
 {
@@ -22,13 +23,24 @@ namespace Pavalisoft.Caching.Interfaces
     /// Represents <see cref="ICacheStore{T}"/> implementation
     /// </summary>
     /// <typeparam name="T">Cache Store type</typeparam>
-    public interface ICacheStore<T>
+    public interface ICacheStore<T> : ICacheStore
     {
         /// <summary>
         /// Gets or Sets Cache Options
         /// </summary>
         Action<T> CacheOptions { get; set; }
-        
+    }
+
+    /// <summary>
+    /// Represents <see cref="ICacheStore"/>
+    /// </summary>
+    public interface ICacheStore
+    {
+        /// <summary>
+        /// Gets all available <see cref="ICachePartition"/>s
+        /// </summary>
+        IDictionary<string, ICachePartition> CachePartitions { get; }
+
         /// <summary>
         /// Gets Cache Type
         /// </summary>

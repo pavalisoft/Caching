@@ -28,15 +28,17 @@ namespace Pavalisoft.Caching.Cache
     public class Cache : ICache
     {
         private readonly IExtendedDistributedCache _distributedCache;
-        private object _cacheStore;
+        private ICacheStore _cacheStore;
 
         /// <summary>
         /// Creates an instance of <see cref="Cache"/> with <see cref="IExtendedDistributedCache"/>
         /// </summary>
         /// <param name="distributedCache"><see cref="IExtendedDistributedCache"/></param>
-        public Cache(IExtendedDistributedCache distributedCache)
+        /// <param name="cacheStore"><see cref="ICacheStore"/></param>
+        public Cache(IExtendedDistributedCache distributedCache, ICacheStore cacheStore)
         {
             _distributedCache = distributedCache;
+            _cacheStore = cacheStore;
         }
 
         /// <summary>
