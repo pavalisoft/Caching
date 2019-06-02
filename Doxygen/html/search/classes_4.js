@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['redisdistributedcachestore',['RedisDistributedCacheStore',['../class_pavalisoft_1_1_caching_1_1_stores_1_1_redis_distributed_cache_store.html',1,'Pavalisoft::Caching::Stores']]],
-  ['redisstoreinfo',['RedisStoreInfo',['../class_pavalisoft_1_1_caching_1_1_redis_store_info.html',1,'Pavalisoft::Caching']]]
+  ['memorydistributedcachestore',['MemoryDistributedCacheStore',['../class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store.html',1,'Pavalisoft::Caching::InMemory']]],
+  ['memorydistributedcachestoretype',['MemoryDistributedCacheStoreType',['../class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store_type.html',1,'Pavalisoft::Caching::InMemory']]],
+  ['memorystoreinfo',['MemoryStoreInfo',['../class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_store_info.html',1,'Pavalisoft::Caching::InMemory']]],
+  ['mysqldistributedcachestore',['MySqlDistributedCacheStore',['../class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store.html',1,'Pavalisoft::Caching::MySql']]],
+  ['mysqldistributedcachestoretype',['MySqlDistributedCacheStoreType',['../class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store_type.html',1,'Pavalisoft::Caching::MySql']]],
+  ['mysqlstoreinfo',['MySqlStoreInfo',['../class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_store_info.html',1,'Pavalisoft::Caching::MySql']]]
 ];

@@ -25,17 +25,17 @@ namespace Pavalisoft.Caching.Cache
     /// <summary>
     /// Provides distribution cache implementation of<see cref="ICache" /> in <see cref="ICachePartition"/>
     /// </summary>
-    public class Cache : ICache
+    public class DistributedCache : ICache
     {
         private readonly IExtendedDistributedCache _distributedCache;
         private ICacheStore _cacheStore;
 
         /// <summary>
-        /// Creates an instance of <see cref="Cache"/> with <see cref="IExtendedDistributedCache"/>
+        /// Creates an instance of <see cref="DistributedCache"/> with <see cref="IExtendedDistributedCache"/>
         /// </summary>
         /// <param name="distributedCache"><see cref="IExtendedDistributedCache"/></param>
         /// <param name="cacheStore"><see cref="ICacheStore"/></param>
-        public Cache(IExtendedDistributedCache distributedCache, ICacheStore cacheStore)
+        public DistributedCache(IExtendedDistributedCache distributedCache, ICacheStore cacheStore)
         {
             _distributedCache = distributedCache;
             _cacheStore = cacheStore;

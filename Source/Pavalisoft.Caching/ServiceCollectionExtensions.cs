@@ -14,10 +14,9 @@
    limitations under the License. 
 */
 
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
-using Pavalisoft.Caching.StoreTypes;
 
 namespace Pavalisoft.Caching
 {
@@ -30,19 +29,11 @@ namespace Pavalisoft.Caching
         /// Adds Caching Middleware to pipeline with Cache Manager functionality
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/> instance</param>
-        /// <param name="configuration"><see cref="IConfiguration"/> instance</param>
         /// <returns><see cref="IServiceCollection"/> add with Cache Manager</returns>
-        public static IServiceCollection AddCaching(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddCaching(this IServiceCollection services)
         {
-            services.AddTransient<ICache, Cache.Cache>();
+            services.AddTransient<ICache, DistributedCache>();
             services.AddTransient<ICachePartition, CachePartition>();
-
-            services.AddSingleton<InMemoryCacheStoreType>();
-            services.AddSingleton<MemoryDistributedCacheStoreType>();
-            services.AddSingleton<MySqlDistributedCacheStoreType>();
-            services.AddSingleton<RedisDistributedCacheStoreType>();
-            services.AddSingleton<SqlServerDistributedCacheStoreType>();
-            services.AddSingleton<CustomDistributedCacheStoreType>();
 
             services.AddSingleton<ICacheManager, CacheManager>();
             services.AddSingleton<ICacheSettingsProvider, ConfigurationCacheSettingsProvider>();

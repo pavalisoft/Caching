@@ -276,103 +276,6 @@
             Gets or Sets Cache Store Type Information
             </summary>
         </member>
-        <member name="T:Pavalisoft.Caching.MemoryStoreInfo">
-            <summary>
-            Represents in-Memory Store Configuration Information
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MemoryStoreInfo.ExpirationScanFrequency">
-            <summary>
-            Gets or Sets expiration scan frequency of the cache items
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MemoryStoreInfo.SizeLimit">
-            <summary>
-            Gets or Sets the In-Memory Store size
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MemoryStoreInfo.CompactionPercentage">
-            <summary>
-            Gets or Sets the cache items compaction percentage
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.RedisStoreInfo">
-            <summary>
-            Represents Redis Cache Store Configuration Information
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.RedisStoreInfo.Configuration">
-            <summary>
-            Gets or Sets the configuration used to connect to Redis.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.RedisStoreInfo.InstanceName">
-            <summary>
-            Gets or Sets the Redis instance name.
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.SqlServerStoreInfo">
-            <summary>
-            Represents SQL Server Cache Store Configuration Information
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServerStoreInfo.ExpiredItemsDeletionInterval">
-            <summary>
-            Gets ot Sets the periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServerStoreInfo.ConnectionString">
-            <summary>
-            Gets or Sets the connection string to the database.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServerStoreInfo.SchemaName">
-            <summary>
-            Gets or Sets the schema name of the cache table.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServerStoreInfo.TableName">
-            <summary>
-            Gets or Sets the Name of the table where the cache items are stored.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServerStoreInfo.DefaultSlidingExpiration">
-            <summary>
-            The default sliding expiration set for a cache entry if neither Absolute or SlidingExpiration has been set explicitly.
-            By default, its 20 minutes.
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.MySqlStoreInfo">
-            <summary>
-            Represents MySQL Cache Store Configuration Information
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.ExpiredItemsDeletionInterval">
-            <summary>
-            Gets ot Sets the periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.ConnectionString">
-            <summary>
-            Gets or Sets the connection string to the database.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.SchemaName">
-            <summary>
-            Gets or Sets the schema name of the cache table.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.TableName">
-            <summary>
-            Gets or Sets the Name of the table where the cache items are stored.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySqlStoreInfo.DefaultSlidingExpiration">
-            <summary>
-            The default sliding expiration set for a cache entry if neither Absolute or SlidingExpiration has been set explicitly.
-            By default, its 20 minutes.
-            </summary>
-        </member>
         <member name="T:Pavalisoft.Caching.CachePartitionInfo">
             <summary>
             Represents the Cache Partition Configuration Information
@@ -517,19 +420,19 @@
             <param name="cacheStoreInfo"><see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
             <returns><see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/> object</returns>
         </member>
-        <member name="T:Pavalisoft.Caching.Cache.Cache">
+        <member name="T:Pavalisoft.Caching.Cache.DistributedCache">
             <summary>
             Provides distribution cache implementation of<see cref="T:Pavalisoft.Caching.Interfaces.ICache" /> in <see cref="T:Pavalisoft.Caching.Interfaces.ICachePartition"/>
             </summary>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.#ctor(Pavalisoft.Caching.Interfaces.IExtendedDistributedCache,Pavalisoft.Caching.Interfaces.ICacheStore)">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.#ctor(Pavalisoft.Caching.Interfaces.IExtendedDistributedCache,Pavalisoft.Caching.Interfaces.ICacheStore)">
             <summary>
-            Creates an instance of <see cref="T:Pavalisoft.Caching.Cache.Cache"/> with <see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.Cache.DistributedCache"/> with <see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/>
             </summary>
             <param name="distributedCache"><see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/></param>
             <param name="cacheStore"><see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore"/></param>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.Get``1(System.String)">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.Get``1(System.String)">
             <summary>
             Gets the Cache object for the specified cache key
             </summary>
@@ -537,7 +440,7 @@
             <param name="key">Cache key</param>
             <returns>Cached object</returns>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.GetAsync``1(System.String,System.Threading.CancellationToken)">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.GetAsync``1(System.String,System.Threading.CancellationToken)">
             <summary>
             Gets the Cache object asynchronously for the specified cache key
             </summary>
@@ -546,7 +449,7 @@
             <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while getting cache item</param>
             <returns>Cached object</returns>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.Set``1(System.String,``0,Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.Set``1(System.String,``0,Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
             <summary>
             Adds an object to distributed cache
             </summary>
@@ -555,7 +458,7 @@
             <param name="value">Cache object</param>
             <param name="options">Distributed cache options. <see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/></param>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.SetAsync``1(System.String,``0,Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.SetAsync``1(System.String,``0,Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
             <summary>
             Adds an object to distributed cache asynchronously
             </summary>
@@ -565,40 +468,40 @@
             <param name="options">Distributed cache options. <see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/></param>
             <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while setting cache item</param>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.Refresh(System.String)">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.Refresh(System.String)">
             <summary>
             Refreshes the cache item of the specified cache key
             </summary>
             <param name="key">Cache key</param>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.RefreshAsync(System.String,System.Threading.CancellationToken)">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.RefreshAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Refreshes the cache item asynchronously for the specified cache key
             </summary>
             <param name="key">Cache Key</param>
             <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while refreshing cache item</param>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.Remove(System.String)">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.Remove(System.String)">
             <summary>
             Removes the Cache object from the cache for the specified cache key
             </summary>
             <param name="key">Cache key</param>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.RemoveAsync(System.String,System.Threading.CancellationToken)">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.RemoveAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Removes the Cache object asynchronously from the cache for the specified cache key
             </summary>
             <param name="key">Cache key</param>
             <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while removing cache item</param>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.GetCacheStore``1">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.GetCacheStore``1">
             <summary>
             Gets the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/> for the type <typeparamref name="T"/> from cache manager
             </summary>
             <typeparam name="T">Cache Store Type</typeparam>
             <returns><see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/></returns>
         </member>
-        <member name="M:Pavalisoft.Caching.Cache.Cache.SetCacheStore``1(Pavalisoft.Caching.Interfaces.ICacheStore{``0})">
+        <member name="M:Pavalisoft.Caching.Cache.DistributedCache.SetCacheStore``1(Pavalisoft.Caching.Interfaces.ICacheStore{``0})">
             <summary>
             Sets the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/> of the type <typeparamref name="T"/> to the cache manager
             </summary>
@@ -630,175 +533,6 @@
             <summary>
             Gets or sets the size of the cache entry value.
             </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache">
-            <summary>
-            Provides distributed cache implementation using <see cref="T:Microsoft.Extensions.Caching.Memory.MemoryCache"/>
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.Extensions.Caching.Memory.MemoryDistributedCacheOptions})">
-            <summary>
-            Creates an instance of <see cref="T:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache"/> with <see cref="T:Microsoft.Extensions.Caching.Memory.MemoryDistributedCacheOptions"/>
-            </summary>
-            <param name="optionsAccessor"></param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.Get(System.String)">
-            <summary>
-            Gets Cache object in binary representation for the given <paramref name="key"/>
-            </summary>
-            <param name="key">Cache Key</param>
-            <returns>Cached object in binary format</returns>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.GetAsync(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Gets Cached object in binary format asynchronously
-            </summary>
-            <param name="key">Cache Key</param>
-            <param name="token"><see cref="T:System.Threading.CancellationToken"/> used</param>
-            <returns>Cached object in binary format</returns>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.Set(System.String,System.Byte[],Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions)">
-            <summary>
-            Adds an object to distributed cache
-            </summary>
-            <param name="key">Cache Key</param>
-            <param name="value">Cache object</param>
-            <param name="options">Distributed cache options. <see cref="T:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions"/></param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.SetAsync(System.String,System.Byte[],Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions,System.Threading.CancellationToken)">
-            <summary>
-            Adds an object to distributed cache asynchronously
-            </summary>
-            <param name="key">Cache Key</param>
-            <param name="value">Cache object</param>
-            <param name="options">Distributed cache options. <see cref="T:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions"/></param>
-            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while setting cache item</param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.Refresh(System.String)">
-            <summary>
-            Refreshes the cache item of the specified cache key
-            </summary>
-            <param name="key">Cache key</param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.RefreshAsync(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Refreshes the cache item asynchronously for the specified cache key
-            </summary>
-            <param name="key">Cache Key</param>
-            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while refreshing cache item</param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.Remove(System.String)">
-            <summary>
-            Removes the Cache object from the cache for the specified cache key
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.RemoveAsync(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Removes the Cache object asynchronously from the cache for the specified cache key
-            </summary>
-            <param name="key">Cache key</param>
-            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while removing cache item</param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.Set(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
-            <summary>
-            Adds an object to distributed cache
-            </summary>
-            <param name="key">Cache Key</param>
-            <param name="value">Cache object</param>
-            <param name="options">Distributed cache options. <see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/></param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache.SetAsync(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
-            <summary>
-            Adds an object to distributed cache asynchronously
-            </summary>
-            <param name="key">Cache Key</param>
-            <param name="value">Cache object</param>
-            <param name="options">Distributed cache options. <see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/></param>
-            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while setting cache item</param>
-        </member>
-        <member name="T:Pavalisoft.Caching.Cache.ExtendedMySqlCache">
-            <summary>
-            Provides <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCache"/> version implementation of <see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/>
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMySqlCache.#ctor(Microsoft.Extensions.Options.IOptions{Pomelo.Extensions.Caching.MySql.MySqlCacheOptions})">
-            <summary>
-            Creates an instance of <see cref="T:Pavalisoft.Caching.Cache.ExtendedMySqlCache"/> with <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCacheOptions"/>
-            </summary>
-            <param name="options"></param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMySqlCache.Set(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
-            <summary>
-            Adds the Cache object binary stream to distributed cache
-            </summary>
-            <param name="key">Cache key</param>
-            <param name="value">Cache object in binary stream</param>
-            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedMySqlCache.SetAsync(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
-            <summary>
-            Adds the Cache object binary stream to distributed cache asynchronously
-            </summary>
-            <param name="key">Cache key</param>
-            <param name="value">Cache object in binary stream</param>
-            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
-            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while adding cache object to distributed cache.</param>
-        </member>
-        <member name="T:Pavalisoft.Caching.Cache.ExtendedRedisCache">
-            <summary>
-            Provides <see cref="T:Microsoft.Extensions.Caching.Redis.RedisCache"/> version implementation of <see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/>
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedRedisCache.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.Extensions.Caching.Redis.RedisCacheOptions})">
-            <summary>
-            Creates an instance of <see cref="T:Pavalisoft.Caching.Cache.ExtendedRedisCache"/> with <see cref="T:Microsoft.Extensions.Caching.Redis.RedisCacheOptions"/>
-            </summary>
-            <param name="optionsAccessor"></param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedRedisCache.Set(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
-            <summary>
-            Adds the Cache object binary stream to distributed cache
-            </summary>
-            <param name="key">Cache key</param>
-            <param name="value">Cache object in binary stream</param>
-            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedRedisCache.SetAsync(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
-            <summary>
-            Adds the Cache object binary stream to distributed cache asynchronously
-            </summary>
-            <param name="key">Cache key</param>
-            <param name="value">Cache object in binary stream</param>
-            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
-            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while adding cache object to distributed cache.</param>
-        </member>
-        <member name="T:Pavalisoft.Caching.Cache.ExtendedSqlServerCache">
-            <summary>
-            Provides <see cref="T:Microsoft.Extensions.Caching.SqlServer.SqlServerCache"/> version implementation of <see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/>
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedSqlServerCache.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions})">
-            <summary>
-            Creates an instance of <see cref="T:Pavalisoft.Caching.Cache.ExtendedSqlServerCache"/> with <see cref="T:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions"/>
-            </summary>
-            <param name="options"></param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedSqlServerCache.Set(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
-            <summary>
-            Adds the Cache object binary stream to distributed cache
-            </summary>
-            <param name="key">Cache key</param>
-            <param name="value">Cache object in binary stream</param>
-            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
-        </member>
-        <member name="M:Pavalisoft.Caching.Cache.ExtendedSqlServerCache.SetAsync(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
-            <summary>
-            Adds the Cache object binary stream to distributed cache asynchronously
-            </summary>
-            <param name="key">Cache key</param>
-            <param name="value">Cache object in binary stream</param>
-            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
-            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while adding cache object to distributed cache.</param>
         </member>
         <member name="T:Pavalisoft.Caching.ConfigurationCacheSettingsProvider">
             <summary>
@@ -1141,223 +875,12 @@
             Provides <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> extensions for Cache Manger integration
             </summary>
         </member>
-        <member name="M:Pavalisoft.Caching.ServiceCollectionExtensions.AddCaching(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Pavalisoft.Caching.ServiceCollectionExtensions.AddCaching(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Adds Caching Middleware to pipeline with Cache Manager functionality
             </summary>
             <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> instance</param>
-            <param name="configuration"><see cref="T:Microsoft.Extensions.Configuration.IConfiguration"/> instance</param>
             <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> add with Cache Manager</returns>
-        </member>
-        <member name="T:Pavalisoft.Caching.Stores.CustomCacheOptions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.CustomCacheOptions.Clock">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.CustomCacheOptions.ExpirationScanFrequency">
-            <summary>
-            Gets or sets the minimum length of time between successive scans for expired items.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.CustomCacheOptions.SizeLimit">
-            <summary>Gets or sets the maximum size of the cache.</summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.CustomCacheOptions.CompactionPercentage">
-            <summary>
-            Gets or sets the amount to compact the cache by when the maximum size is exceeded.
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.Stores.CustomDistributedCacheStore`1">
-            <summary>
-            Provides extension to implement custom <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
-            </summary>
-            <typeparam name="T">Custom Cache Store Type</typeparam>
-        </member>
-        <member name="M:Pavalisoft.Caching.Stores.CustomDistributedCacheStore`1.#ctor(System.Type)">
-            <summary>
-            Creates an instance of <see cref="T:Pavalisoft.Caching.Stores.CustomDistributedCacheStore`1"/>
-            </summary>
-            <param name="cacheType">Cache Store type</param>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.CustomDistributedCacheStore`1.CacheOptions">
-            <summary>
-            Gets or Sets Custom Distributed Cache Options
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.CustomDistributedCacheStore`1.CachePartitions">
-            <inheritdoc />
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.CustomDistributedCacheStore`1.CacheType">
-            <summary>
-            Gets Cache Type
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.Stores.InMemoryStore">
-            <summary>
-            Provides <see cref="T:Microsoft.Extensions.Caching.Memory.MemoryCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.InMemoryStore.CacheOptions">
-            <summary>
-            Gets or Sets <see cref="T:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.InMemoryStore.CachePartitions">
-            <inheritdoc />
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.InMemoryStore.CacheType">
-            <summary>
-            Gets Cache Type as <see cref="T:Microsoft.Extensions.Caching.Memory.MemoryCache"/>
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.Stores.MemoryDistributedCacheStore">
-            <summary>
-            Provides <see cref="T:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.MemoryDistributedCacheStore.CacheOptions">
-            <summary>
-            Gets or Sets <see cref="T:Microsoft.Extensions.Caching.Memory.MemoryDistributedCacheOptions"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.MemoryDistributedCacheStore.CachePartitions">
-            <inheritdoc />
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.MemoryDistributedCacheStore.CacheType">
-            <summary>
-            Gets Cache Type as <see cref="T:Pavalisoft.Caching.Cache.ExtendedMemoryDistributedCache"/>
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore">
-            <summary>
-            Provides <see cref="T:Pavalisoft.Caching.Cache.ExtendedMySqlCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore.CacheOptions">
-            <summary>
-            Gets or Sets <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCacheOptions"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore.CachePartitions">
-            <inheritdoc />
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore.CacheType">
-            <summary>
-            Gets Cache Type as <see cref="T:Pavalisoft.Caching.Cache.ExtendedSqlServerCache"/>
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.Stores.RedisDistributedCacheStore">
-            <summary>
-            Provides <see cref="T:Pavalisoft.Caching.Cache.ExtendedRedisCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.RedisDistributedCacheStore.CacheOptions">
-            <summary>
-            Gets or Sets <see cref="T:Microsoft.Extensions.Caching.Redis.RedisCacheOptions"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.RedisDistributedCacheStore.CachePartitions">
-            <inheritdoc />
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.RedisDistributedCacheStore.CacheType">
-            <summary>
-            Gets Cache Type <see cref="T:Pavalisoft.Caching.Cache.ExtendedRedisCache"/>
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.Stores.SqlServerDistributedCacheStore">
-            <summary>
-            Provides <see cref="T:Pavalisoft.Caching.Cache.ExtendedSqlServerCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.SqlServerDistributedCacheStore.CacheOptions">
-            <summary>
-            Gets or Sets <see cref="T:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions"/>
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.SqlServerDistributedCacheStore.CachePartitions">
-            <inheritdoc />
-        </member>
-        <member name="P:Pavalisoft.Caching.Stores.SqlServerDistributedCacheStore.CacheType">
-            <summary>
-            Gets Cache Type as <see cref="T:Pavalisoft.Caching.Cache.ExtendedSqlServerCache"/>
-            </summary>
-        </member>
-        <member name="T:Pavalisoft.Caching.StoreTypes.CustomDistributedCacheStoreType">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.StoreTypes.CustomDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
-            <summary>
-            
-            </summary>
-            <param name="cacheStoreInfo"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Pavalisoft.Caching.StoreTypes.InMemoryCacheStoreType">
-            <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.Stores.MemoryDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.MemoryStoreInfo"/>
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.StoreTypes.InMemoryCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
-            <summary>
-            Creates <see cref="T:Pavalisoft.Caching.Stores.InMemoryStore"/> object
-            </summary>
-            <param name="cacheStoreInfo"><see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> object</param>
-            <returns><see cref="T:Pavalisoft.Caching.Stores.InMemoryStore"/></returns>
-        </member>
-        <member name="T:Pavalisoft.Caching.StoreTypes.MemoryDistributedCacheStoreType">
-            <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.Stores.MemoryDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.MemoryStoreInfo"/>
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.StoreTypes.MemoryDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
-            <summary>
-            Creates <see cref="T:Pavalisoft.Caching.Stores.MemoryDistributedCacheStore"/> object
-            </summary>
-            <param name="cacheStoreInfo"><see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> object</param>
-            <returns><see cref="T:Pavalisoft.Caching.Stores.MemoryDistributedCacheStore"/></returns>
-        </member>
-        <member name="T:Pavalisoft.Caching.StoreTypes.MySqlDistributedCacheStoreType">
-            <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.MySqlStoreInfo"/>
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.StoreTypes.MySqlDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
-            <summary>
-            Creates <see cref="T:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/>
-            </summary>
-            <param name="cacheStoreInfo">MySQL <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
-            <returns><see cref="T:Pavalisoft.Caching.Stores.MySqlDistributedCacheStore"/> object</returns>
-        </member>
-        <member name="T:Pavalisoft.Caching.StoreTypes.RedisDistributedCacheStoreType">
-            <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.Stores.RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.RedisStoreInfo"/>
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.StoreTypes.RedisDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
-            <summary>
-            Creates <see cref="T:Pavalisoft.Caching.Stores.RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration
-            </summary>
-            <param name="cacheStoreInfo">Redis <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
-            <returns><see cref="T:Pavalisoft.Caching.Stores.RedisDistributedCacheStore"/> object</returns>
-        </member>
-        <member name="T:Pavalisoft.Caching.StoreTypes.SqlServerDistributedCacheStoreType">
-            <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.Stores.SqlServerDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.SqlServerStoreInfo"/>
-            </summary>
-        </member>
-        <member name="M:Pavalisoft.Caching.StoreTypes.SqlServerDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
-            <summary>
-            Creates <see cref="T:Pavalisoft.Caching.Stores.SqlServerDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/>
-            </summary>
-            <param name="cacheStoreInfo">SQL Server <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
-            <returns><see cref="T:Pavalisoft.Caching.Stores.SqlServerDistributedCacheStore"/> object</returns>
         </member>
     </members>
 </doc>

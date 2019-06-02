@@ -6,6 +6,5 @@ var interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition =
     [ "Name", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#acf24279bfb3159fb2c91d2bbd9dfc5d3", null ],
     [ "Priority", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#a5d9c7d49fb5e338f9ace60c8c581d1ed", null ],
     [ "Size", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#a7f23198239282f4ffa9f7776cb12b3fd", null ],
-    [ "SlidingExpiration", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#a676bbf0e4658b76284de66f1249d9fa9", null ],
-    [ "Store", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#af34b86e8f30612cfc019034d47d56545", null ]
+    [ "SlidingExpiration", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#a676bbf0e4658b76284de66f1249d9fa9", null ]
 ];

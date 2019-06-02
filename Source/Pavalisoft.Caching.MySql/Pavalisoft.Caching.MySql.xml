@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pavalisoft.Caching.MySql</name>
+    </assembly>
+    <members>
+        <member name="T:Pavalisoft.Caching.MySql.ExtendedMySqlCache">
+            <summary>
+            Provides <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCache"/> version implementation of <see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/>
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.MySql.ExtendedMySqlCache.#ctor(Microsoft.Extensions.Options.IOptions{Pomelo.Extensions.Caching.MySql.MySqlCacheOptions})">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.MySql.ExtendedMySqlCache"/> with <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCacheOptions"/>
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Pavalisoft.Caching.MySql.ExtendedMySqlCache.Set(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
+            <summary>
+            Adds the Cache object binary stream to distributed cache
+            </summary>
+            <param name="key">Cache key</param>
+            <param name="value">Cache object in binary stream</param>
+            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+        </member>
+        <member name="M:Pavalisoft.Caching.MySql.ExtendedMySqlCache.SetAsync(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
+            <summary>
+            Adds the Cache object binary stream to distributed cache asynchronously
+            </summary>
+            <param name="key">Cache key</param>
+            <param name="value">Cache object in binary stream</param>
+            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while adding cache object to distributed cache.</param>
+        </member>
+        <member name="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore">
+            <summary>
+            Provides <see cref="T:Pavalisoft.Caching.MySql.ExtendedMySqlCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.CacheOptions">
+            <summary>
+            Gets or Sets <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCacheOptions"/>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.CachePartitions">
+            <inheritdoc />
+        </member>
+        <member name="P:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.CacheType">
+            <summary>
+            Gets Cache Type as <see cref="!:ExtendedSqlServerCache"/>
+            </summary>
+        </member>
+        <member name="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType">
+            <summary>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.MySql.MySqlStoreInfo"/>
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+            <summary>
+            Creates <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/>
+            </summary>
+            <param name="cacheStoreInfo">MySQL <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
+            <returns><see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> object</returns>
+        </member>
+        <member name="T:Pavalisoft.Caching.MySql.MySqlStoreInfo">
+            <summary>
+            Represents MySQL Cache Store Configuration Information
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.ExpiredItemsDeletionInterval">
+            <summary>
+            Gets ot Sets the periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.ConnectionString">
+            <summary>
+            Gets or Sets the connection string to the database.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.SchemaName">
+            <summary>
+            Gets or Sets the schema name of the cache table.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.TableName">
+            <summary>
+            Gets or Sets the Name of the table where the cache items are stored.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.DefaultSlidingExpiration">
+            <summary>
+            The default sliding expiration set for a cache entry if neither Absolute or SlidingExpiration has been set explicitly.
+            By default, its 20 minutes.
+            </summary>
+        </member>
+        <member name="T:Pavalisoft.Caching.MySql.ServiceCollectionExtensions">
+            <summary>
+            Provides <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> extensions for Cache Manger integration
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.MySql.ServiceCollectionExtensions.AddMySqlCache(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds Caching Middleware to pipeline with Cache Manager functionality
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> instance</param>
+            <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> add with Cache Manager</returns>
+        </member>
+    </members>
+</doc>

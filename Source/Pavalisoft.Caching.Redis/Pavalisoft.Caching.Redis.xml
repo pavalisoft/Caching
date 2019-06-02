@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pavalisoft.Caching.Redis</name>
+    </assembly>
+    <members>
+        <member name="T:Pavalisoft.Caching.Redis.ExtendedRedisCache">
+            <summary>
+            Provides <see cref="T:Microsoft.Extensions.Caching.Redis.RedisCache"/> version implementation of <see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/>
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.Redis.ExtendedRedisCache.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.Extensions.Caching.Redis.RedisCacheOptions})">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.Redis.ExtendedRedisCache"/> with <see cref="T:Microsoft.Extensions.Caching.Redis.RedisCacheOptions"/>
+            </summary>
+            <param name="optionsAccessor"></param>
+        </member>
+        <member name="M:Pavalisoft.Caching.Redis.ExtendedRedisCache.Set(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
+            <summary>
+            Adds the Cache object binary stream to distributed cache
+            </summary>
+            <param name="key">Cache key</param>
+            <param name="value">Cache object in binary stream</param>
+            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+        </member>
+        <member name="M:Pavalisoft.Caching.Redis.ExtendedRedisCache.SetAsync(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
+            <summary>
+            Adds the Cache object binary stream to distributed cache asynchronously
+            </summary>
+            <param name="key">Cache key</param>
+            <param name="value">Cache object in binary stream</param>
+            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while adding cache object to distributed cache.</param>
+        </member>
+        <member name="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore">
+            <summary>
+            Provides <see cref="T:Pavalisoft.Caching.Redis.ExtendedRedisCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Redis.RedisDistributedCacheStore.CacheOptions">
+            <summary>
+            Gets or Sets <see cref="T:Microsoft.Extensions.Caching.Redis.RedisCacheOptions"/>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Redis.RedisDistributedCacheStore.CachePartitions">
+            <inheritdoc />
+        </member>
+        <member name="P:Pavalisoft.Caching.Redis.RedisDistributedCacheStore.CacheType">
+            <summary>
+            Gets Cache Type <see cref="T:Pavalisoft.Caching.Redis.ExtendedRedisCache"/>
+            </summary>
+        </member>
+        <member name="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType">
+            <summary>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.Redis.RedisStoreInfo"/>
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+            <summary>
+            Creates <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration
+            </summary>
+            <param name="cacheStoreInfo">Redis <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
+            <returns><see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> object</returns>
+        </member>
+        <member name="T:Pavalisoft.Caching.Redis.RedisStoreInfo">
+            <summary>
+            Represents Redis Cache Store Configuration Information
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Redis.RedisStoreInfo.Configuration">
+            <summary>
+            Gets or Sets the configuration used to connect to Redis.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Redis.RedisStoreInfo.InstanceName">
+            <summary>
+            Gets or Sets the Redis instance name.
+            </summary>
+        </member>
+        <member name="T:Pavalisoft.Caching.Redis.ServiceCollectionExtensions">
+            <summary>
+            Provides <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> extensions for Cache Manger integration
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.Redis.ServiceCollectionExtensions.AddRedisCache(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds Caching Middleware to pipeline with Cache Manager functionality
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> instance</param>
+            <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> add with Cache Manager</returns>
+        </member>
+    </members>
+</doc>

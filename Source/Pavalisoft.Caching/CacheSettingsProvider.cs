@@ -18,9 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Newtonsoft.Json.Linq;
+using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
-using Pavalisoft.Caching.Stores;
 
 namespace Pavalisoft.Caching
 {
@@ -127,7 +126,7 @@ namespace Pavalisoft.Caching
             ICacheStore cacheStore = GetCacheStore(partitionInfo.StoreName);
             ICachePartition cachePartition = new CachePartition(partitionInfo.Name, partitionInfo.AbsoluteExpiration,
                 partitionInfo.AbsoluteExpirationRelativeToNow, partitionInfo.SlidingExpiration,
-                new Cache.Cache(_serviceProvider.GetService(cacheStore.CacheType) as IExtendedDistributedCache,
+                new DistributedCache(_serviceProvider.GetService(cacheStore.CacheType) as IExtendedDistributedCache,
                     cacheStore), partitionInfo.Priority, partitionInfo.Size);
             cacheStore.CachePartitions[partitionInfo.Name] = cachePartition;
             return cachePartition;

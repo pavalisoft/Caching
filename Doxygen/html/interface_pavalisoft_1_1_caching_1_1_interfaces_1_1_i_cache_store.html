@@ -103,7 +103,7 @@ Inheritance diagram for Pavalisoft.Caching.Interfaces.ICacheStore&lt; T &gt;:</d
  <div class="center">
   <img src="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.png" usemap="#Pavalisoft.Caching.Interfaces.ICacheStore_3C_20T_20_3E_map" alt=""/>
   <map id="Pavalisoft.Caching.Interfaces.ICacheStore_3C_20T_20_3E_map" name="Pavalisoft.Caching.Interfaces.ICacheStore_3C_20T_20_3E_map">
-<area href="class_pavalisoft_1_1_caching_1_1_stores_1_1_custom_distributed_cache_store.html" title="Provides extension to implement custom ICacheStore&lt;T&gt;" alt="Pavalisoft.Caching.Stores.CustomDistributedCacheStore&lt; T &gt;" shape="rect" coords="0,56,361,80"/>
+<area href="class_pavalisoft_1_1_caching_1_1_custom_1_1_custom_distributed_cache_store.html" title="Provides extension to implement custom ICacheStore&lt;T&gt;" alt="Pavalisoft.Caching.Custom.CustomDistributedCacheStore&lt; T &gt;" shape="rect" coords="0,112,366,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -112,12 +112,16 @@ Properties</h2></td></tr>
 <tr class="memitem:a342e74cc414712f9e4f592eb7bac406c"><td class="memItemLeft" align="right" valign="top">Action&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#a342e74cc414712f9e4f592eb7bac406c">CacheOptions</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a342e74cc414712f9e4f592eb7bac406c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or Sets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Options  <a href="#a342e74cc414712f9e4f592eb7bac406c">More...</a><br /></td></tr>
 <tr class="separator:a342e74cc414712f9e4f592eb7bac406c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada61785d79fded2f5e3f4e32722f136a"><td class="memItemLeft" align="right" valign="top">IDictionary&lt; string, <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#ada61785d79fded2f5e3f4e32722f136a">CachePartitions</a><code> [get]</code></td></tr>
+<tr class="memdesc:ada61785d79fded2f5e3f4e32722f136a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all available <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html" title="Represents ICachePartition implementation">ICachePartition</a>s  <a href="#ada61785d79fded2f5e3f4e32722f136a">More...</a><br /></td></tr>
+<tr class="separator:ada61785d79fded2f5e3f4e32722f136a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c47548f3051712a28d5841f863d339e"><td class="memItemLeft" align="right" valign="top">Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#a2c47548f3051712a28d5841f863d339e">CacheType</a><code> [get]</code></td></tr>
 <tr class="memdesc:a2c47548f3051712a28d5841f863d339e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Type  <a href="#a2c47548f3051712a28d5841f863d339e">More...</a><br /></td></tr>
 <tr class="separator:a2c47548f3051712a28d5841f863d339e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents ICacheStore&lt;T&gt; implementation </p>
+<p>Represents <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html" title="Represents ICacheStore&lt;T&gt; implementation">ICacheStore</a></p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td><a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store type</td></tr>
@@ -146,6 +150,30 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets or Sets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Options </p>
+
+</div>
+</div>
+<a id="ada61785d79fded2f5e3f4e32722f136a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada61785d79fded2f5e3f4e32722f136a">&#9670;&nbsp;</a></span>CachePartitions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDictionary&lt;string, <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a>&gt; <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">Pavalisoft.Caching.Interfaces.ICacheStore</a>&lt; T &gt;.CachePartitions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all available <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html" title="Represents ICachePartition implementation">ICachePartition</a>s </p>
 
 </div>
 </div>

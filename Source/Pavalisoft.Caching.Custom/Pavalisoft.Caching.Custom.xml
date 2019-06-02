@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pavalisoft.Caching.Custom</name>
+    </assembly>
+    <members>
+        <member name="T:Pavalisoft.Caching.Custom.CustomCacheOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Custom.CustomCacheOptions.Clock">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Custom.CustomCacheOptions.ExpirationScanFrequency">
+            <summary>
+            Gets or sets the minimum length of time between successive scans for expired items.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Custom.CustomCacheOptions.SizeLimit">
+            <summary>Gets or sets the maximum size of the cache.</summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Custom.CustomCacheOptions.CompactionPercentage">
+            <summary>
+            Gets or sets the amount to compact the cache by when the maximum size is exceeded.
+            </summary>
+        </member>
+        <member name="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1">
+            <summary>
+            Provides extension to implement custom <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
+            </summary>
+            <typeparam name="T">Custom Cache Store Type</typeparam>
+        </member>
+        <member name="M:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.#ctor(System.Type)">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1"/>
+            </summary>
+            <param name="cacheType">Cache Store type</param>
+        </member>
+        <member name="P:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.CacheOptions">
+            <summary>
+            Gets or Sets Custom Distributed Cache Options
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.CachePartitions">
+            <inheritdoc />
+        </member>
+        <member name="P:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.CacheType">
+            <summary>
+            Gets Cache Type
+            </summary>
+        </member>
+        <member name="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStoreType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.Custom.CustomDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+            <summary>
+            
+            </summary>
+            <param name="cacheStoreInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pavalisoft.Caching.Custom.ServiceCollectionExtensions">
+            <summary>
+            Provides <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> extensions for Cache Manger integration
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.Custom.ServiceCollectionExtensions.AddCustomCache(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds Caching Middleware to pipeline with Cache Manager functionality
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> instance</param>
+            <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> add with Cache Manager</returns>
+        </member>
+    </members>
+</doc>

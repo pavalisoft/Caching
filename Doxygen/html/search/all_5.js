@@ -10,7 +10,9 @@ var searchData=
   ['icachestore_3c_20mysqlcacheoptions_20_3e',['ICacheStore&lt; MySqlCacheOptions &gt;',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html',1,'Pavalisoft::Caching::Interfaces']]],
   ['icachestore_3c_20rediscacheoptions_20_3e',['ICacheStore&lt; RedisCacheOptions &gt;',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html',1,'Pavalisoft::Caching::Interfaces']]],
   ['icachestore_3c_20sqlservercacheoptions_20_3e',['ICacheStore&lt; SqlServerCacheOptions &gt;',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html',1,'Pavalisoft::Caching::Interfaces']]],
+  ['icachestoretype',['ICacheStoreType',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store_type.html',1,'Pavalisoft::Caching::Interfaces']]],
   ['iextendeddistributedcache',['IExtendedDistributedCache',['../interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_extended_distributed_cache.html',1,'Pavalisoft::Caching::Interfaces']]],
-  ['inmemorystore',['InMemoryStore',['../class_pavalisoft_1_1_caching_1_1_stores_1_1_in_memory_store.html',1,'Pavalisoft::Caching::Stores']]],
-  ['instancename',['InstanceName',['../class_pavalisoft_1_1_caching_1_1_redis_store_info.html#aae71f0368a1b4d58b48b249cdc4dc505',1,'Pavalisoft::Caching::RedisStoreInfo']]]
+  ['inmemorycachestoretype',['InMemoryCacheStoreType',['../class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_cache_store_type.html',1,'Pavalisoft::Caching::InMemory']]],
+  ['inmemorystore',['InMemoryStore',['../class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html',1,'Pavalisoft::Caching::InMemory']]],
+  ['instancename',['InstanceName',['../class_pavalisoft_1_1_caching_1_1_redis_1_1_redis_store_info.html#a51605481002f37a7aa7a6048d73a727c',1,'Pavalisoft::Caching::Redis::RedisStoreInfo']]]
 ];

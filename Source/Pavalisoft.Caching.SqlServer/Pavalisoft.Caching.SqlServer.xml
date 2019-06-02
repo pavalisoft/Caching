@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pavalisoft.Caching.SqlServer</name>
+    </assembly>
+    <members>
+        <member name="T:Pavalisoft.Caching.SqlServer.ExtendedSqlServerCache">
+            <summary>
+            Provides <see cref="T:Microsoft.Extensions.Caching.SqlServer.SqlServerCache"/> version implementation of <see cref="T:Pavalisoft.Caching.Interfaces.IExtendedDistributedCache"/>
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.SqlServer.ExtendedSqlServerCache.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions})">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.SqlServer.ExtendedSqlServerCache"/> with <see cref="T:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions"/>
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Pavalisoft.Caching.SqlServer.ExtendedSqlServerCache.Set(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
+            <summary>
+            Adds the Cache object binary stream to distributed cache
+            </summary>
+            <param name="key">Cache key</param>
+            <param name="value">Cache object in binary stream</param>
+            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+        </member>
+        <member name="M:Pavalisoft.Caching.SqlServer.ExtendedSqlServerCache.SetAsync(System.String,System.Byte[],Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
+            <summary>
+            Adds the Cache object binary stream to distributed cache asynchronously
+            </summary>
+            <param name="key">Cache key</param>
+            <param name="value">Cache object in binary stream</param>
+            <param name="options"><see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/> where the cache object should be added to.</param>
+            <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while adding cache object to distributed cache.</param>
+        </member>
+        <member name="T:Pavalisoft.Caching.SqlServer.ServiceCollectionExtensions">
+            <summary>
+            Provides <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> extensions for Cache Manger integration
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.SqlServer.ServiceCollectionExtensions.AddSqlServerCache(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds Caching Middleware to pipeline with Cache Manager functionality
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> instance</param>
+            <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> add with Cache Manager</returns>
+        </member>
+        <member name="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore">
+            <summary>
+            Provides <see cref="T:Pavalisoft.Caching.SqlServer.ExtendedSqlServerCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore.CacheOptions">
+            <summary>
+            Gets or Sets <see cref="T:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions"/>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore.CachePartitions">
+            <inheritdoc />
+        </member>
+        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore.CacheType">
+            <summary>
+            Gets Cache Type as <see cref="T:Pavalisoft.Caching.SqlServer.ExtendedSqlServerCache"/>
+            </summary>
+        </member>
+        <member name="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType">
+            <summary>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo"/>
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+            <summary>
+            Creates <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/>
+            </summary>
+            <param name="cacheStoreInfo">SQL Server <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
+            <returns><see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> object</returns>
+        </member>
+        <member name="T:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo">
+            <summary>
+            Represents SQL Server Cache Store Configuration Information
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.ExpiredItemsDeletionInterval">
+            <summary>
+            Gets ot Sets the periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.ConnectionString">
+            <summary>
+            Gets or Sets the connection string to the database.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.SchemaName">
+            <summary>
+            Gets or Sets the schema name of the cache table.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.TableName">
+            <summary>
+            Gets or Sets the Name of the table where the cache items are stored.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.DefaultSlidingExpiration">
+            <summary>
+            The default sliding expiration set for a cache entry if neither Absolute or SlidingExpiration has been set explicitly.
+            By default, its 20 minutes.
+            </summary>
+        </member>
+    </members>
+</doc>
