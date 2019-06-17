@@ -17,6 +17,8 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Caching.SqlServer;
+using Microsoft.Extensions.Options;
+using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.SqlServer
@@ -29,14 +31,23 @@ namespace Pavalisoft.Caching.SqlServer
         /// <summary>
         /// Gets or Sets <see cref="SqlServerCacheOptions"/>
         /// </summary>
-        public Action<SqlServerCacheOptions> CacheOptions { get; set; }
+        public SqlServerCacheOptions CacheOptions { get; set; }
 
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
 
         /// <summary>
-        /// Gets Cache Type as <see cref="ExtendedSqlServerCache"/>
+        /// Creates <see cref="CachePartition"/> in <see cref="SqlServerDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>
         /// </summary>
-        public Type CacheType => typeof(ExtendedSqlServerCache);
+        /// <returns><see cref="CachePartition"/> object created in <see cref="SqlServerDistributedCacheStore"/></returns>
+        public ICachePartition CreatePartition(CachePartitionDefinition cachePartitionInfo)
+        {
+            ICachePartition cachePartition = new CachePartition(cachePartitionInfo.Name, cachePartitionInfo.AbsoluteExpiration,
+                cachePartitionInfo.AbsoluteExpirationRelativeToNow, cachePartitionInfo.SlidingExpiration,
+                new DistributedCache(new ExtendedSqlServerCache(Options.Create(CacheOptions)),
+                    this), cachePartitionInfo.Priority, cachePartitionInfo.Size);
+            CachePartitions[cachePartitionInfo.Name] = cachePartition;
+            return cachePartition;
+        }
     }
 }

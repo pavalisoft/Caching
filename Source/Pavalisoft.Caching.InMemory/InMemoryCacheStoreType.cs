@@ -14,8 +14,8 @@
    limitations under the License. 
 */
 
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.InMemory
@@ -23,35 +23,21 @@ namespace Pavalisoft.Caching.InMemory
     /// <summary>
     /// Provides implementation to create <see cref="MemoryStoreInfo"/> from <see cref="MemoryDistributedCacheStore"/>
     /// </summary>
-    public class InMemoryCacheStoreType: ICacheStoreType
+    public class InMemoryCacheStoreType : ICacheStoreType
     {
         /// <summary>
         /// Creates <see cref="InMemoryStore"/> object
         /// </summary>
-        /// <param name="cacheStoreInfo"><see cref="CacheStoreInfo"/> object</param>
+        /// <param name="cacheStoreInfo"><see cref="CacheStoreDefinition"/> object</param>
         /// <returns><see cref="InMemoryStore"/></returns>
-        public ICacheStore CreateCacheStore(CacheStoreInfo cacheStoreInfo)
+        public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
-            ICacheStore cacheStore;
-            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
+            return new InMemoryStore
             {
-                MemoryStoreInfo memoryStoreInfo =
-                    JsonConvert.DeserializeObject<MemoryStoreInfo>(cacheStoreInfo.StoreConfig);
-                cacheStore = new InMemoryStore
-                {
-                    CacheOptions = options =>
-                    {
-                        options.CompactionPercentage = memoryStoreInfo.CompactionPercentage;
-                        options.ExpirationScanFrequency = memoryStoreInfo.ExpirationScanFrequency;
-                        options.SizeLimit = memoryStoreInfo.SizeLimit;
-                    }
-                };
-            }
-            else
-            {
-                cacheStore = new InMemoryStore { CacheOptions = options => { } };
-            }
-            return cacheStore;
+                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions)
+                ? JsonConvert.DeserializeObject<MemoryCacheOptions>(cacheStoreInfo.CacheOptions)
+                : new MemoryCacheOptions()
+            };
         }
     }
 }

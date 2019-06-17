@@ -16,6 +16,8 @@
 
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Options;
+using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
 using Pomelo.Extensions.Caching.MySql;
 
@@ -29,7 +31,7 @@ namespace Pavalisoft.Caching.MySql
         /// <summary>
         /// Gets or Sets <see cref="MySqlCacheOptions"/>
         /// </summary>
-        public Action<MySqlCacheOptions> CacheOptions { get; set; }
+        public MySqlCacheOptions CacheOptions { get; set; }
 
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
@@ -38,5 +40,19 @@ namespace Pavalisoft.Caching.MySql
         /// Gets Cache Type as <see cref="ExtendedMySqlCache"/>
         /// </summary>
         public Type CacheType => typeof(ExtendedMySqlCache);
+
+        /// <summary>
+        /// Creates <see cref="CachePartition"/> in <see cref="MySqlDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>
+        /// </summary>
+        /// <returns><see cref="CachePartition"/> object created in <see cref="MySqlDistributedCacheStore"/></returns>
+        public ICachePartition CreatePartition(CachePartitionDefinition cachePartitionInfo)
+        {
+            ICachePartition cachePartition = new CachePartition(cachePartitionInfo.Name, cachePartitionInfo.AbsoluteExpiration,
+                cachePartitionInfo.AbsoluteExpirationRelativeToNow, cachePartitionInfo.SlidingExpiration,
+                new DistributedCache(new ExtendedMySqlCache(Options.Create(CacheOptions)),
+                    this), cachePartitionInfo.Priority, cachePartitionInfo.Size);
+            CachePartitions[cachePartitionInfo.Name] = cachePartition;
+            return cachePartition;
+        }
     }
 }

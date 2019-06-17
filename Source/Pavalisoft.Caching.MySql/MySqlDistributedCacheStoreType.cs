@@ -15,8 +15,8 @@
 */
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Pavalisoft.Caching.Interfaces;
+using Pomelo.Extensions.Caching.MySql;
 
 namespace Pavalisoft.Caching.MySql
 {
@@ -26,36 +26,18 @@ namespace Pavalisoft.Caching.MySql
     public class MySqlDistributedCacheStoreType : ICacheStoreType
     {
         /// <summary>
-        /// Creates <see cref="MySqlDistributedCacheStore"/> from <see cref="CacheStoreInfo"/>
+        /// Creates <see cref="MySqlDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/>
         /// </summary>
-        /// <param name="cacheStoreInfo">MySQL <see cref="CacheStoreInfo"/> configuration</param>
+        /// <param name="cacheStoreInfo">MySQL <see cref="CacheStoreDefinition"/> configuration</param>
         /// <returns><see cref="MySqlDistributedCacheStore"/> object</returns>
-        public ICacheStore CreateCacheStore(CacheStoreInfo cacheStoreInfo)
+        public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
-            ICacheStore cacheStore;
-            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
+            return new MySqlDistributedCacheStore
             {
-                MySqlStoreInfo sqlServerStoreInfo =
-                    JsonConvert.DeserializeObject<MySqlStoreInfo>(cacheStoreInfo.StoreConfig);
-                cacheStore = new MySqlDistributedCacheStore
-                {
-                    CacheOptions = options =>
-                    {
-                        options.ConnectionString = sqlServerStoreInfo.ConnectionString;
-                        options.ReadConnectionString = options.ConnectionString;
-                        options.WriteConnectionString = options.WriteConnectionString;
-                        options.DefaultSlidingExpiration = sqlServerStoreInfo.DefaultSlidingExpiration;
-                        options.ExpiredItemsDeletionInterval = sqlServerStoreInfo.ExpiredItemsDeletionInterval;
-                        options.SchemaName = sqlServerStoreInfo.SchemaName;
-                        options.TableName = sqlServerStoreInfo.TableName;
-                    }
-                };
-            }
-            else
-            {
-                cacheStore = new MySqlDistributedCacheStore { CacheOptions = options => { } };
-            }
-            return cacheStore;
+                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions)
+                ? JsonConvert.DeserializeObject<MySqlCacheOptions>(cacheStoreInfo.CacheOptions)
+                : new MySqlCacheOptions()
+            };
         }
     }
 }

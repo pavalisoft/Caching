@@ -14,9 +14,10 @@
    limitations under the License. 
 */
 
-using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Redis;
+using Microsoft.Extensions.Options;
+using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Redis
@@ -29,14 +30,23 @@ namespace Pavalisoft.Caching.Redis
         /// <summary>
         /// Gets or Sets <see cref="RedisCacheOptions"/>
         /// </summary>
-        public Action<RedisCacheOptions> CacheOptions { get; set; }
+        public RedisCacheOptions CacheOptions { get; set; }
 
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
 
         /// <summary>
-        /// Gets Cache Type <see cref="ExtendedRedisCache"/>
+        /// Creates <see cref="CachePartition"/> in <see cref="RedisDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>
         /// </summary>
-        public Type CacheType => typeof(ExtendedRedisCache);
+        /// <returns><see cref="CachePartition"/> object created in <see cref="RedisDistributedCacheStore"/></returns>
+        public ICachePartition CreatePartition(CachePartitionDefinition cachePartitionInfo)
+        {
+            ICachePartition cachePartition = new CachePartition(cachePartitionInfo.Name, cachePartitionInfo.AbsoluteExpiration,
+                cachePartitionInfo.AbsoluteExpirationRelativeToNow, cachePartitionInfo.SlidingExpiration,
+                new DistributedCache(new ExtendedRedisCache(Options.Create(CacheOptions)),
+                    this), cachePartitionInfo.Priority, cachePartitionInfo.Size);
+            CachePartitions[cachePartitionInfo.Name] = cachePartition;
+            return cachePartition;
+        }
     }
 }

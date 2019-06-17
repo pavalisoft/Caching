@@ -14,8 +14,8 @@
    limitations under the License. 
 */
 
+using Microsoft.Extensions.Caching.Redis;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Redis
@@ -26,31 +26,18 @@ namespace Pavalisoft.Caching.Redis
     public class RedisDistributedCacheStoreType : ICacheStoreType
     {
         /// <summary>
-        /// Creates <see cref="RedisDistributedCacheStore"/> from <see cref="CacheStoreInfo"/> configuration
+        /// Creates <see cref="RedisDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/> configuration
         /// </summary>
-        /// <param name="cacheStoreInfo">Redis <see cref="CacheStoreInfo"/> configuration</param>
+        /// <param name="cacheStoreInfo">Redis <see cref="CacheStoreDefinition"/> configuration</param>
         /// <returns><see cref="RedisDistributedCacheStore"/> object</returns>
-        public ICacheStore CreateCacheStore(CacheStoreInfo cacheStoreInfo)
+        public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
-            ICacheStore cacheStore;
-            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
+            return new RedisDistributedCacheStore
             {
-                RedisStoreInfo redisStoreInfo =
-                    JsonConvert.DeserializeObject<RedisStoreInfo>(cacheStoreInfo.StoreConfig);
-                cacheStore = new RedisDistributedCacheStore
-                {
-                    CacheOptions = options =>
-                    {
-                        options.Configuration = redisStoreInfo.Configuration;
-                        options.InstanceName = redisStoreInfo.InstanceName;
-                    }
-                };
-            }
-            else
-            {
-                cacheStore = new RedisDistributedCacheStore { CacheOptions = options => { } };
-            }
-            return cacheStore;
+                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions)
+                ? JsonConvert.DeserializeObject<RedisCacheOptions>(cacheStoreInfo.CacheOptions)
+                : new RedisCacheOptions()
+            };
         }
     }
 }

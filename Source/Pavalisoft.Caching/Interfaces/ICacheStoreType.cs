@@ -17,15 +17,15 @@
 namespace Pavalisoft.Caching.Interfaces
 {
     /// <summary>
-    /// Represents <see cref="ICacheStore"/> creation implementation from <see cref="CacheStoreInfo"/> 
+    /// Represents <see cref="ICacheStore"/> creation implementation from <see cref="CacheStoreDefinition"/> 
     /// </summary>
     public interface ICacheStoreType
     {
         /// <summary>
         /// Creates <see cref="ICacheStore"/> instance from the provided <paramref name="cacheStoreInfo"/>
         /// </summary>
-        /// <param name="cacheStoreInfo"><see cref="CacheStoreInfo"/> to be used to create <see cref="ICacheStore"/></param>
+        /// <param name="cacheStoreInfo"><see cref="CacheStoreDefinition"/> to be used to create <see cref="ICacheStore"/></param>
         /// <returns><see cref="ICacheStore"/> object</returns>
-        ICacheStore CreateCacheStore(CacheStoreInfo cacheStoreInfo);
+        ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo);
     }
 }

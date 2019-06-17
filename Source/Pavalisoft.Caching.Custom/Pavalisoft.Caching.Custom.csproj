@@ -27,6 +27,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Pavalisoft.Caching.InMemory\Pavalisoft.Caching.InMemory.csproj" />
     <ProjectReference Include="..\Pavalisoft.Caching\Pavalisoft.Caching.csproj" />
   </ItemGroup>
 

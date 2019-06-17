@@ -15,7 +15,7 @@
 */
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Microsoft.Extensions.Caching.Memory;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.InMemory
@@ -28,30 +28,16 @@ namespace Pavalisoft.Caching.InMemory
         /// <summary>
         /// Creates <see cref="MemoryDistributedCacheStore"/> object
         /// </summary>
-        /// <param name="cacheStoreInfo"><see cref="CacheStoreInfo"/> object</param>
+        /// <param name="cacheStoreInfo"><see cref="CacheStoreDefinition"/> object</param>
         /// <returns><see cref="MemoryDistributedCacheStore"/></returns>
-        public ICacheStore CreateCacheStore(CacheStoreInfo cacheStoreInfo)
+        public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
-            ICacheStore cacheStore;
-            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
+            return new MemoryDistributedCacheStore
             {
-                MemoryStoreInfo memoryStoreInfo =
-                    JsonConvert.DeserializeObject<MemoryStoreInfo>(cacheStoreInfo.StoreConfig);
-                cacheStore = new MemoryDistributedCacheStore
-                {
-                    CacheOptions = options =>
-                    {
-                        options.CompactionPercentage = memoryStoreInfo.CompactionPercentage;
-                        options.ExpirationScanFrequency = memoryStoreInfo.ExpirationScanFrequency;
-                        options.SizeLimit = memoryStoreInfo.SizeLimit;
-                    }
-                };
-            }
-            else
-            {
-                cacheStore = new MemoryDistributedCacheStore { CacheOptions = options => { } };
-            }
-            return cacheStore;
+                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions)
+                ? JsonConvert.DeserializeObject<MemoryDistributedCacheOptions>(cacheStoreInfo.CacheOptions)
+                : new MemoryDistributedCacheOptions()
+            };
         }
     }
 }

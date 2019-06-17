@@ -13,13 +13,13 @@ namespace Pavalisoft.Caching.Custom
         /// </summary>
         /// <param name="cacheStoreInfo"></param>
         /// <returns></returns>
-        public ICacheStore CreateCacheStore(CacheStoreInfo cacheStoreInfo)
+        public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
             ICacheStore cacheStore = null;
-            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
+            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions))
             {
                 //CustomStoreInfo sqlServerStoreInfo =
-                //    JsonConvert.DeserializeObject<CustomStoreInfo>(cacheStoreInfo.StoreConfig);
+                //    JsonConvert.DeserializeObject<CustomStoreInfo>(cacheStoreInfo.CacheOptions);
                 //cacheStore = new CustomDistributedCacheStore<T>(Type.GetType(cacheStoreInfo.TypeInfo))
                 //{
                 //    CacheOptions = options =>
@@ -34,7 +34,7 @@ namespace Pavalisoft.Caching.Custom
             }
             else
             {
-                cacheStore = new CustomDistributedCacheStore<Type>(typeof(Type)) { CacheOptions = options => { } };
+                //cacheStore = new CustomDistributedCacheStore<Type>() { CacheOptions = options => { } };
             }
             return cacheStore;
         }

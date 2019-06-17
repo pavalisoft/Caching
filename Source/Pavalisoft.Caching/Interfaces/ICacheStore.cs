@@ -14,7 +14,6 @@
    limitations under the License. 
 */
 
-using System;
 using System.Collections.Generic;
 
 namespace Pavalisoft.Caching.Interfaces
@@ -28,7 +27,7 @@ namespace Pavalisoft.Caching.Interfaces
         /// <summary>
         /// Gets or Sets Cache Options
         /// </summary>
-        Action<T> CacheOptions { get; set; }
+        T CacheOptions { get; set; }
     }
 
     /// <summary>
@@ -42,8 +41,9 @@ namespace Pavalisoft.Caching.Interfaces
         IDictionary<string, ICachePartition> CachePartitions { get; }
 
         /// <summary>
-        /// Gets Cache Type
+        /// Creates <see cref="ICachePartition"/> in <see cref="ICacheStore"/> using <see cref="CachePartitionDefinition"/>
         /// </summary>
-        Type CacheType { get; }
+        /// <returns><see cref="ICachePartition"/> object created in <see cref="ICachePartition"/></returns>
+        ICachePartition CreatePartition(CachePartitionDefinition cachePartitionInfo);
     }
 }

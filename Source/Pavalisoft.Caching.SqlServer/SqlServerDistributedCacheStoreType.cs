@@ -14,8 +14,8 @@
    limitations under the License. 
 */
 
+using Microsoft.Extensions.Caching.SqlServer;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.SqlServer
@@ -26,36 +26,18 @@ namespace Pavalisoft.Caching.SqlServer
     public class SqlServerDistributedCacheStoreType : ICacheStoreType
     {
         /// <summary>
-        /// Creates <see cref="SqlServerDistributedCacheStore"/> from <see cref="CacheStoreInfo"/>
+        /// Creates <see cref="SqlServerDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/>
         /// </summary>
-        /// <param name="cacheStoreInfo">SQL Server <see cref="CacheStoreInfo"/> configuration</param>
+        /// <param name="cacheStoreInfo">SQL Server <see cref="CacheStoreDefinition"/> configuration</param>
         /// <returns><see cref="SqlServerDistributedCacheStore"/> object</returns>
-        public ICacheStore CreateCacheStore(CacheStoreInfo cacheStoreInfo)
+        public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
-            ICacheStore cacheStore;
-            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
+            return new SqlServerDistributedCacheStore
             {
-                SqlServerStoreInfo sqlServerStoreInfo =
-                    JsonConvert.DeserializeObject<SqlServerStoreInfo>(cacheStoreInfo.StoreConfig,
-                    new JsonSerializerSettings {
-                    StringEscapeHandling = StringEscapeHandling.Default | StringEscapeHandling.EscapeHtml | StringEscapeHandling.EscapeNonAscii});
-                cacheStore = new SqlServerDistributedCacheStore
-                {
-                    CacheOptions = options =>
-                    {
-                        options.ConnectionString = sqlServerStoreInfo.ConnectionString;
-                        options.DefaultSlidingExpiration = sqlServerStoreInfo.DefaultSlidingExpiration;
-                        options.ExpiredItemsDeletionInterval = sqlServerStoreInfo.ExpiredItemsDeletionInterval;
-                        options.SchemaName = sqlServerStoreInfo.SchemaName;
-                        options.TableName = sqlServerStoreInfo.TableName;
-                    }
-                };
-            }
-            else
-            {
-                cacheStore = new SqlServerDistributedCacheStore { CacheOptions = options => { } };
-            }
-            return cacheStore;
+                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions)
+                ? JsonConvert.DeserializeObject<SqlServerCacheOptions>(cacheStoreInfo.CacheOptions)
+                : new SqlServerCacheOptions()
+            };
         }
     }
 }

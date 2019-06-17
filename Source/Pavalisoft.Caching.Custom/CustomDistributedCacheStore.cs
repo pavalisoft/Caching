@@ -14,8 +14,11 @@
    limitations under the License. 
 */
 
-using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
+using Pavalisoft.Caching.Cache;
+using Pavalisoft.Caching.InMemory;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Custom
@@ -27,25 +30,26 @@ namespace Pavalisoft.Caching.Custom
     public class CustomDistributedCacheStore<T> : ICacheStore<T>
     {
         /// <summary>
-        /// Creates an instance of <see cref="CustomDistributedCacheStore{T}"/>
-        /// </summary>
-        /// <param name="cacheType">Cache Store type</param>
-        public CustomDistributedCacheStore(Type cacheType)
-        {
-            CacheType = cacheType;
-        }
-
-        /// <summary>
         /// Gets or Sets Custom Distributed Cache Options
         /// </summary>
-        public Action<T> CacheOptions { get; set; }
+        public T CacheOptions { get; set; }
 
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
 
         /// <summary>
-        /// Gets Cache Type
+        /// Creates <see cref="CachePartition"/> in <see cref="RedisDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>
         /// </summary>
-        public Type CacheType { get; }
+        /// <returns><see cref="CachePartition"/> object created in <see cref="RedisDistributedCacheStore"/></returns>
+        public ICachePartition CreatePartition(CachePartitionDefinition cachePartitionInfo)
+        {
+            ICachePartition cachePartition = new CachePartition(cachePartitionInfo.Name, cachePartitionInfo.AbsoluteExpiration,
+                cachePartitionInfo.AbsoluteExpirationRelativeToNow, cachePartitionInfo.SlidingExpiration,
+                    //new DistributedCache(new ExtendedMemoryCache(Options.Create(CacheOptions)),
+                    new DistributedCache(new ExtendedMemoryCache(Options.Create(new MemoryCacheOptions())),
+                    this), cachePartitionInfo.Priority, cachePartitionInfo.Size);
+            CachePartitions[cachePartitionInfo.Name] = cachePartition;
+            return cachePartition;
+        }
     }
 }

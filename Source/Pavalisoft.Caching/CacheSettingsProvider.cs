@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching
@@ -116,20 +115,14 @@ namespace Pavalisoft.Caching
         }
 
         /// <summary>
-        /// Creates <see cref="ICachePartition"/> instance from <see cref="CachePartitionInfo"/> configuration
+        /// Creates <see cref="ICachePartition"/> instance from <see cref="CachePartitionDefinition"/> configuration
         /// </summary>
-        /// <param name="partitionInfo"><see cref="CachePartitionInfo"/> configuration</param>
+        /// <param name="partitionInfo"><see cref="CachePartitionDefinition"/> configuration</param>
         /// <returns><see cref="ICachePartition"/> object</returns>
-        private ICachePartition ConstructCachePartition(CachePartitionInfo partitionInfo)
+        private ICachePartition ConstructCachePartition(CachePartitionDefinition partitionInfo)
         {
             ICacheStore cacheStore = GetCacheStore(partitionInfo.StoreName);
-            ICachePartition cachePartition = new CachePartition(partitionInfo.Name, partitionInfo.AbsoluteExpiration,
-                partitionInfo.AbsoluteExpirationRelativeToNow, partitionInfo.SlidingExpiration,
-                // TODO: Create options accessor and pass the options properly.
-                new DistributedCache(_serviceProvider.GetService(cacheStore.CacheType) as IExtendedDistributedCache,
-                    cacheStore), partitionInfo.Priority, partitionInfo.Size);
-            cacheStore.CachePartitions[partitionInfo.Name] = cachePartition;
-            return cachePartition;
+            return cacheStore.CreatePartition(partitionInfo);            
         }
 
         /// <summary>
@@ -149,11 +142,11 @@ namespace Pavalisoft.Caching
         }
 
         /// <summary>
-        /// Creates <see cref="ICacheStore{T}"/> from <see cref="CacheStoreInfo"/>
+        /// Creates <see cref="ICacheStore{T}"/> from <see cref="CacheStoreDefinition"/>
         /// </summary>
-        /// <param name="cacheStoreInfo"><see cref="CacheStoreInfo"/> configuration</param>
+        /// <param name="cacheStoreInfo"><see cref="CacheStoreDefinition"/> configuration</param>
         /// <returns><see cref="ICacheStore{T}"/> object</returns>
-        private ICacheStore ConstructCacheStore(CacheStoreInfo cacheStoreInfo)
+        private ICacheStore ConstructCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
             ICacheStoreType cacheStoreType =
                 _serviceProvider.GetService(Type.GetType(cacheStoreInfo.Type)) as ICacheStoreType;
