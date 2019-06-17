@@ -31,6 +31,7 @@ namespace Pavalisoft.Caching.Custom
         public static IServiceCollection AddCustomCache(this IServiceCollection services)
         {
             services.AddSingleton<CustomDistributedCacheStoreType>();
+            //services.AddTransient<CustomDistributedCache>();
             return services;
         }
     }

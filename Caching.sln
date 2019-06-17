@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BA6E1C82
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching", "Source\Pavalisoft.Caching\Pavalisoft.Caching.csproj", "{BB4970FB-7855-4449-8EFA-4FCF36108C42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavalisoft.Caching.TagHelpers", "Source\Pavalisoft.Caching.TagHelpers\Pavalisoft.Caching.TagHelpers.csproj", "{E86FE381-D256-4E9C-A5EF-E8C17CF349E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.TagHelpers", "Source\Pavalisoft.Caching.TagHelpers\Pavalisoft.Caching.TagHelpers.csproj", "{E86FE381-D256-4E9C-A5EF-E8C17CF349E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{80E98D00-491D-4AB8-93FE-4226BB7F4F08}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,15 +18,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		Pavalisoft.Caching.pfx = Pavalisoft.Caching.pfx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavalisoft.Caching.InMemory", "Source\Pavalisoft.Caching.InMemory\Pavalisoft.Caching.InMemory.csproj", "{6ACBB69F-B9DA-4A61-8CE5-CB039399C66C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.InMemory", "Source\Pavalisoft.Caching.InMemory\Pavalisoft.Caching.InMemory.csproj", "{6ACBB69F-B9DA-4A61-8CE5-CB039399C66C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavalisoft.Caching.Redis", "Source\Pavalisoft.Caching.Redis\Pavalisoft.Caching.Redis.csproj", "{89C7504E-FCCF-4EB6-984F-80FF14205D02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.Redis", "Source\Pavalisoft.Caching.Redis\Pavalisoft.Caching.Redis.csproj", "{89C7504E-FCCF-4EB6-984F-80FF14205D02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavalisoft.Caching.SqlServer", "Source\Pavalisoft.Caching.SqlServer\Pavalisoft.Caching.SqlServer.csproj", "{26E04073-6246-445F-BD0D-F1F539243239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.SqlServer", "Source\Pavalisoft.Caching.SqlServer\Pavalisoft.Caching.SqlServer.csproj", "{26E04073-6246-445F-BD0D-F1F539243239}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavalisoft.Caching.MySql", "Source\Pavalisoft.Caching.MySql\Pavalisoft.Caching.MySql.csproj", "{6A3BB275-4BF6-4F71-8CC7-BFA6B633287B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.MySql", "Source\Pavalisoft.Caching.MySql\Pavalisoft.Caching.MySql.csproj", "{6A3BB275-4BF6-4F71-8CC7-BFA6B633287B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavalisoft.Caching.Custom", "Source\Pavalisoft.Caching.Custom\Pavalisoft.Caching.Custom.csproj", "{C623A579-42B8-4EA1-952B-3E6612FBE1B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.Custom", "Source\Pavalisoft.Caching.Custom\Pavalisoft.Caching.Custom.csproj", "{C623A579-42B8-4EA1-952B-3E6612FBE1B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.Tests", "Tests\Pavalisoft.Caching.Tests\Pavalisoft.Caching.Tests.csproj", "{95366984-DC8B-4771-A32B-6ABDCF373E1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.TagHelpers.Tests", "Tests\Pavalisoft.Caching.TagHelpers.Tests\Pavalisoft.Caching.TagHelpers.Tests.csproj", "{0FCFFA51-74DF-4207-B5B1-E53AABB84CB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavalisoft.Caching.SampleWeb", "Samples\Pavalisoft.Caching.SampleWeb\Pavalisoft.Caching.SampleWeb.csproj", "{8E110B1F-4B6E-4C4F-9E8C-E81262473A04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +70,18 @@ Global
 		{C623A579-42B8-4EA1-952B-3E6612FBE1B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C623A579-42B8-4EA1-952B-3E6612FBE1B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C623A579-42B8-4EA1-952B-3E6612FBE1B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95366984-DC8B-4771-A32B-6ABDCF373E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95366984-DC8B-4771-A32B-6ABDCF373E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95366984-DC8B-4771-A32B-6ABDCF373E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95366984-DC8B-4771-A32B-6ABDCF373E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FCFFA51-74DF-4207-B5B1-E53AABB84CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FCFFA51-74DF-4207-B5B1-E53AABB84CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FCFFA51-74DF-4207-B5B1-E53AABB84CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FCFFA51-74DF-4207-B5B1-E53AABB84CB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E110B1F-4B6E-4C4F-9E8C-E81262473A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E110B1F-4B6E-4C4F-9E8C-E81262473A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E110B1F-4B6E-4C4F-9E8C-E81262473A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E110B1F-4B6E-4C4F-9E8C-E81262473A04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +94,9 @@ Global
 		{26E04073-6246-445F-BD0D-F1F539243239} = {00F65B1E-80A5-4CF4-A51A-9681F586E07C}
 		{6A3BB275-4BF6-4F71-8CC7-BFA6B633287B} = {00F65B1E-80A5-4CF4-A51A-9681F586E07C}
 		{C623A579-42B8-4EA1-952B-3E6612FBE1B0} = {00F65B1E-80A5-4CF4-A51A-9681F586E07C}
+		{95366984-DC8B-4771-A32B-6ABDCF373E1F} = {BA6E1C82-D3BA-4CC5-8AA5-CD07A52A02CC}
+		{0FCFFA51-74DF-4207-B5B1-E53AABB84CB4} = {BA6E1C82-D3BA-4CC5-8AA5-CD07A52A02CC}
+		{8E110B1F-4B6E-4C4F-9E8C-E81262473A04} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF59F50D-83DE-40D4-8210-14F661BC4952}

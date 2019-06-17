@@ -19,7 +19,7 @@ namespace Pavalisoft.Caching.Custom
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 //CustomStoreInfo sqlServerStoreInfo =
-                //    JObject.Parse(cacheStoreInfo.StoreConfig).ToObject<CustomStoreInfo>();
+                //    JsonConvert.DeserializeObject<CustomStoreInfo>(cacheStoreInfo.StoreConfig);
                 //cacheStore = new CustomDistributedCacheStore<T>(Type.GetType(cacheStoreInfo.TypeInfo))
                 //{
                 //    CacheOptions = options =>

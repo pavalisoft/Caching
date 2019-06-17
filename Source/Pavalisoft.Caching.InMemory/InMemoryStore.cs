@@ -37,6 +37,6 @@ namespace Pavalisoft.Caching.InMemory
         /// <summary>
         /// Gets Cache Type as <see cref="MemoryCache"/>
         /// </summary>
-        public Type CacheType => typeof(MemoryCache);
+        public Type CacheType => typeof(ExtendedMemoryCache);
     }
 }

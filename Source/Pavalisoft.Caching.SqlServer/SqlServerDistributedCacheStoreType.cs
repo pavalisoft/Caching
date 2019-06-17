@@ -14,6 +14,7 @@
    limitations under the License. 
 */
 
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pavalisoft.Caching.Interfaces;
 
@@ -35,7 +36,9 @@ namespace Pavalisoft.Caching.SqlServer
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 SqlServerStoreInfo sqlServerStoreInfo =
-                    JObject.Parse(cacheStoreInfo.StoreConfig).ToObject<SqlServerStoreInfo>();
+                    JsonConvert.DeserializeObject<SqlServerStoreInfo>(cacheStoreInfo.StoreConfig,
+                    new JsonSerializerSettings {
+                    StringEscapeHandling = StringEscapeHandling.Default | StringEscapeHandling.EscapeHtml | StringEscapeHandling.EscapeNonAscii});
                 cacheStore = new SqlServerDistributedCacheStore
                 {
                     CacheOptions = options =>

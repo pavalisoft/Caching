@@ -14,6 +14,7 @@
    limitations under the License. 
 */
 
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pavalisoft.Caching.Interfaces;
 
@@ -35,12 +36,14 @@ namespace Pavalisoft.Caching.MySql
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 MySqlStoreInfo sqlServerStoreInfo =
-                    JObject.Parse(cacheStoreInfo.StoreConfig).ToObject<MySqlStoreInfo>();
+                    JsonConvert.DeserializeObject<MySqlStoreInfo>(cacheStoreInfo.StoreConfig);
                 cacheStore = new MySqlDistributedCacheStore
                 {
                     CacheOptions = options =>
                     {
                         options.ConnectionString = sqlServerStoreInfo.ConnectionString;
+                        options.ReadConnectionString = options.ConnectionString;
+                        options.WriteConnectionString = options.WriteConnectionString;
                         options.DefaultSlidingExpiration = sqlServerStoreInfo.DefaultSlidingExpiration;
                         options.ExpiredItemsDeletionInterval = sqlServerStoreInfo.ExpiredItemsDeletionInterval;
                         options.SchemaName = sqlServerStoreInfo.SchemaName;

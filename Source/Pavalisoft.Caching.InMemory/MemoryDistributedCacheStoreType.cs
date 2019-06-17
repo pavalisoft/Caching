@@ -14,6 +14,7 @@
    limitations under the License. 
 */
 
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pavalisoft.Caching.Interfaces;
 
@@ -35,7 +36,7 @@ namespace Pavalisoft.Caching.InMemory
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 MemoryStoreInfo memoryStoreInfo =
-                    JObject.Parse(cacheStoreInfo.StoreConfig).ToObject<MemoryStoreInfo>();
+                    JsonConvert.DeserializeObject<MemoryStoreInfo>(cacheStoreInfo.StoreConfig);
                 cacheStore = new MemoryDistributedCacheStore
                 {
                     CacheOptions = options =>

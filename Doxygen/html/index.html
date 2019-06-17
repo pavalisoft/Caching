@@ -105,61 +105,117 @@ $(document).ready(function(){initNavTree('index.html','');});
             <li>Define the <a href="https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#abacbfb422d22fd66190f2350901b8797" rel="nofollow">Cache Stores</a> and <a href="https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#a132238e26cb3fd3005fb2ebdcc36a36f" rel="nofollow">Partitions</a> in Caching configuration section in appSettings.json</li>
         </ol>
 <pre><code>	
-	"Caching":
-	{
-		"Stores":
-		[
-			{
-				"Name": "InMemory",
-				"Type": "Memory",
-				"StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}" 
-			},
-			{
-				"Name": "SqlServer",
-				"Type": "SqlServer",
-				"StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
-			},
-			{
-				"Name": "MySql",
-				"Type": "MySql",
-				"StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost:9001;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
-			},
-			{
-				"Name": "Redis",
-				"Type": "Redis",
-				"StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
-			}
-		],
-		"Partitions":
-		[
-			{
-				"Name": "FrequentData",
-				"StoreName": "InMemory",
-				"SlidingExpiration": "00:05:00"
-			},
-			{ 
-				"Name": "LocalizationData", 
-				"StoreName": "SqlServer", 
-				"Priority": "NeverRemove" 
-			},
-			{
-				"Name": "MasterData",
-				"StoreName": "Redis",
-				"SlidingExpiration": "00:05:00"
-			}
-		]
-	}
+{
+  "Caching": {
+    "Stores": [
+      {
+        "Name": "InMemory",
+        "Type": "Pavalisoft.Caching.InMemory.InMemoryStore,Pavalisoft.Caching.InMemory",
+        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+      },
+      {
+        "Name": "DistributedInMemory",
+        "Type": "Pavalisoft.Caching.InMemory.MemoryDistributedCacheStore,Pavalisoft.Caching.InMemory",
+        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+      },
+      {
+        "Name": "SqlServer",
+        "Type": "Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore,Pavalisoft.Caching.SqlServer",
+        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+      },
+      {
+        "Name": "MySql",
+        "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStore,Pavalisoft.Caching.MySql",
+        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost:9001;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+      },
+      {
+        "Name": "Redis",
+        "Type": "Pavalisoft.Caching.Redis.RedisDistributedCacheStore,Pavalisoft.Caching.Redis",
+        "StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
+      }
+    ],
+    "Partitions": [
+      {
+        "Name": "FrequentData",
+        "StoreName": "InMemory",
+        "SlidingExpiration": "00:05:00"
+      },
+      {
+        "Name": "DistibutedFrequentData",
+        "StoreName": "DistributedInMemory",
+        "SlidingExpiration": "00:05:00"
+      },
+      {
+        "Name": "MySqlLocalizationData",
+        "StoreName": "MySql",
+        "Priority": "NeverRemove"
+      },
+      {
+        "Name": "LocalizationData",
+        "StoreName": "SqlServer",
+        "Priority": "NeverRemove"
+      },
+      {
+        "Name": "MasterData",
+        "StoreName": "Redis",
+        "SlidingExpiration": "00:05:00"
+      }
+    ]
+  }
+}
+
 </code></pre>
         <ol start="2">
             <li>Add <a href="https://www.nuget.org/packages/Pavalisoft.Caching/" rel="nofollow">Pavalisoft.Caching</a> to services</li>
+            <li>Add <a href="https://www.nuget.org/packages/Pavalisoft.Caching.InMemory/" rel="nofollow">Pavalisoft.Caching.InMemory</a> to services</li>
+            <li>Add <a href="https://www.nuget.org/packages/Pavalisoft.Caching.MySql/" rel="nofollow">Pavalisoft.Caching.MySql</a> to services</li>
+            <li>Add <a href="https://www.nuget.org/packages/Pavalisoft.Caching.Redis/" rel="nofollow">Pavalisoft.Caching.Redis</a> to services</li>
+            <li>Add <a href="https://www.nuget.org/packages/Pavalisoft.Caching.SqlServer/" rel="nofollow">Pavalisoft.Caching.SqlServer</a> to services</li>
         </ol>
 <pre><code>
-	public void ConfigureServices(IServiceCollection services)
-	{
-		... 
-		services.AddCaching(Configuration);
-		... 
-	}
+...
+//Import the below namespace to use InMemory and DitributedInMemory cache store implementations
+using Pavalisoft.Caching.InMemory;
+//Import the below namespace to use MySql cache store implementation
+using Pavalisoft.Caching.MySql;
+//Import the below namespace to use Redis Cache Store implementation
+using Pavalisoft.Caching.Redis;
+//Import the below namespace to use SqlServer Cache Store implementation
+using Pavalisoft.Caching.SqlServer;
+...
+
+namespace Pavalisoft.Caching.SampleWeb
+{
+    public class Startup
+    {
+		...
+        public Startup(IConfiguration configuration)
+        {
+			...
+            Configuration = configuration;
+			...
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            ...
+            // Adds CacheManager servcice to services
+            services.AddCaching()
+                // Adds InMemory and Distributed InMemory Cache Store implementations to CacheManager
+                .AddInMemoryCache()
+                // Adds MySql Cache Store implementations to CacheManager
+                .AddMySqlCache()
+                // Adds Redis Cache Store implementations to CacheManager
+                .AddRedisCache()
+                // Adds SqlServer Cache Store implementations to CacheManager
+                .AddSqlServerCache();
+			...
+        }
+		...
+    }
+}
 </code></pre>
         <ol start="3">
             <li>Use <a href="https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_manager.html" rel="nofollow">CacheManager</a> methods to add, get, refresh and remove items in Cache.</li>

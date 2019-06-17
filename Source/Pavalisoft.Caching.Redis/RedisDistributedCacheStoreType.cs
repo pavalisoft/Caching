@@ -14,6 +14,7 @@
    limitations under the License. 
 */
 
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pavalisoft.Caching.Interfaces;
 
@@ -35,7 +36,7 @@ namespace Pavalisoft.Caching.Redis
             if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 RedisStoreInfo redisStoreInfo =
-                    JObject.Parse(cacheStoreInfo.StoreConfig).ToObject<RedisStoreInfo>();
+                    JsonConvert.DeserializeObject<RedisStoreInfo>(cacheStoreInfo.StoreConfig);
                 cacheStore = new RedisDistributedCacheStore
                 {
                     CacheOptions = options =>

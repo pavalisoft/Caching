@@ -31,6 +31,7 @@ namespace Pavalisoft.Caching.SqlServer
         public static IServiceCollection AddSqlServerCache(this IServiceCollection services)
         {
             services.AddSingleton<SqlServerDistributedCacheStoreType>();
+            services.AddTransient<ExtendedSqlServerCache>();
             return services;
         }
     }

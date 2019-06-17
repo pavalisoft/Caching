@@ -26,50 +26,62 @@ namespace Pavalisoft.Caching
     /// </summary>
     /// <example> The below is the sample configuration
     /// {
-    ///     "Caching":
-    ///     {
-    ///         "Stores":
-    ///         [
-    ///             {
-    ///                 "Name": "InMemory",
-    ///                 "Type": "Memory",
-    ///                 "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
-    ///             },
-    ///             {
-    ///                 "Name": "SqlServer",
-    ///                 "Type": "SqlServer",
-    ///                 "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
-    ///             },
-    ///             {
-    ///                 "Name": "Redis",
-    ///                 "Type": "Redis",
-    ///                 "StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
-    ///             },
-    ///             {
-    ///                 "Name": "MySql",
-    ///                 "Type": "MySql",
-    ///                 "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
-    ///             }    
-    ///         ],
-    ///         "Partitions":
-    ///         [
-    ///             {
-    ///                 "Name": "FrequentData",
-    ///                 "StoreName": "InMemory",
-    ///                 "SlidingExpiration": "00:05:00"
-    ///             },
-    ///             {
-    ///                 "Name": "LocalizationData",
-    ///                 "StoreName": "SqlServer",
-    ///                 "Priority": "NeverRemove"
-    ///             },
-    ///             {
-    ///                 "Name": "MasterData",
-    ///                 "StoreName": "Redis",
-    ///                 "SlidingExpiration": "00:05:00"
-    ///             }
-    ///         ]
-    ///    }
+    ///  "Caching": {
+    ///    "Stores": [
+    ///      {
+    ///        "Name": "InMemory",
+    ///        "Type": "Pavalisoft.Caching.InMemory.InMemoryStore,Pavalisoft.Caching.InMemory",
+    ///        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+    ///      },
+    ///      {
+    ///        "Name": "DistributedInMemory",
+    ///        "Type": "Pavalisoft.Caching.InMemory.MemoryDistributedCacheStore,Pavalisoft.Caching.InMemory",
+    ///        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+    ///      },
+    ///      {
+    ///        "Name": "SqlServer",
+    ///        "Type": "Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore,Pavalisoft.Caching.SqlServer",
+    ///        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+    ///      },
+    ///      {
+    ///        "Name": "MySql",
+    ///        "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStore,Pavalisoft.Caching.MySql",
+    ///        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost:9001;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+    ///      },
+    ///      {
+    ///        "Name": "Redis",
+    ///        "Type": "Pavalisoft.Caching.Redis.RedisDistributedCacheStore,Pavalisoft.Caching.Redis",
+    ///        "StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
+    ///      }
+    ///    ],
+    ///    "Partitions": [
+    ///      {
+    ///        "Name": "FrequentData",
+    ///        "StoreName": "InMemory",
+    ///        "SlidingExpiration": "00:05:00"
+    ///      },
+    ///      {
+    ///        "Name": "DistibutedFrequentData",
+    ///        "StoreName": "DistributedInMemory",
+    ///        "SlidingExpiration": "00:05:00"
+    ///      },
+    ///      {
+    ///        "Name": "MySqlLocalizationData",
+    ///        "StoreName": "MySql",
+    ///        "Priority": "NeverRemove"
+    ///      },
+    ///      {
+    ///        "Name": "LocalizationData",
+    ///        "StoreName": "SqlServer",
+    ///        "Priority": "NeverRemove"
+    ///      },
+    ///      {
+    ///        "Name": "MasterData",
+    ///        "StoreName": "Redis",
+    ///        "SlidingExpiration": "00:05:00"
+    ///      }
+    ///    ]
+    ///  }
     /// }
     /// </example>
     public class CacheSettings
@@ -91,11 +103,6 @@ namespace Pavalisoft.Caching
     public class CacheStoreInfo
     {
         /// <summary>
-        /// Gets or Sets Cache Store Type
-        /// </summary>
-        public StoreType Type { get; set; }
-
-        /// <summary>
         /// Gets or Sets Cache Store Name
         /// </summary>
         public string Name { get; set; }
@@ -108,7 +115,7 @@ namespace Pavalisoft.Caching
         /// <summary>
         /// Gets or Sets Cache Store Type Information
         /// </summary>
-        public string TypeInfo { get; set; }
+        public string Type { get; set; }
     }
 
     /// <summary>
@@ -151,32 +158,5 @@ namespace Pavalisoft.Caching
         /// Gets the Size of the <see cref="ICachePartition"/>
         /// </summary>
         public long? Size { get; set; }
-    }
-
-    /// <summary>
-    /// Represents the Cache Store Type
-    /// </summary>
-    public enum StoreType
-    {
-        /// <summary>
-        /// Represents In-Memory Cache Store
-        /// </summary>
-        Memory,
-        /// <summary>
-        /// Represents Redis Cache Store
-        /// </summary>
-        Redis,
-        /// <summary>
-        /// Represents SQLServer Cache Store
-        /// </summary>
-        SqlServer,
-        /// <summary>
-        /// Represents MySql Cache Store
-        /// </summary>
-        MySql,
-        /// <summary>
-        /// Represents the Custom Cache Store
-        /// </summary>
-        Custom
     }
 }

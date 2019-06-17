@@ -74,7 +74,6 @@ namespace Pavalisoft.Caching
         /// <returns>Cache Store</returns>
         public ICacheStore GetCacheStore(string storeName)
         {
-            LoadCachePartitions();
             return _cacheStores.TryGetValue(storeName, out ICacheStore cacheValue) ? cacheValue : null;
         }
 
@@ -126,6 +125,7 @@ namespace Pavalisoft.Caching
             ICacheStore cacheStore = GetCacheStore(partitionInfo.StoreName);
             ICachePartition cachePartition = new CachePartition(partitionInfo.Name, partitionInfo.AbsoluteExpiration,
                 partitionInfo.AbsoluteExpirationRelativeToNow, partitionInfo.SlidingExpiration,
+                // TODO: Create options accessor and pass the options properly.
                 new DistributedCache(_serviceProvider.GetService(cacheStore.CacheType) as IExtendedDistributedCache,
                     cacheStore), partitionInfo.Priority, partitionInfo.Size);
             cacheStore.CachePartitions[partitionInfo.Name] = cachePartition;
@@ -156,7 +156,7 @@ namespace Pavalisoft.Caching
         private ICacheStore ConstructCacheStore(CacheStoreInfo cacheStoreInfo)
         {
             ICacheStoreType cacheStoreType =
-                _serviceProvider.GetService(Type.GetType(cacheStoreInfo.TypeInfo)) as ICacheStoreType;
+                _serviceProvider.GetService(Type.GetType(cacheStoreInfo.Type)) as ICacheStoreType;
             return cacheStoreType?.CreateCacheStore(cacheStoreInfo);
         }
     }

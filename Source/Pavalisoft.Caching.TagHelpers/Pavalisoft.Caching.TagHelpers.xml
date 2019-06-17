@@ -6,10 +6,136 @@
     <members>
         <member name="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper">
             <summary>
-            Cache Tag Helper https://github.com/aspnet/AspNetCore/blob/c565386a3ed135560bc2e9017aa54a950b4e35dd/src/Mvc/Mvc.TagHelpers/src/CacheTagHelper.cs
+            <see cref="T:Microsoft.AspNetCore.Razor.TagHelpers.TagHelper"/> implementation targeting &lt;cache&gt; elements.
+            </summary>
+            <example> The below is the usage example
+            <cache enabled="true">
+               Current Time Inside Cache Tag Helper: @DateTime.Now
+            </cache>
+            </example>
+        </member>
+        <member name="F:Pavalisoft.Caching.TagHelpers.CacheTagHelper.CacheKeyPrefix">
+            <summary>
+            Prefix used by <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper"/> instances when creating entries in <see cref="T:Pavalisoft.Caching.Interfaces.ICache"/>.
             </summary>
         </member>
-        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagHelper.#ctor(System.Text.Encodings.Web.HtmlEncoder)">
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagHelper.#ctor(Pavalisoft.Caching.Interfaces.ICacheManager,System.Text.Encodings.Web.HtmlEncoder)">
+            <summary>
+            Creates a new <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper"/>.
+            </summary>
+            <param name="cacheManager">The <see cref="T:Pavalisoft.Caching.Interfaces.ICacheManager"/> instance
+            used by the <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper"/>.</param>
+            <param name="htmlEncoder">The <see cref="T:System.Text.Encodings.Web.HtmlEncoder"/> to use.</param>
+        </member>
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <inheritdoc />
+        </member>
+        <member name="T:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase">
+            <summary>
+            <see cref="T:Microsoft.AspNetCore.Razor.TagHelpers.TagHelper"/> base implementation for caching elements.
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.#ctor(System.Text.Encodings.Web.HtmlEncoder)">
+            <summary>
+            Creates a new <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase"/>.
+            </summary>
+            <param name="htmlEncoder">The <see cref="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.HtmlEncoder"/> to use.</param>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.Order">
+            <inheritdoc />
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.HtmlEncoder">
+            <summary>
+            Gets the <see cref="T:System.Text.Encodings.Web.HtmlEncoder"/> which encodes the content to be cached.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.ViewContext">
+            <summary>
+            Gets or sets the <see cref="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.ViewContext"/> for the current executing View.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.VaryBy">
+            <summary>
+            Gets or sets a <see cref="T:System.String" /> to vary the cached result by.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.VaryByHeader">
+            <summary>
+            Gets or sets a comma-delimited set of HTTP request headers to vary the cached result by.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.VaryByQuery">
+            <summary>
+            Gets or sets a comma-delimited set of query parameters to vary the cached result by.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.VaryByRoute">
+            <summary>
+            Gets or sets a comma-delimited set of route data parameters to vary the cached result by.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.VaryByCookie">
+            <summary>
+            Gets or sets a comma-delimited set of cookie names to vary the cached result by.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.VaryByUser">
+            <summary>
+            Gets or sets a value that determines if the cached result is to be varied by the Identity for the logged in
+            <see cref="!:Http.HttpContext.User"/>.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.VaryByCulture">
+            <summary>
+            Gets or sets a value that determines if the cached result is to be varied by request culture.
+            <para>
+            Setting this to <c>true</c> would result in the result to be varied by <see cref="P:System.Globalization.CultureInfo.CurrentCulture" />
+            and <see cref="P:System.Globalization.CultureInfo.CurrentUICulture" />.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.CachePartition">
+            <summary>
+            Gets or sets the cache partition name wehere the cache entry should be created.
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.TagHelpers.CacheTagHelperBase.Enabled">
+            <summary>
+            Gets or sets the value which determines if the tag helper is enabled or not.
+            </summary>
+        </member>
+        <member name="T:Pavalisoft.Caching.TagHelpers.CacheTagKey">
+            <summary>
+            An instance of <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagKey"/> represents the state of <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper"/> keys.
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagKey.#ctor(Pavalisoft.Caching.TagHelpers.CacheTagHelper,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext)">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagKey"/> for a specific <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper"/>.
+            </summary>
+            <param name="tagHelper">The <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper"/>.</param>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext"/>.</param>
+            <returns>A new <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagKey"/>.</returns>
+        </member>
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagKey.GenerateKey">
+            <summary>
+            Creates a <see cref="T:System.String"/> representation of the key.
+            </summary>
+            <returns>A <see cref="T:System.String"/> uniquely representing the key.</returns>
+        </member>
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagKey.GenerateHashedKey">
+            <summary>
+            Creates a hashed value of the key.
+            </summary>
+            <returns>A cryptographic hash of the key.</returns>
+        </member>
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagKey.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagKey.Equals(Pavalisoft.Caching.TagHelpers.CacheTagKey)">
+            <inheritdoc />
+        </member>
+        <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagKey.GetHashCode">
             <inheritdoc />
         </member>
     </members>

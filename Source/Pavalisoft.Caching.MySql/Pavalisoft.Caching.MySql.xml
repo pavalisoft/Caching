@@ -47,7 +47,7 @@
         </member>
         <member name="P:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.CacheType">
             <summary>
-            Gets Cache Type as <see cref="!:ExtendedSqlServerCache"/>
+            Gets Cache Type as <see cref="T:Pavalisoft.Caching.MySql.ExtendedMySqlCache"/>
             </summary>
         </member>
         <member name="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType">

@@ -35,7 +35,7 @@ namespace Pavalisoft.Caching.MySql
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
 
         /// <summary>
-        /// Gets Cache Type as <see cref="ExtendedSqlServerCache"/>
+        /// Gets Cache Type as <see cref="ExtendedMySqlCache"/>
         /// </summary>
         public Type CacheType => typeof(ExtendedMySqlCache);
     }

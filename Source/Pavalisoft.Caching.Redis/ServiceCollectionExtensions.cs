@@ -31,6 +31,7 @@ namespace Pavalisoft.Caching.Redis
         public static IServiceCollection AddRedisCache(this IServiceCollection services)
         {
             services.AddSingleton<RedisDistributedCacheStoreType>();
+            services.AddTransient<ExtendedRedisCache>();
             return services;
         }
     }
