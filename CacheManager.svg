@@ -173,13 +173,13 @@
 						<v:ud v:nameU="OffsetX10" v:prompt="" v:val="VT0(0.04):0"/>
 						<v:ud v:nameU="OffsetY10" v:prompt="" v:val="VT0(-0.04):0"/>
 					</v:userDefs>
-					<path d="M0 612 L379.56 612 L759.12 612 L759.12 334.67 L379.56 334.67 L0 334.67 L0 612 Z" class="st1"/>
+					<path d="M0 612 L379.56 612 L759.12 612 L759.12 389.25 L379.56 389.25 L0 389.25 L0 612 Z" class="st1"/>
 				</g>
 				<g id="shape139-6" v:mID="139" v:groupContext="groupContent" v:layerMember="0">
-					<path d="M0 612 L379.56 612 L759.12 612 L759.12 334.67 L379.56 334.67 L0 334.67 L0 612 Z" class="st2"/>
+					<path d="M0 612 L379.56 612 L759.12 612 L759.12 389.25 L379.56 389.25 L0 389.25 L0 612 Z" class="st2"/>
 				</g>
 			</g>
-			<g id="group141-9" transform="translate(0,-277.325)" v:mID="141" v:groupContext="group" v:layerMember="0">
+			<g id="group141-9" transform="translate(0,-222.75)" v:mID="141" v:groupContext="group" v:layerMember="0">
 				<v:userDefs>
 					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Heading)"/>
 					<v:ud v:nameU="CStyle" v:prompt="" v:val="VT0(10):26"/>
@@ -735,7 +735,7 @@
 								x="7.53" dy="1.2em" class="st6">Configurat</tspan><tspan x="25.04" dy="1.2em" class="st6">ions</tspan></text>				</g>
 			</g>
 		</g>
-		<g id="group89-63" transform="translate(27,-398.669)" v:mID="89" v:groupContext="group" v:layerMember="0">
+		<g id="group89-63" transform="translate(26.6538,-400.114)" v:mID="89" v:groupContext="group" v:layerMember="0">
 			<v:userDefs>
 				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(ContainerStyleDefaults)"/>
 				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Container)"/>
@@ -815,7 +815,7 @@
 					</v:userDefs>
 				</g>
 				<g id="shape90-67" v:mID="90" v:groupContext="groupContent" v:layerMember="0">
-					<path d="M0 612 L371.29 612 L742.57 612 L742.57 419.69 L371.29 419.69 L0 419.69 L0 612 Z" class="st3"/>
+					<path d="M0 612 L371.46 612 L742.92 612 L742.92 421.14 L371.46 421.14 L0 421.14 L0 612 Z" class="st3"/>
 				</g>
 			</g>
 			<g id="group92-69" transform="translate(-589.5,612) rotate(-90)" v:mID="92" v:groupContext="group" v:layerMember="0">
@@ -852,8 +852,8 @@
 					<v:ud v:nameU="BaseColor" v:prompt="" v:val="VT5(#96afcf)"/>
 					<v:ud v:nameU="FillPatternIn" v:prompt="" v:val="VT0(1):26"/>
 					<v:ud v:nameU="HSide" v:prompt="" v:val="VT0(1):26"/>
-					<v:ud v:nameU="HTxtWidth" v:prompt="" v:val="VT0(2.6709654457849):1"/>
-					<v:ud v:nameU="HRight" v:prompt="" v:val="VT0(2.6709654457849):1"/>
+					<v:ud v:nameU="HTxtWidth" v:prompt="" v:val="VT0(2.6508931247923):1"/>
+					<v:ud v:nameU="HRight" v:prompt="" v:val="VT0(2.6508931247923):1"/>
 					<v:ud v:nameU="msvSDContainerHeadingEdge" v:prompt="" v:val="VT4(Right)"/>
 					<v:ud v:nameU="FillForegndIn" v:prompt="" v:val="VT5(#3d64ac)"/>
 					<v:ud v:nameU="FillBkgndIn" v:prompt="" v:val="VT5(#3d64ac)"/>
@@ -878,18 +878,18 @@
 						<v:ud v:nameU="AnchorPt7" v:prompt="" v:val="VT0(0.46354166666667):0"/>
 						<v:ud v:nameU="HSide" v:prompt="" v:val="VT0(0):26"/>
 						<v:ud v:nameU="HAlign" v:prompt="" v:val="VT0(0):26"/>
-						<v:ud v:nameU="HRight" v:prompt="" v:val="VT0(2.6709654457849):1"/>
+						<v:ud v:nameU="HRight" v:prompt="" v:val="VT0(2.6508931247923):1"/>
 						<v:ud v:nameU="Offset7" v:prompt="" v:val="VT0(0.0052083333333333):29"/>
 						<v:ud v:nameU="HSide" v:prompt="" v:val="VT0(1):26"/>
 					</v:userDefs>
-					<path d="M0.38 612 A514.153 514.153 0 0 1 191.93 612 L191.93 607.5 A514.153 514.153 -180 0 0 0.37 607.5 L0.37
+					<path d="M0.38 612 A506.492 506.492 0 0 1 190.49 612 L190.49 607.5 A506.492 506.492 -180 0 0 0.38 607.5 L0.37
 								 612 Z" class="st4"/>
 				</g>
 				<g id="shape92-73" v:mID="92" v:groupContext="groupContent" v:layerMember="0">
 					<v:textBlock v:margins="rect(4,6,4,6)"/>
-					<v:textRect cx="96.1548" cy="600.75" width="192.31" height="22.5"/>
-					<path d="M0 621 A518.152 518.152 0 0 1 192.31 621 L192.31 589.5 L0 589.5 L0 621 Z" class="st4"/>
-					<text x="64.81" y="604.35" class="st5" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Application</text>				</g>
+					<v:textRect cx="95.4322" cy="600.75" width="190.87" height="22.5"/>
+					<path d="M-0 621 A510.461 510.461 0 0 1 190.86 621 L190.86 589.5 L0 589.5 L0 621 Z" class="st4"/>
+					<text x="64.09" y="604.35" class="st5" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Application</text>				</g>
 			</g>
 		</g>
 		<g id="shape48-77" v:mID="48" v:groupContext="shape" transform="translate(76.1538,-129.022)">
@@ -1150,17 +1150,17 @@
 						x="4" dy="1.26em" class="st10">Name : </tspan><tspan class="st11">InFrequentData<v:newlineChar/></tspan><tspan
 						x="4" dy="1.2em" class="st10">StoreName :</tspan><tspan class="st11"> </tspan><tspan class="st11">DistributedMySql<v:newlineChar/></tspan><tspan
 						x="4" dy="1.2em" class="st10">SlidingExpiration :</tspan><tspan class="st11"> </tspan><tspan class="st11">00:05:00</tspan></text>		</g>
-		<g id="shape88-188" v:mID="88" v:groupContext="shape" transform="translate(27.1731,-337.5)">
+		<g id="shape88-188" v:mID="88" v:groupContext="shape" transform="translate(26.6538,-342)">
 			<title>Rectangle</title>
 			<desc>Pavalisoft.Caching.CacheManager API Connects to Cache Stores ...</desc>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<v:textBlock v:margins="rect(4,4,4,4)"/>
-			<v:textRect cx="370.212" cy="591.076" width="740.43" height="41.8474"/>
-			<rect x="0" y="570.153" width="740.423" height="41.8474" class="st7"/>
-			<text x="228.95" y="585.68" class="st13" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Pavalisoft.Caching.CacheManager API<v:newlineChar/><tspan
-						x="139.55" dy="1.8em" class="st14">Connects to Cache Stores using Cache Settings configuration (ICacheStore and ICachePartition)</tspan></text>		</g>
+			<v:textRect cx="371.46" cy="591.076" width="742.92" height="41.8474"/>
+			<rect x="0" y="570.153" width="742.919" height="41.8474" class="st7"/>
+			<text x="230.2" y="585.68" class="st13" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Pavalisoft.Caching.CacheManager API<v:newlineChar/><tspan
+						x="140.8" dy="1.8em" class="st14">Connects to Cache Stores using Cache Settings configuration (ICacheStore and ICachePartition)</tspan></text>		</g>
 		<g id="shape94-192" v:mID="94" v:groupContext="shape" transform="translate(60.9231,-409.114)">
 			<title>Rounded Rectangle.94</title>
 			<desc>Add Object to Cache cacheManager.Set(“FrequentData”, “key1”, ...</desc>
@@ -1300,35 +1300,35 @@
 		</g>
 		<g id="shape112-263" v:mID="112" v:groupContext="shape" v:layerMember="2" transform="translate(138.462,-409.114)">
 			<title>Dynamic connector.112</title>
-			<path d="M0 612 L0 628.27 L258.92 628.27 L258.92 634.73" class="st17"/>
+			<path d="M0 612 L0 623.88 L259.65 623.88 L259.65 630.23" class="st17"/>
 		</g>
-		<g id="shape113-269" v:mID="113" v:groupContext="shape" v:layerMember="2" transform="translate(397.385,-337.5)">
+		<g id="shape113-269" v:mID="113" v:groupContext="shape" v:layerMember="2" transform="translate(398.114,-342)">
 			<title>Dynamic connector.113</title>
-			<path d="M0 612 L0 621 L-226.38 621 L-226.38 626.69" class="st17"/>
+			<path d="M0 612 L0 615.73 L-227.11 615.73 L-227.11 631.19" class="st17"/>
 		</g>
 		<g id="shape114-274" v:mID="114" v:groupContext="shape" v:layerMember="2" transform="translate(308.423,-409.114)">
 			<title>Dynamic connector.114</title>
-			<path d="M0 612 L0 628.27 L88.96 628.27 L88.96 634.73" class="st19"/>
+			<path d="M0 612 L0 623.88 L89.69 623.88 L89.69 630.23" class="st19"/>
 		</g>
-		<g id="shape115-280" v:mID="115" v:groupContext="shape" v:layerMember="2" transform="translate(397.385,-337.5)">
+		<g id="shape115-280" v:mID="115" v:groupContext="shape" v:layerMember="2" transform="translate(398.114,-342)">
 			<title>Dynamic connector.115</title>
-			<path d="M0 612 L0 621 L-50.88 621 L-50.88 626.69" class="st19"/>
+			<path d="M0 612 L0 615.73 L-51.61 615.73 L-51.61 631.19" class="st19"/>
 		</g>
 		<g id="shape116-285" v:mID="116" v:groupContext="shape" v:layerMember="2" transform="translate(484.962,-409.114)">
 			<title>Dynamic connector.116</title>
-			<path d="M0 612 L0 628.27 L-87.58 628.27 L-87.58 634.73" class="st21"/>
+			<path d="M0 612 L0 623.88 L-86.85 623.88 L-86.85 630.23" class="st21"/>
 		</g>
-		<g id="shape117-291" v:mID="117" v:groupContext="shape" v:layerMember="2" transform="translate(397.385,-337.5)">
+		<g id="shape117-291" v:mID="117" v:groupContext="shape" v:layerMember="2" transform="translate(398.114,-342)">
 			<title>Dynamic connector.117</title>
-			<path d="M0 612 L0 621 L116.65 621 L116.65 626.69" class="st21"/>
+			<path d="M0 612 L0 615.73 L115.92 615.73 L115.92 631.19" class="st21"/>
 		</g>
 		<g id="shape118-296" v:mID="118" v:groupContext="shape" v:layerMember="2" transform="translate(667.558,-409.114)">
 			<title>Dynamic connector.118</title>
-			<path d="M0 612 L0 628.27 L-270.17 628.27 L-270.17 634.73" class="st23"/>
+			<path d="M0 612 L0 623.88 L-269.44 623.88 L-269.44 630.23" class="st23"/>
 		</g>
-		<g id="shape119-302" v:mID="119" v:groupContext="shape" v:layerMember="2" transform="translate(397.385,-337.5)">
+		<g id="shape119-302" v:mID="119" v:groupContext="shape" v:layerMember="2" transform="translate(398.114,-342)">
 			<title>Dynamic connector.119</title>
-			<path d="M0 612 L0 621 L282.12 621 L282.12 626.69" class="st23"/>
+			<path d="M0 612 L0 615.73 L281.39 615.73 L281.39 631.19" class="st23"/>
 		</g>
 		<g id="shape120-307" v:mID="120" v:groupContext="shape" transform="translate(60.9231,-555.75)">
 			<title>Trapezoid</title>
