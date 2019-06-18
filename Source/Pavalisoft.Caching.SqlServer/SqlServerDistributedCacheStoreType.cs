@@ -34,8 +34,8 @@ namespace Pavalisoft.Caching.SqlServer
         {
             return new SqlServerDistributedCacheStore
             {
-                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions)
-                ? JsonConvert.DeserializeObject<SqlServerCacheOptions>(cacheStoreInfo.CacheOptions)
+                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig)
+                ? JsonConvert.DeserializeObject<SqlServerCacheOptions>(cacheStoreInfo.StoreConfig)
                 : new SqlServerCacheOptions()
             };
         }

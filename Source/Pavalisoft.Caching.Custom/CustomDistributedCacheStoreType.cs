@@ -16,7 +16,7 @@ namespace Pavalisoft.Caching.Custom
         public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
             ICacheStore cacheStore = null;
-            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions))
+            if (!string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig))
             {
                 //CustomStoreInfo sqlServerStoreInfo =
                 //    JsonConvert.DeserializeObject<CustomStoreInfo>(cacheStoreInfo.CacheOptions);

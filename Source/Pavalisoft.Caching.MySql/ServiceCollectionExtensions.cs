@@ -31,7 +31,6 @@ namespace Pavalisoft.Caching.MySql
         public static IServiceCollection AddMySqlCache(this IServiceCollection services)
         {
             services.AddSingleton<MySqlDistributedCacheStoreType>();
-            services.AddTransient<ExtendedMySqlCache>();
             return services;
         }
     }

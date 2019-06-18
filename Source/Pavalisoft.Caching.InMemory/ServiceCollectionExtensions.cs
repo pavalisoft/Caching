@@ -34,8 +34,6 @@ namespace Pavalisoft.Caching.InMemory
         {
             services.AddSingleton<InMemoryCacheStoreType>();
             services.AddSingleton<MemoryDistributedCacheStoreType>();
-            services.AddTransient<ExtendedMemoryCache>();
-            services.AddTransient<ExtendedMemoryDistributedCache>();
             return services;
         }
 

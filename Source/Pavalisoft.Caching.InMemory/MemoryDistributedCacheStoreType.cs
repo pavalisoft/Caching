@@ -34,8 +34,8 @@ namespace Pavalisoft.Caching.InMemory
         {
             return new MemoryDistributedCacheStore
             {
-                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions)
-                ? JsonConvert.DeserializeObject<MemoryDistributedCacheOptions>(cacheStoreInfo.CacheOptions)
+                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig)
+                ? JsonConvert.DeserializeObject<MemoryDistributedCacheOptions>(cacheStoreInfo.StoreConfig)
                 : new MemoryDistributedCacheOptions()
             };
         }

@@ -34,8 +34,8 @@ namespace Pavalisoft.Caching.Redis
         {
             return new RedisDistributedCacheStore
             {
-                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions)
-                ? JsonConvert.DeserializeObject<RedisCacheOptions>(cacheStoreInfo.CacheOptions)
+                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig)
+                ? JsonConvert.DeserializeObject<RedisCacheOptions>(cacheStoreInfo.StoreConfig)
                 : new RedisCacheOptions()
             };
         }

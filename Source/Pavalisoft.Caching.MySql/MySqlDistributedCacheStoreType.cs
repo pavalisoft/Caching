@@ -34,8 +34,8 @@ namespace Pavalisoft.Caching.MySql
         {
             return new MySqlDistributedCacheStore
             {
-                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.CacheOptions)
-                ? JsonConvert.DeserializeObject<MySqlCacheOptions>(cacheStoreInfo.CacheOptions)
+                CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig)
+                ? JsonConvert.DeserializeObject<MySqlCacheOptions>(cacheStoreInfo.StoreConfig)
                 : new MySqlCacheOptions()
             };
         }

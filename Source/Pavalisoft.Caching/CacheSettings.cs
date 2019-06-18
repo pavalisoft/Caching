@@ -31,27 +31,27 @@ namespace Pavalisoft.Caching
     ///      {
     ///        "Name": "InMemory",
     ///        "Type": "Pavalisoft.Caching.InMemory.InMemoryStore,Pavalisoft.Caching.InMemory",
-    ///        "CacheOptions": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+    ///        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
     ///      },
     ///      {
     ///        "Name": "DistributedInMemory",
     ///        "Type": "Pavalisoft.Caching.InMemory.MemoryDistributedCacheStore,Pavalisoft.Caching.InMemory",
-    ///        "CacheOptions": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+    ///        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
     ///      },
     ///      {
     ///        "Name": "SqlServer",
     ///        "Type": "Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore,Pavalisoft.Caching.SqlServer",
-    ///        "CacheOptions": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+    ///        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
     ///      },
     ///      {
     ///        "Name": "MySql",
     ///        "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStore,Pavalisoft.Caching.MySql",
-    ///        "CacheOptions": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost:9001;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+    ///        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost:9001;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
     ///      },
     ///      {
     ///        "Name": "Redis",
     ///        "Type": "Pavalisoft.Caching.Redis.RedisDistributedCacheStore,Pavalisoft.Caching.Redis",
-    ///        "CacheOptions": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
+    ///        "StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
     ///      }
     ///    ],
     ///    "Partitions": [
@@ -110,7 +110,7 @@ namespace Pavalisoft.Caching
         /// <summary>
         /// Gets or Sets Cache Store parameters configuration
         /// </summary>
-        public string CacheOptions { get; set; }
+        public string StoreConfig { get; set; }
 
         /// <summary>
         /// Gets or Sets Cache Store Type Information
