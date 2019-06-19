@@ -14,7 +14,6 @@
    limitations under the License. 
 */
 
-using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,17 +30,14 @@ namespace Pavalisoft.Caching
     public class CacheManager : ICacheManager
     {
         private readonly ICacheSettingsProvider _cacheSettingsProvider;
-        private readonly IServiceProvider _serviceProvider;
         private readonly ConcurrentDictionary<string, ICachePartition> _cachePartitions;
 
         /// <summary>
         /// Creates an instance of <see cref="CacheManager"/> with cache manager settings <see cref="ICacheSettingsProvider"/>
         /// </summary>
-        /// <param name="serviceProvider"><see cref="IServiceProvider"/></param>
         /// <param name="cacheSettingsProvider"><see cref="ICacheSettingsProvider"/> provides cache manager configuration</param>
-        public CacheManager(IServiceProvider serviceProvider, ICacheSettingsProvider cacheSettingsProvider)
+        public CacheManager(ICacheSettingsProvider cacheSettingsProvider)
         {
-            _serviceProvider = serviceProvider;
             _cacheSettingsProvider = cacheSettingsProvider;
             _cachePartitions = new ConcurrentDictionary<string, ICachePartition>();
         }

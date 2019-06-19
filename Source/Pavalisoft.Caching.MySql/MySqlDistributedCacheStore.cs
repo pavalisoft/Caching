@@ -14,11 +14,11 @@
    limitations under the License. 
 */
 
-using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Options;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
+using Pavalisoft.Caching.Serializers;
 using Pomelo.Extensions.Caching.MySql;
 
 namespace Pavalisoft.Caching.MySql
@@ -29,6 +29,16 @@ namespace Pavalisoft.Caching.MySql
     public class MySqlDistributedCacheStore : ICacheStore<MySqlCacheOptions>
     {
         /// <summary>
+        /// Creates an instance of <see cref="MySqlDistributedCacheStore"/> with <paramref name="serializer"/> serializer.
+        /// </summary>
+        /// <param name="serializer">The <see cref="ISerializer"/>serializer. </param>
+        public MySqlDistributedCacheStore(ISerializer serializer = default)
+        {
+            if (serializer != null)
+                Serializer = serializer;
+        }
+
+        /// <summary>
         /// Gets or Sets <see cref="MySqlCacheOptions"/>
         /// </summary>
         public MySqlCacheOptions CacheOptions { get; set; }
@@ -36,10 +46,8 @@ namespace Pavalisoft.Caching.MySql
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
 
-        /// <summary>
-        /// Gets Cache Type as <see cref="ExtendedMySqlCache"/>
-        /// </summary>
-        public Type CacheType => typeof(ExtendedMySqlCache);
+        /// <inheritdoc />
+        public ISerializer Serializer { get; } = new DefaultSerializer();
 
         /// <summary>
         /// Creates <see cref="CachePartition"/> in <see cref="MySqlDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>

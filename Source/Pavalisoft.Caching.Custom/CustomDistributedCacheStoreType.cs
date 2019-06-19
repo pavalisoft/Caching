@@ -8,11 +8,22 @@ namespace Pavalisoft.Caching.Custom
     /// </summary>
     public class CustomDistributedCacheStoreType : ICacheStoreType
     {
+        private readonly IServiceProvider _serviceProvider;
+
         /// <summary>
-        /// 
+        /// Creates an instance of <see cref="CustomDistributedCacheStoreType"/> with <see cref="IServiceProvider"/>
         /// </summary>
-        /// <param name="cacheStoreInfo"></param>
-        /// <returns></returns>
+        /// <param name="serviceProvider">The <see cref="IServiceProvider"/> instance. </param>
+        public CustomDistributedCacheStoreType(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
+        /// <summary>
+        /// Creates <see cref="RedisDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/> configuration
+        /// </summary>
+        /// <param name="cacheStoreInfo">Redis <see cref="CacheStoreDefinition"/> configuration</param>
+        /// <returns><see cref="CustomDistributedCacheStore"/> object</returns>
         public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
             ICacheStore cacheStore = null;

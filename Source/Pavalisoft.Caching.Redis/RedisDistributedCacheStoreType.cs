@@ -17,6 +17,7 @@
 using Microsoft.Extensions.Caching.Redis;
 using Newtonsoft.Json;
 using Pavalisoft.Caching.Interfaces;
+using System;
 
 namespace Pavalisoft.Caching.Redis
 {
@@ -25,6 +26,17 @@ namespace Pavalisoft.Caching.Redis
     /// </summary>
     public class RedisDistributedCacheStoreType : ICacheStoreType
     {
+        private readonly IServiceProvider _serviceProvider;
+
+        /// <summary>
+        /// Creates an instance of <see cref="RedisDistributedCacheStoreType"/> with <see cref="IServiceProvider"/>
+        /// </summary>
+        /// <param name="serviceProvider">The <see cref="IServiceProvider"/> instance. </param>
+        public RedisDistributedCacheStoreType(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
         /// <summary>
         /// Creates <see cref="RedisDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/> configuration
         /// </summary>
@@ -32,7 +44,9 @@ namespace Pavalisoft.Caching.Redis
         /// <returns><see cref="RedisDistributedCacheStore"/> object</returns>
         public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
-            return new RedisDistributedCacheStore
+            ISerializer serializer = !string.IsNullOrWhiteSpace(cacheStoreInfo.SerializerType) 
+                ? _serviceProvider.GetService(Type.GetType(cacheStoreInfo.SerializerType)) as ISerializer : null;
+            return new RedisDistributedCacheStore(serializer)
             {
                 CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig)
                 ? JsonConvert.DeserializeObject<RedisCacheOptions>(cacheStoreInfo.StoreConfig)

@@ -15,6 +15,8 @@
 */
 
 using Pavalisoft.Caching.Interfaces;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Pavalisoft.Caching
 {
@@ -56,6 +58,35 @@ namespace Pavalisoft.Caching
             }
             value = defaultObj;
             return false;
+        }
+
+        internal static byte[] ToArray(this object obj)
+        {
+            if (obj == null)
+            {
+                return null;
+            }
+
+            using (var memoryStream = new MemoryStream())
+            {
+                var binaryFormatter = new BinaryFormatter();
+
+                binaryFormatter.Serialize(memoryStream, obj);
+
+                return memoryStream.ToArray();
+            }
+        }
+
+        internal static object ToObject(this byte[] arrBytes)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                memoryStream.Write(arrBytes, 0, arrBytes.Length);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+
+                var binaryFormatter = new BinaryFormatter();
+                return binaryFormatter.Deserialize(memoryStream);
+            }
         }
     }
 }

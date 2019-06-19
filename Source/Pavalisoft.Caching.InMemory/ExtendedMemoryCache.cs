@@ -30,7 +30,7 @@ namespace Pavalisoft.Caching.InMemory
     /// <summary>
     /// Provides distributed cache implementation using <see cref="MemoryCache"/>
     /// </summary>
-    public class ExtendedMemoryCache : MemoryCache, IExtendedDistributedCache
+    public class ExtendedMemoryCache : MemoryCache, IExtendedMemoryCache, IExtendedDistributedCache
     {
         private static readonly Task CompletedTask = Task.FromResult<object>(null);
 
@@ -107,7 +107,7 @@ namespace Pavalisoft.Caching.InMemory
                     AbsoluteExpiration = options.AbsoluteExpiration,
                     AbsoluteExpirationRelativeToNow = options.AbsoluteExpirationRelativeToNow,
                     SlidingExpiration = options.SlidingExpiration,
-                    Size = new long?((long)value.Length)
+                    Size = new long?((long)value.LongLength)
                 };
             Set(key, value, cacheEntryOptions);
         }
@@ -224,7 +224,7 @@ namespace Pavalisoft.Caching.InMemory
             
             using (ICacheEntry cacheEntry = CreateEntry(key))
             {
-                var memoryCacheEntryOptions = GetMemoryCacheEntryOptions(value, options);
+                var memoryCacheEntryOptions = GetMemoryCacheEntryOptions(options, value.LongLength);
                 cacheEntry.SetOptions(memoryCacheEntryOptions);
                 if (memoryCacheEntryOptions.AbsoluteExpiration != null)
                     cacheEntry.SetAbsoluteExpiration(memoryCacheEntryOptions.AbsoluteExpiration.Value);
@@ -233,7 +233,7 @@ namespace Pavalisoft.Caching.InMemory
                 if (memoryCacheEntryOptions.SlidingExpiration != null)
                     cacheEntry.SetSlidingExpiration(memoryCacheEntryOptions.SlidingExpiration.Value);
                 cacheEntry.SetPriority(memoryCacheEntryOptions.Priority);
-                cacheEntry.SetSize(value.Length);
+                cacheEntry.SetSize(value.LongLength);
                 cacheEntry.SetValue(value);
             }
         }
@@ -264,18 +264,95 @@ namespace Pavalisoft.Caching.InMemory
 
             Set(key, value, options);
             return CompletedTask;
+        }        
+
+        object IExtendedMemoryCache.Get(string key)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (TryGetValue(key, out object result))
+                return result;
+            return null;
         }
 
-        private MemoryCacheEntryOptions GetMemoryCacheEntryOptions(byte[] value, ExtendedDistributedCacheEntryOptions options)
+        Task<object> IExtendedMemoryCache.GetAsync(string key, CancellationToken token)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            if (TryGetValue(key, out object result))
+                return Task.FromResult(result);
+            return Task.FromResult((object)null);
+        }
+
+        public void Set(string key, object value, ExtendedDistributedCacheEntryOptions options)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
+            using (ICacheEntry cacheEntry = CreateEntry(key))
+            {
+                var memoryCacheEntryOptions = GetMemoryCacheEntryOptions(options);
+                cacheEntry.SetOptions(memoryCacheEntryOptions);
+                if (memoryCacheEntryOptions.AbsoluteExpiration != null)
+                    cacheEntry.SetAbsoluteExpiration(memoryCacheEntryOptions.AbsoluteExpiration.Value);
+                if (memoryCacheEntryOptions.AbsoluteExpirationRelativeToNow != null)
+                    cacheEntry.SetAbsoluteExpiration(memoryCacheEntryOptions.AbsoluteExpirationRelativeToNow.Value);
+                if (memoryCacheEntryOptions.SlidingExpiration != null)
+                    cacheEntry.SetSlidingExpiration(memoryCacheEntryOptions.SlidingExpiration.Value);
+                cacheEntry.SetPriority(memoryCacheEntryOptions.Priority);
+                cacheEntry.SetValue(value);
+            }
+        }
+
+        public Task SetAsync(string key, object value, ExtendedDistributedCacheEntryOptions options, CancellationToken token = default)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
+            Set(key, value, options);
+            return CompletedTask;
+        }
+
+        private MemoryCacheEntryOptions GetMemoryCacheEntryOptions(ExtendedDistributedCacheEntryOptions options, long? size = default)
         {
             var memoryCacheEntryOptions = new MemoryCacheEntryOptions
             {
                 AbsoluteExpiration = options.AbsoluteExpiration,
                 AbsoluteExpirationRelativeToNow = options.AbsoluteExpirationRelativeToNow,
                 SlidingExpiration = options.SlidingExpiration,
-                Priority = options.Priority,
-                Size = value.Length
+                Priority = options.Priority
             };
+            if(size != null)
+                memoryCacheEntryOptions.SetSize(size.Value);
+
             if (options.ExpirationTokens != null && options.ExpirationTokens.Any())
             {
                 foreach (IChangeToken expirationToken in options.ExpirationTokens)

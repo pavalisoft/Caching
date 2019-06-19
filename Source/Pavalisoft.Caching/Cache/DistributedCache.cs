@@ -14,10 +14,8 @@
    limitations under the License. 
 */
 
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Cache
@@ -27,6 +25,7 @@ namespace Pavalisoft.Caching.Cache
     /// </summary>
     public class DistributedCache : ICache
     {
+        private readonly IExtendedMemoryCache _memoryCache;
         private readonly IExtendedDistributedCache _distributedCache;
         private ICacheStore _cacheStore;
 
@@ -37,6 +36,7 @@ namespace Pavalisoft.Caching.Cache
         /// <param name="cacheStore"><see cref="ICacheStore"/></param>
         public DistributedCache(IExtendedDistributedCache distributedCache, ICacheStore cacheStore)
         {
+            _memoryCache = distributedCache as IExtendedMemoryCache;
             _distributedCache = distributedCache;
             _cacheStore = cacheStore;
         }
@@ -49,10 +49,12 @@ namespace Pavalisoft.Caching.Cache
         /// <returns>Cached object</returns>
         public TItem Get<TItem>(string key)
         {
+            if (_memoryCache != null)
+                return (TItem)_memoryCache.Get(key);
+
             byte[] cache = _distributedCache.Get(key);
             if (cache == null) return default;
-            string str = Encoding.UTF8.GetString(cache);
-            return JsonConvert.DeserializeObject<TItem>(str);
+            return _cacheStore.Serializer.Deserialize<TItem>(cache);
         }
 
         /// <summary>
@@ -64,10 +66,12 @@ namespace Pavalisoft.Caching.Cache
         /// <returns>Cached object</returns>
         public async Task<TItem> GetAsync<TItem>(string key, CancellationToken token = default)
         {
+            if (_memoryCache != null)
+                return (TItem)_memoryCache.GetAsync(key, token).Result;
+
             byte[] cache = await _distributedCache.GetAsync(key, token);
             if (cache == null) return default;
-            string str = Encoding.UTF8.GetString(cache);
-            return JsonConvert.DeserializeObject<TItem>(str);
+            return _cacheStore.Serializer.Deserialize<TItem>(cache);
         }
 
         /// <summary>
@@ -79,9 +83,13 @@ namespace Pavalisoft.Caching.Cache
         /// <param name="options">Distributed cache options. <see cref="ExtendedDistributedCacheEntryOptions"/></param>
         public void Set<TItem>(string key, TItem value, ExtendedDistributedCacheEntryOptions options)
         {
-            string str = JsonConvert.SerializeObject(value);
-            byte[] val = Encoding.UTF8.GetBytes(str);
-            _distributedCache.Set(key, val, options);
+            if (_memoryCache != null)
+            {
+                _memoryCache.Set(key, value, options);
+                return;
+            }
+
+            _distributedCache.Set(key, _cacheStore.Serializer.Serialize(value), options);
         }
 
         /// <summary>
@@ -95,9 +103,13 @@ namespace Pavalisoft.Caching.Cache
         public async Task SetAsync<TItem>(string key, TItem value, ExtendedDistributedCacheEntryOptions options,
             CancellationToken token = default)
         {
-            string str = JsonConvert.SerializeObject(value);
-            byte[] val = Encoding.UTF8.GetBytes(str);
-            await _distributedCache.SetAsync(key, val, options, token);
+            if (_memoryCache != null)
+            {
+                await _memoryCache.SetAsync(key, value, options, token);
+                return;
+            }
+
+            await _distributedCache.SetAsync(key, _cacheStore.Serializer.Serialize(value), options, token);
         }
 
         /// <summary>

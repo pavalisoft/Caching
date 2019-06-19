@@ -20,6 +20,7 @@ using Microsoft.Extensions.Caching.SqlServer;
 using Microsoft.Extensions.Options;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
+using Pavalisoft.Caching.Serializers;
 
 namespace Pavalisoft.Caching.SqlServer
 {
@@ -29,12 +30,25 @@ namespace Pavalisoft.Caching.SqlServer
     public class SqlServerDistributedCacheStore : ICacheStore<SqlServerCacheOptions>
     {
         /// <summary>
+        /// Creates an instance of <see cref="SqlServerDistributedCacheStore"/> with <paramref name="serializer"/> serializer.
+        /// </summary>
+        /// <param name="serializer">The <see cref="ISerializer"/>serializer. </param>
+        public SqlServerDistributedCacheStore(ISerializer serializer = default)
+        {
+            if (serializer != null)
+                Serializer = serializer;
+        }
+
+        /// <summary>
         /// Gets or Sets <see cref="SqlServerCacheOptions"/>
         /// </summary>
         public SqlServerCacheOptions CacheOptions { get; set; }
 
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
+
+        /// <inheritdoc />
+        public ISerializer Serializer { get; } = new DefaultSerializer();
 
         /// <summary>
         /// Creates <see cref="CachePartition"/> in <see cref="SqlServerDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>

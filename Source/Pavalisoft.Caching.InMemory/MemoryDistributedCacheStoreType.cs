@@ -17,6 +17,7 @@
 using Newtonsoft.Json;
 using Microsoft.Extensions.Caching.Memory;
 using Pavalisoft.Caching.Interfaces;
+using System;
 
 namespace Pavalisoft.Caching.InMemory
 {
@@ -25,6 +26,17 @@ namespace Pavalisoft.Caching.InMemory
     /// </summary>
     public class MemoryDistributedCacheStoreType : ICacheStoreType
     {
+        private readonly IServiceProvider _serviceProvider;
+
+        /// <summary>
+        /// Creates an instance of <see cref="MemoryDistributedCacheStoreType"/> with <see cref="IServiceProvider"/>
+        /// </summary>
+        /// <param name="serviceProvider">The <see cref="IServiceProvider"/> instance. </param>
+        public MemoryDistributedCacheStoreType(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
         /// <summary>
         /// Creates <see cref="MemoryDistributedCacheStore"/> object
         /// </summary>
@@ -32,7 +44,9 @@ namespace Pavalisoft.Caching.InMemory
         /// <returns><see cref="MemoryDistributedCacheStore"/></returns>
         public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
-            return new MemoryDistributedCacheStore
+            ISerializer serializer = !string.IsNullOrWhiteSpace(cacheStoreInfo.SerializerType) 
+                ? _serviceProvider.GetService(Type.GetType(cacheStoreInfo.SerializerType)) as ISerializer : null;
+            return new MemoryDistributedCacheStore(serializer)
             {
                 CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig)
                 ? JsonConvert.DeserializeObject<MemoryDistributedCacheOptions>(cacheStoreInfo.StoreConfig)

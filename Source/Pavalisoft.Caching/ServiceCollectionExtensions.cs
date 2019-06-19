@@ -17,6 +17,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
+using Pavalisoft.Caching.Serializers;
 
 namespace Pavalisoft.Caching
 {
@@ -37,6 +38,9 @@ namespace Pavalisoft.Caching
 
             services.AddSingleton<ICacheManager, CacheManager>();
             services.AddSingleton<ICacheSettingsProvider, ConfigurationCacheSettingsProvider>();
+
+            services.AddTransient<JsonSerializer>();
+            services.AddTransient<BinaryFormatterSerializer>();
             return services;
         }
     }

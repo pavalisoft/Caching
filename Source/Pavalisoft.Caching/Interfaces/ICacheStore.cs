@@ -45,5 +45,10 @@ namespace Pavalisoft.Caching.Interfaces
         /// </summary>
         /// <returns><see cref="ICachePartition"/> object created in <see cref="ICachePartition"/></returns>
         ICachePartition CreatePartition(CachePartitionDefinition cachePartitionInfo);
+
+        /// <summary>
+        /// Gets <see cref="ISerializer"/> to be used for Cached Object serialization
+        /// </summary>
+        ISerializer Serializer { get; }
     }
 }

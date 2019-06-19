@@ -14,12 +14,12 @@
    limitations under the License. 
 */
 
-using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
+using Pavalisoft.Caching.Serializers;
 
 namespace Pavalisoft.Caching.InMemory
 {
@@ -29,6 +29,16 @@ namespace Pavalisoft.Caching.InMemory
     public class InMemoryStore : ICacheStore<MemoryCacheOptions>
     {
         /// <summary>
+        /// Creates an instance of <see cref="InMemoryStore"/> with <paramref name="serializer"/> serializer.
+        /// </summary>
+        /// <param name="serializer">The <see cref="ISerializer"/>serializer. </param>
+        public InMemoryStore(ISerializer serializer = default)
+        {
+            if(serializer != null)
+                Serializer = serializer;
+        }
+
+        /// <summary>
         /// Gets or Sets <see cref="MemoryCacheOptions"/>
         /// </summary>
         public MemoryCacheOptions CacheOptions { get; set; }
@@ -36,10 +46,8 @@ namespace Pavalisoft.Caching.InMemory
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
 
-        /// <summary>
-        /// Gets Cache Type as <see cref="MemoryCache"/>
-        /// </summary>
-        public Type CacheType => typeof(ExtendedMemoryCache);
+        /// <inheritdoc />
+        public ISerializer Serializer { get; } = new DefaultSerializer();
 
         /// <summary>
         /// Creates <see cref="CachePartition"/> in <see cref="InMemoryStore"/> using <see cref="CachePartitionDefinition"/>

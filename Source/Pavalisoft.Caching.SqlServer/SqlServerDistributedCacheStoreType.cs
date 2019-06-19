@@ -17,6 +17,7 @@
 using Microsoft.Extensions.Caching.SqlServer;
 using Newtonsoft.Json;
 using Pavalisoft.Caching.Interfaces;
+using System;
 
 namespace Pavalisoft.Caching.SqlServer
 {
@@ -25,6 +26,17 @@ namespace Pavalisoft.Caching.SqlServer
     /// </summary>
     public class SqlServerDistributedCacheStoreType : ICacheStoreType
     {
+        private readonly IServiceProvider _serviceProvider;
+
+        /// <summary>
+        /// Creates an instance of <see cref="SqlServerDistributedCacheStoreType"/> with <see cref="IServiceProvider"/>
+        /// </summary>
+        /// <param name="serviceProvider">The <see cref="IServiceProvider"/> instance. </param>
+        public SqlServerDistributedCacheStoreType(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
         /// <summary>
         /// Creates <see cref="SqlServerDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/>
         /// </summary>
@@ -32,7 +44,9 @@ namespace Pavalisoft.Caching.SqlServer
         /// <returns><see cref="SqlServerDistributedCacheStore"/> object</returns>
         public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
-            return new SqlServerDistributedCacheStore
+            ISerializer serializer = !string.IsNullOrWhiteSpace(cacheStoreInfo.SerializerType) 
+                ? _serviceProvider.GetService(Type.GetType(cacheStoreInfo.SerializerType)) as ISerializer : null;
+            return new SqlServerDistributedCacheStore(serializer)
             {
                 CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig)
                 ? JsonConvert.DeserializeObject<SqlServerCacheOptions>(cacheStoreInfo.StoreConfig)

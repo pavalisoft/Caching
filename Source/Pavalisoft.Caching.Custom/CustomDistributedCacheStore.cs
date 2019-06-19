@@ -20,6 +20,7 @@ using Microsoft.Extensions.Options;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.InMemory;
 using Pavalisoft.Caching.Interfaces;
+using Pavalisoft.Caching.Serializers;
 
 namespace Pavalisoft.Caching.Custom
 {
@@ -36,6 +37,9 @@ namespace Pavalisoft.Caching.Custom
 
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
+
+        /// <inheritdoc />
+        public ISerializer Serializer { get; } = new DefaultSerializer();
 
         /// <summary>
         /// Creates <see cref="CachePartition"/> in <see cref="RedisDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>

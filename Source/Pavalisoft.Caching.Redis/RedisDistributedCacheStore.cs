@@ -19,6 +19,7 @@ using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.Options;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
+using Pavalisoft.Caching.Serializers;
 
 namespace Pavalisoft.Caching.Redis
 {
@@ -28,12 +29,25 @@ namespace Pavalisoft.Caching.Redis
     public class RedisDistributedCacheStore : ICacheStore<RedisCacheOptions>
     {
         /// <summary>
+        /// Creates an instance of <see cref="RedisDistributedCacheStore"/> with <paramref name="serializer"/> serializer.
+        /// </summary>
+        /// <param name="serializer">The <see cref="ISerializer"/>serializer. </param>
+        public RedisDistributedCacheStore(ISerializer serializer = default)
+        {
+            if (serializer != null)
+                Serializer = serializer;
+        }
+
+        /// <summary>
         /// Gets or Sets <see cref="RedisCacheOptions"/>
         /// </summary>
         public RedisCacheOptions CacheOptions { get; set; }
 
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
+
+        /// <inheritdoc />
+        public ISerializer Serializer { get; } = new DefaultSerializer();
 
         /// <summary>
         /// Creates <see cref="CachePartition"/> in <see cref="RedisDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>

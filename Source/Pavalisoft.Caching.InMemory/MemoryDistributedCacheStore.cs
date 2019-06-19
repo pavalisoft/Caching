@@ -14,12 +14,12 @@
    limitations under the License. 
 */
 
-using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Pavalisoft.Caching.Cache;
 using Pavalisoft.Caching.Interfaces;
+using Pavalisoft.Caching.Serializers;
 
 namespace Pavalisoft.Caching.InMemory
 {
@@ -29,12 +29,25 @@ namespace Pavalisoft.Caching.InMemory
     public class MemoryDistributedCacheStore : ICacheStore<MemoryDistributedCacheOptions>
     {
         /// <summary>
+        /// Creates an instance of <see cref="MemoryDistributedCacheStore"/> with <paramref name="serializer"/> serializer
+        /// </summary>
+        /// <param name="serializer">The <see cref="ISerializer"/>serializer. </param>
+        public MemoryDistributedCacheStore(ISerializer serializer = default)
+        {
+            if (serializer != null)
+                Serializer = serializer;
+        }
+
+        /// <summary>
         /// Gets or Sets <see cref="MemoryDistributedCacheOptions"/>
         /// </summary>
         public MemoryDistributedCacheOptions CacheOptions { get; set; }
 
         /// <inheritdoc />
         public IDictionary<string, ICachePartition> CachePartitions { get; } = new Dictionary<string, ICachePartition>();
+
+        /// <inheritdoc />
+        public ISerializer Serializer { get; } = new DefaultSerializer();
 
         /// <summary>
         /// Creates <see cref="CachePartition"/> in <see cref="MemoryDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>

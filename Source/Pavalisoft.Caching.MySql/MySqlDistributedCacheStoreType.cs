@@ -17,6 +17,7 @@
 using Newtonsoft.Json;
 using Pavalisoft.Caching.Interfaces;
 using Pomelo.Extensions.Caching.MySql;
+using System;
 
 namespace Pavalisoft.Caching.MySql
 {
@@ -25,6 +26,17 @@ namespace Pavalisoft.Caching.MySql
     /// </summary>
     public class MySqlDistributedCacheStoreType : ICacheStoreType
     {
+        private readonly IServiceProvider _serviceProvider;
+
+        /// <summary>
+        /// Creates an instance of <see cref="MySqlDistributedCacheStoreType"/> with <see cref="IServiceProvider"/>
+        /// </summary>
+        /// <param name="serviceProvider">The <see cref="IServiceProvider"/> instance. </param>
+        public MySqlDistributedCacheStoreType(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
         /// <summary>
         /// Creates <see cref="MySqlDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/>
         /// </summary>
@@ -32,7 +44,9 @@ namespace Pavalisoft.Caching.MySql
         /// <returns><see cref="MySqlDistributedCacheStore"/> object</returns>
         public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
-            return new MySqlDistributedCacheStore
+            ISerializer serializer = !string.IsNullOrWhiteSpace(cacheStoreInfo.SerializerType) 
+                ? _serviceProvider.GetService(Type.GetType(cacheStoreInfo.SerializerType)) as ISerializer : null;
+            return new MySqlDistributedCacheStore(serializer)
             {
                 CacheOptions = !string.IsNullOrWhiteSpace(cacheStoreInfo.StoreConfig)
                 ? JsonConvert.DeserializeObject<MySqlCacheOptions>(cacheStoreInfo.StoreConfig)
