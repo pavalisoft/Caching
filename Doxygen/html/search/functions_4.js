@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['loadcachesettings',['LoadCacheSettings',['../class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a72a808055d6e437776286c280618de23',1,'Pavalisoft.Caching.CacheSettingsProvider.LoadCacheSettings()'],['../class_pavalisoft_1_1_caching_1_1_configuration_cache_settings_provider.html#a1b0e18169366d29ee8b38965ebf14944',1,'Pavalisoft.Caching.ConfigurationCacheSettingsProvider.LoadCacheSettings()']]]
+  ['inmemorycachestoretype',['InMemoryCacheStoreType',['../class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_cache_store_type.html#a10fe97bdf93893e7b1cf1ac3803c21c1',1,'Pavalisoft::Caching::InMemory::InMemoryCacheStoreType']]],
+  ['inmemorystore',['InMemoryStore',['../class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html#a440ba28f49cd90926ed6468bf6873236',1,'Pavalisoft::Caching::InMemory::InMemoryStore']]]
 ];

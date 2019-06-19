@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
    <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
   </td>
@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('class_pavalisoft_1_1_caching_1_1_in_me
 </div><!--header-->
 <div class="contents">
 
-<p>Provides implementation to create <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store.html" title="Provides ExtendedMemoryDistributedCache version of the ICacheStore&lt;T&gt;">MemoryDistributedCacheStore</a> from <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_store_info.html" title="Represents in-Memory Store Configuration Information">MemoryStoreInfo</a>  
+<p>Provides implementation to create <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store.html" title="Provides ExtendedMemoryDistributedCache version of the ICacheStore&lt;T&gt;">MemoryDistributedCacheStore</a> from MemoryStoreInfo  
  <a href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store_type.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType:</div>
@@ -103,21 +103,51 @@ Inheritance diagram for Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreT
  <div class="center">
   <img src="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store_type.png" usemap="#Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType_map" alt=""/>
   <map id="Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType_map" name="Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType_map">
-<area href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store_type.html" title="Represents ICacheStore creation implementation from CacheStoreInfo" alt="Pavalisoft.Caching.Interfaces.ICacheStoreType" shape="rect" coords="0,0,383,24"/>
+<area href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store_type.html" title="Represents ICacheStore creation implementation from CacheStoreDefinition" alt="Pavalisoft.Caching.Interfaces.ICacheStoreType" shape="rect" coords="0,0,383,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae99cde98305714d52a6259e972a91cce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">ICacheStore</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store_type.html#ae99cde98305714d52a6259e972a91cce">CreateCacheStore</a> (<a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_info.html">CacheStoreInfo</a> cacheStoreInfo)</td></tr>
-<tr class="memdesc:ae99cde98305714d52a6259e972a91cce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store.html" title="Provides ExtendedMemoryDistributedCache version of the ICacheStore&lt;T&gt;">MemoryDistributedCacheStore</a> object  <a href="#ae99cde98305714d52a6259e972a91cce">More...</a><br /></td></tr>
-<tr class="separator:ae99cde98305714d52a6259e972a91cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4c5ee01e0e257c8dc14a19da8567b4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store_type.html#ad4c5ee01e0e257c8dc14a19da8567b4a">MemoryDistributedCacheStoreType</a> (IServiceProvider serviceProvider)</td></tr>
+<tr class="memdesc:ad4c5ee01e0e257c8dc14a19da8567b4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store_type.html" title="Provides implementation to create MemoryDistributedCacheStore from MemoryStoreInfo">MemoryDistributedCacheStoreType</a> with IServiceProvider  <a href="#ad4c5ee01e0e257c8dc14a19da8567b4a">More...</a><br /></td></tr>
+<tr class="separator:ad4c5ee01e0e257c8dc14a19da8567b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3343252417fe638ce69d7d21fac4da9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">ICacheStore</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store_type.html#a3343252417fe638ce69d7d21fac4da9c">CreateCacheStore</a> (<a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html">CacheStoreDefinition</a> cacheStoreInfo)</td></tr>
+<tr class="memdesc:a3343252417fe638ce69d7d21fac4da9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store.html" title="Provides ExtendedMemoryDistributedCache version of the ICacheStore&lt;T&gt;">MemoryDistributedCacheStore</a> object  <a href="#a3343252417fe638ce69d7d21fac4da9c">More...</a><br /></td></tr>
+<tr class="separator:a3343252417fe638ce69d7d21fac4da9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides implementation to create <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store.html" title="Provides ExtendedMemoryDistributedCache version of the ICacheStore&lt;T&gt;">MemoryDistributedCacheStore</a> from <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_store_info.html" title="Represents in-Memory Store Configuration Information">MemoryStoreInfo</a> </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae99cde98305714d52a6259e972a91cce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae99cde98305714d52a6259e972a91cce">&#9670;&nbsp;</a></span>CreateCacheStore()</h2>
+<div class="textblock"><p>Provides implementation to create <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store.html" title="Provides ExtendedMemoryDistributedCache version of the ICacheStore&lt;T&gt;">MemoryDistributedCacheStore</a> from MemoryStoreInfo </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad4c5ee01e0e257c8dc14a19da8567b4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4c5ee01e0e257c8dc14a19da8567b4a">&#9670;&nbsp;</a></span>MemoryDistributedCacheStoreType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType.MemoryDistributedCacheStoreType </td>
+          <td>(</td>
+          <td class="paramtype">IServiceProvider&#160;</td>
+          <td class="paramname"><em>serviceProvider</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store_type.html" title="Provides implementation to create MemoryDistributedCacheStore from MemoryStoreInfo">MemoryDistributedCacheStoreType</a> with IServiceProvider </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serviceProvider</td><td>The IServiceProvider instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3343252417fe638ce69d7d21fac4da9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3343252417fe638ce69d7d21fac4da9c">&#9670;&nbsp;</a></span>CreateCacheStore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,7 +155,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">ICacheStore</a> Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType.CreateCacheStore </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_info.html">CacheStoreInfo</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html">CacheStoreDefinition</a>&#160;</td>
           <td class="paramname"><em>cacheStoreInfo</em></td><td>)</td>
           <td></td>
         </tr>
@@ -135,13 +165,13 @@ Public Member Functions</h2></td></tr>
 <p>Creates <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store.html" title="Provides ExtendedMemoryDistributedCache version of the ICacheStore&lt;T&gt;">MemoryDistributedCacheStore</a> object </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cacheStoreInfo</td><td><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_info.html" title="Represents Cache Store Information">CacheStoreInfo</a> object</td></tr>
+    <tr><td class="paramname">cacheStoreInfo</td><td><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html" title="Represents Cache Store Information">CacheStoreDefinition</a> object</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_memory_distributed_cache_store.html" title="Provides ExtendedMemoryDistributedCache version of the ICacheStore&lt;T&gt;">MemoryDistributedCacheStore</a></dd></dl>
 
-<p>Implements <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store_type.html#acd7c64cbebf8f86cff4288930339142b">Pavalisoft.Caching.Interfaces.ICacheStoreType</a>.</p>
+<p>Implements <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store_type.html#ac2aa2a8e9618e9fac82b6ad6d5b111e5">Pavalisoft.Caching.Interfaces.ICacheStoreType</a>.</p>
 
 </div>
 </div>

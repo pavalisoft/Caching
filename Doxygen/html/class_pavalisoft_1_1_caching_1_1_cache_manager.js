@@ -1,6 +1,6 @@
 var class_pavalisoft_1_1_caching_1_1_cache_manager =
 [
-    [ "CacheManager", "class_pavalisoft_1_1_caching_1_1_cache_manager.html#ad89999cfe156a13a69ee1b5788d078d4", null ],
+    [ "CacheManager", "class_pavalisoft_1_1_caching_1_1_cache_manager.html#ac1e59fad6c75cf88e9e06eed62684c88", null ],
     [ "Get< TItem >", "class_pavalisoft_1_1_caching_1_1_cache_manager.html#a27407cb09334aa9a88ec16dc8c865137", null ],
     [ "GetAsync< TItem >", "class_pavalisoft_1_1_caching_1_1_cache_manager.html#af65441ddd96cc1f81c2699b409d492ff", null ],
     [ "Refresh", "class_pavalisoft_1_1_caching_1_1_cache_manager.html#ac899835c08468ec78aeddd056c34647e", null ],

@@ -1,4 +1,5 @@
 var class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store_type =
 [
-    [ "CreateCacheStore", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store_type.html#af53c5e427791bb13ff73d8a5fd9c279c", null ]
+    [ "MySqlDistributedCacheStoreType", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store_type.html#ac3fd09fe5ee92a61121c2180e99d0945", null ],
+    [ "CreateCacheStore", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store_type.html#a0e0754df1833e4ff4b0c5fd6b3243753", null ]
 ];

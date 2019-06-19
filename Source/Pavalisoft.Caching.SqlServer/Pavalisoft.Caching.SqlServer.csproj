@@ -13,11 +13,14 @@
     <RepositoryUrl>https://github.com/pavalisoft/Caching</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>caching;memorycache;distributedcache;caching;cache-manager;cachemanager;sqlserver;ditributedcache</PackageTags>
-    <PackageReleaseNotes>Sql Server Cache Store for Pavalisoft.Caching</PackageReleaseNotes>
+    <PackageReleaseNotes>Separated SqlServer Cache Store implementation from Pavalisoft.Caching
+Sample SqlServer Cache Store implematation samples added
+- Pavalisoft.Caching.SqlServer.Sample
+- Pavalisoft.Caching.SqlSql.ConcurencySample</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <AssemblyOriginatorKeyFile>..\..\Pavalisoft.Caching.pfx</AssemblyOriginatorKeyFile>
     <Version>1.0.0</Version>
   </PropertyGroup>

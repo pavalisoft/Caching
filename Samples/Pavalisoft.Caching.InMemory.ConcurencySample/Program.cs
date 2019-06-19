@@ -15,55 +15,75 @@
 */
 
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.InMemory.ConcurencySample
 {
     public class Program
     {
-        private const string Key = "MyKey";
+        private const string InMemoryStorePartition = "FrequentData";
+        private const string Key = "SampleKey";
         private static readonly Random Random = new Random();
-        private static MemoryCacheEntryOptions _cacheEntryOptions;
+        private static ICacheManager _cacheManager;
 
         public static void Main()
         {
-            _cacheEntryOptions = GetCacheEntryOptions();
+            _cacheManager = CreateCacheManager();
 
-            IMemoryCache cache = new MemoryCache(new MemoryCacheOptions());
+            SetKey("0");
 
-            SetKey(cache, "0");
+            PeriodicallyReadKey(TimeSpan.FromSeconds(1));
 
-            PeriodicallyReadKey(cache, TimeSpan.FromSeconds(1));
+            PeriodicallyRemoveKey(TimeSpan.FromSeconds(11));
 
-            PeriodicallyRemoveKey(cache, TimeSpan.FromSeconds(11));
-
-            PeriodicallySetKey(cache, TimeSpan.FromSeconds(13));
+            PeriodicallySetKey(TimeSpan.FromSeconds(13));
 
             Console.ReadLine();
             Console.WriteLine("Shutting down");
         }
 
-        private static void SetKey(IMemoryCache cache, string value)
+        private static void SetKey(string value)
         {
             Console.WriteLine("Setting: " + value);
-            cache.Set(Key, value, _cacheEntryOptions);
+            _cacheManager.Set(InMemoryStorePartition, Key, value, null, CreatePostEvictionCallbackRegistration());
         }
 
-        private static MemoryCacheEntryOptions GetCacheEntryOptions()
+        private static ICacheManager CreateCacheManager()
         {
-            return new MemoryCacheEntryOptions()
-                .SetAbsoluteExpiration(TimeSpan.FromSeconds(7))
-                .SetSlidingExpiration(TimeSpan.FromSeconds(3))
-                .RegisterPostEvictionCallback(AfterEvicted, state: null);
+            IServiceCollection services = new ServiceCollection();
+
+            // build configuration
+            IConfiguration configuration = new ConfigurationBuilder()
+              .SetBasePath(Directory.GetCurrentDirectory())
+              .AddJsonFile("appsettings.json", true, true)
+              .Build();
+            services.AddOptions();
+            services.AddSingleton(configuration);
+
+            services.AddCaching().AddInMemoryCache();
+
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+            ICacheManager cacheManager = serviceProvider.GetService<ICacheManager>();
+            return cacheManager;
         }
 
-        private static void AfterEvicted(object key, object value, EvictionReason reason, object state)
+        private static PostEvictionCallbackRegistration CreatePostEvictionCallbackRegistration()
         {
-            Console.WriteLine("Evicted. Value: " + value + ", Reason: " + reason);
+            return new PostEvictionCallbackRegistration
+            {
+                EvictionCallback = (echoKey, value, reason, substate) =>
+                {
+                    Console.WriteLine($"Evicted. {echoKey} : {value} was evicted due to {reason}");
+                }
+            };
         }
 
-        private static void PeriodicallySetKey(IMemoryCache cache, TimeSpan interval)
+        private static void PeriodicallySetKey(TimeSpan interval)
         {
             Task.Run(async () =>
             {
@@ -71,12 +91,12 @@ namespace Pavalisoft.Caching.InMemory.ConcurencySample
                 {
                     await Task.Delay(interval);
 
-                    SetKey(cache, "A");
+                    SetKey("A");
                 }
             });
         }
 
-        private static void PeriodicallyReadKey(IMemoryCache cache, TimeSpan interval)
+        private static void PeriodicallyReadKey(TimeSpan interval)
         {
             Task.Run(async () =>
             {
@@ -92,9 +112,10 @@ namespace Pavalisoft.Caching.InMemory.ConcurencySample
                     else
                     {
                         Console.Write("Reading...");
-                        if (!cache.TryGetValue(Key, out object result))
+                        if (!_cacheManager.TryGetValue(InMemoryStorePartition, Key, out object result))
                         {
-                            result = cache.Set(Key, "B", _cacheEntryOptions);
+                            result = "B";
+                            SetKey(result.ToString());
                         }
                         Console.WriteLine("Read: " + (result ?? "(null)"));
                     }
@@ -102,7 +123,7 @@ namespace Pavalisoft.Caching.InMemory.ConcurencySample
             });
         }
 
-        private static void PeriodicallyRemoveKey(IMemoryCache cache, TimeSpan interval)
+        private static void PeriodicallyRemoveKey(TimeSpan interval)
         {
             Task.Run(async () =>
             {
@@ -111,7 +132,7 @@ namespace Pavalisoft.Caching.InMemory.ConcurencySample
                     await Task.Delay(interval);
 
                     Console.WriteLine("Removing...");
-                    cache.Remove(Key);
+                    _cacheManager.Remove(InMemoryStorePartition, Key);
                 }
             });
         }

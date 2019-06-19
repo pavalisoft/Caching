@@ -1,6 +1,8 @@
 var class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store =
 [
-    [ "CacheOptions", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store.html#a05d7e68a10fa43c71312eb0f43035cdc", null ],
+    [ "MySqlDistributedCacheStore", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store.html#a568f3daf7c58bc3114ad5b9cf3f6c45c", null ],
+    [ "CreatePartition", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store.html#a954a7d44d98145d3e62ff220867e0b50", null ],
+    [ "CacheOptions", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store.html#a94a16358827443a6b416a1eb952f0254", null ],
     [ "CachePartitions", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store.html#a9866e8062aaba8460c2e2063ad751530", null ],
-    [ "CacheType", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store.html#a511108e264b5797741c8b1f790763db9", null ]
+    [ "Serializer", "class_pavalisoft_1_1_caching_1_1_my_sql_1_1_my_sql_distributed_cache_store.html#a66de718bc793254d82a1f89f989b714a", null ]
 ];

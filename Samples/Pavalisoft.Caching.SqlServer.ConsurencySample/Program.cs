@@ -21,10 +21,8 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Caching.SqlServer;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Pavalisoft.Caching.Interfaces;
 
-namespace Pavalisoft.Caching.SqlServer.ConsurencySample
+namespace Pavalisoft.Caching.SqlServer.ConcurencySample
 {
     /// <summary>
     /// This sample requires setting up a Microsoft SQL Server based cache database.

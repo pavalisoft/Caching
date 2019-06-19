@@ -12,11 +12,14 @@
     <PackageProjectUrl>https://www.nuget.org/packages/Pavalisoft.Caching.TagHelpers/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pavalisoft/Caching</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes>A single unified cache tag helper using Pavalisoft.Caching</PackageReleaseNotes>
+    <PackageReleaseNotes>Separated Cache TagHelper implementation from Pavalisoft.Caching
+Sample Cache TahHelper implematation samples added
+- Pavalisoft.Caching.SampleWeb</PackageReleaseNotes>
     <NeutralLanguage>English</NeutralLanguage>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\Pavalisoft.Caching.pfx</AssemblyOriginatorKeyFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

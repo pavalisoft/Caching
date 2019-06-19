@@ -8,99 +8,190 @@ With [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/), i
 The below diagram explains the [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) API and its usage.
 ![](CacheManager.svg)
 
-## Documentation
-Refer https://pavalisoft.github.io/Caching/ for [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) API documentation
+## Documentation & Samples
+Complete Documentation is available at https://pavalisoft.github.io/Caching/ for [Pavalisoft.Caching](https://github.com/pavalisoft/Caching) API
+Refer https://github.com/pavalisoft/Caching/tree/master/Samples for reference implementations
 
 ## Usage
 
-1. Define the [Cache Stores](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#abacbfb422d22fd66190f2350901b8797) and [Partitions](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#a132238e26cb3fd3005fb2ebdcc36a36f) in Caching configuration section in appSettings.json
+1. Define the [Cache Stores](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#abacbfb422d22fd66190f2350901b8797) and [Partitions](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#a132238e26cb3fd3005fb2ebdcc36a36f) in Caching configuration section in appSettings.json.
 
-`	"Caching": {
-		"Stores": [
-		  {
-			"Name": "DistributedInMemory",
-			"Type": "Memory",
-			"StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
-		  },
-		  {
-			"Name": "DistributedSqlServer",
-			"Type": "SqlServer",
-			"StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
-		  },
-		  {
-			"Name": "DistributedRedis",
-			"Type": "Memory",
-			"StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
-		  }
-		],
-		"Partitions": [
-		  {
-			"Name": "FrequentData",
-			"StoreName": "DistributedInMemory",
-			"SlidingExpiration": "00:05:00"
-		  },
-		  {
-			"Name": "LocalizationData",
-			"StoreName": "DistributedSqlServer",
-			"Priority": "NeverRemove"
-		  },
-		  {
-			"Name": "MasterData",
-			"StoreName": "DistributedRedis",
-			"SlidingExpiration": "00:05:00"
-		  }
-		]
-	  }
-`
+```json
+{
+  "Caching": {
+    "Stores": [
+      {
+        "Name": "InMemory",
+        "Type": "Pavalisoft.Caching.InMemory.InMemoryCacheStoreType, Pavalisoft.Caching.InMemory",
+        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+      },
+      {
+        "Name": "DistributedInMemory",
+        "Type": "Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType,Pavalisoft.Caching.InMemory",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
+        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+      },
+      {
+        "Name": "SqlServer",
+        "Type": "Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType,Pavalisoft.Caching.SqlServer",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
+        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+      },
+      {
+        "Name": "MySql",
+        "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType,Pavalisoft.Caching.MySql",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
+        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost:9001;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+      },
+      {
+        "Name": "Redis",
+        "Type": "Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType,Pavalisoft.Caching.Redis",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
+        "StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
+      }
+    ],
+    "Partitions": [
+      {
+        "Name": "FrequentData",
+        "StoreName": "InMemory",
+        "SlidingExpiration": "00:05:00"
+      },
+      {
+        "Name": "DistibutedFrequentData",
+        "StoreName": "DistributedInMemory",
+        "SlidingExpiration": "00:05:00"
+      },
+      {
+        "Name": "MySqlLocalizationData",
+        "StoreName": "MySql",
+        "Priority": "NeverRemove"
+      },
+      {
+        "Name": "LocalizationData",
+        "StoreName": "SqlServer",
+        "Priority": "NeverRemove"
+      },
+      {
+        "Name": "MasterData",
+        "StoreName": "Redis",
+        "SlidingExpiration": "00:05:00"
+      }
+    ]
+  }
+}
+```
 
 2. Add [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) to services
 
-`        public void ConfigureServices(IServiceCollection services)
+```csharp
+...
+//Import the below namespace to use InMemory and DitributedInMemory cache store implementations
+using Pavalisoft.Caching.InMemory;
+//Import the below namespace to use MySql cache store implementation
+using Pavalisoft.Caching.MySql;
+//Import the below namespace to use Redis Cache Store implementation
+using Pavalisoft.Caching.Redis;
+//Import the below namespace to use SqlServer Cache Store implementation
+using Pavalisoft.Caching.SqlServer;
+...
+
+namespace Pavalisoft.Caching.Sample
+{
+    public class Startup
+    {
+		...
+        public Startup(IConfiguration configuration)
+        {
+			...
+            Configuration = configuration;
+			...
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
         {
             ...
-            services.AddCaching(Configuration); 
-            ...
+            // Adds CacheManager servcice to services
+            services.AddCaching()
+                // Adds InMemory and Distributed InMemory Cache Store implementations to CacheManager
+                .AddInMemoryCache()
+                // Adds MySql Cache Store implementations to CacheManager
+                .AddMySqlCache()
+                // Adds Redis Cache Store implementations to CacheManager
+                .AddRedisCache()
+                // Adds SqlServer Cache Store implementations to CacheManager
+                .AddSqlServerCache();
+			...
         }
-`
+		...
+    }
+}
+```
 
 3. Use [CacheManager](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_manager.html) methods to add, get, refresh and remove items in Cache.
 
-`	// Add required using statements
-	using Pavalisoft.Caching;
-	using Pavalisoft.Caching.Interfaces;
-	using Microsoft.Extensions.Primitives;
-	using System;
+```csharp
+// Add required using statements
+using Pavalisoft.Caching;
+using Pavalisoft.Caching.Interfaces;
+using Microsoft.Extensions.Primitives;
+using System;
 
-	namespace Pavalisoft.Caching.Sample
+namespace Pavalisoft.Caching.Sample
+{
+	public class CachingSample
 	{
-		public class CachingSample
+		private const string CachePartitionName = "FrequentData";		
+		private readonly ICacheManager _cacheManager;
+		public CachingSample(ICacheManager cacheManager)
 		{
-			private const string CachePartitionName = "FrequentData";		
-			private readonly ICacheManager _cacheManager;
-			public CachingSample(ICacheManager cacheManager)
-			{
-				_cacheManager = cacheManager;
-			}
+			_cacheManager = cacheManager;
+		}
 
-			public AppUser GetAppUser(HttpContext httpContext)
+		public AppUser GetAppUser(HttpContext httpContext)
+		{
+			var userName = httpContext.User.Identity.Name;
+			AppUser appUser;
+			
+			// Try to get the appUser from cache
+			if (!_cacheManager.TryGetValue(CachePartitionName, userName, out appUser))
 			{
-				var userName = httpContext.User.Identity.Name;
-				AppUser appUser;
-				
-				// Try to get the appUser from cache
-				if (!_cacheManager.TryGetValue(CachePartitionName, userName, out appUser))
-				{
-					// If not available in Cache then create new instance of AppUser
-					appUser = new AppUser(userName);
+				// If not available in Cache then create new instance of AppUser
+				appUser = new AppUser(userName);
 
-					// Add appUser object to Cache
-					_cacheManager.Set(CachePartitionName, userName, appUser);                `
-				}
-				return appUser;
+				// Add appUser object to Cache
+				_cacheManager.Set(CachePartitionName, userName, appUser);                `
 			}
+			return appUser;
 		}
 	}
-`
+}
+```
+
+## Serializers
+Below are the list of serializers options available, which can be used to serialize and deserialize object from and to Distributed Cache Stores.
+
+- [**BinaryFormatter**](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.formatters.binary.binaryformatter?view=netstandard-2.0) - Requires the classes decoarated with `SerializableAttribute` to store into Distributed Cache Stores.
+- [**Newtonsoft.Json**](https://github.com/JamesNK/Newtonsoft.Json) - Uses Newtonsoft.Json to serialize a class without `SerializableAttribute`.
 
 ## Builds
 Get latest builds from [nuget](https://www.nuget.org/packages/Pavalisoft.Caching/)
+Package	|	Version	|
+-------	|	-------	|
+[Pavalisoft.Caching](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching)	|	[1.2](https://www.nuget.org/packages/Pavalisoft.Caching/1.2)	|
+[Pavalisoft.Caching.TagHelpers](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.TagHelpers/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.TagHelpers/1.0)	|
+[Pavalisoft.Caching.InMemory](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.InMemory/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.InMemory/1.0)	|
+[Pavalisoft.Caching.Redis](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.Redis/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.Redis/1.0)	|
+[Pavalisoft.Caching.MySql](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.MySql/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.MySql/1.0)	|
+[Pavalisoft.Caching.SqlServer](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.SqlServer/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.SqlServer/1.0)	|
+
+## Contributing
+**Getting started with Git and GitHub**
+
+ * [Setting up Git for Windows and connecting to GitHub](http://help.github.com/win-set-up-git/)
+ * [Forking a GitHub repository](http://help.github.com/fork-a-repo/)
+ * [The simple guide to GIT guide](http://rogerdudler.github.com/git-guide/)
+ * [Open an issue](https://github.com/pavalisoft/caching/issues) if you encounter a bug or have a suggestion for improvements/features
+
+Once you're familiar with Git and GitHub, clone the repository and start contributing.

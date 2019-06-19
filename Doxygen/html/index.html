@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
    <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
   </td>
@@ -110,27 +110,31 @@ $(document).ready(function(){initNavTree('index.html','');});
     "Stores": [
       {
         "Name": "InMemory",
-        "Type": "Pavalisoft.Caching.InMemory.InMemoryStore,Pavalisoft.Caching.InMemory",
+        "Type": "Pavalisoft.Caching.InMemory.InMemoryCacheStoreType, Pavalisoft.Caching.InMemory",
         "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
       },
       {
         "Name": "DistributedInMemory",
-        "Type": "Pavalisoft.Caching.InMemory.MemoryDistributedCacheStore,Pavalisoft.Caching.InMemory",
+        "Type": "Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType,Pavalisoft.Caching.InMemory",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
         "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
       },
       {
         "Name": "SqlServer",
-        "Type": "Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore,Pavalisoft.Caching.SqlServer",
-        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost\\SQLEXPRESS;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+        "Type": "Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType,Pavalisoft.Caching.SqlServer",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
+        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
       },
       {
         "Name": "MySql",
-        "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStore,Pavalisoft.Caching.MySql",
+        "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType,Pavalisoft.Caching.MySql",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
         "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost:9001;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
       },
       {
         "Name": "Redis",
-        "Type": "Pavalisoft.Caching.Redis.RedisDistributedCacheStore,Pavalisoft.Caching.Redis",
+        "Type": "Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType,Pavalisoft.Caching.Redis",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
         "StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
       }
     ],

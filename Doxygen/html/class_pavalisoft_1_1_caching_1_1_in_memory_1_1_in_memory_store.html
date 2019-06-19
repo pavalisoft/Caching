@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
    <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
   </td>
@@ -88,7 +88,7 @@ $(document).ready(function(){initNavTree('class_pavalisoft_1_1_caching_1_1_in_me
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -108,53 +108,95 @@ Inheritance diagram for Pavalisoft.Caching.InMemory.InMemoryStore:</div>
   </map>
 </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:ab43e303e3034c1c04a7a3ce242e7c846"><td class="memItemLeft" align="right" valign="top">Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html#ab43e303e3034c1c04a7a3ce242e7c846">CacheType</a> =&gt; typeof(MemoryCache)</td></tr>
-<tr class="memdesc:ab43e303e3034c1c04a7a3ce242e7c846"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Type as MemoryCache  <a href="#ab43e303e3034c1c04a7a3ce242e7c846">More...</a><br /></td></tr>
-<tr class="separator:ab43e303e3034c1c04a7a3ce242e7c846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a440ba28f49cd90926ed6468bf6873236"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html#a440ba28f49cd90926ed6468bf6873236">InMemoryStore</a> (<a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_serializer.html">ISerializer</a> serializer=default)</td></tr>
+<tr class="memdesc:a440ba28f49cd90926ed6468bf6873236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html" title="Provides MemoryCache version of the ICacheStore&lt;T&gt;">InMemoryStore</a> with <em>serializer</em>  serializer.  <a href="#a440ba28f49cd90926ed6468bf6873236">More...</a><br /></td></tr>
+<tr class="separator:a440ba28f49cd90926ed6468bf6873236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb59af87129bbe55331ba4ce93cf6b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html#aecb59af87129bbe55331ba4ce93cf6b1">CreatePartition</a> (<a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition_definition.html">CachePartitionDefinition</a> cachePartitionInfo)</td></tr>
+<tr class="memdesc:aecb59af87129bbe55331ba4ce93cf6b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html" title="Provides Api to interact with ICachePartition">CachePartition</a> in <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html" title="Provides MemoryCache version of the ICacheStore&lt;T&gt;">InMemoryStore</a> using <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition_definition.html" title="Represents the Cache Partition Configuration Information">CachePartitionDefinition</a>  <a href="#aecb59af87129bbe55331ba4ce93cf6b1">More...</a><br /></td></tr>
+<tr class="separator:aecb59af87129bbe55331ba4ce93cf6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">Pavalisoft.Caching.Interfaces.ICacheStore&lt; MemoryCacheOptions &gt;</a></td></tr>
+<tr class="memitem:ae2c5eec522e634e39bbe97dd758dfc84 inherit pub_methods_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#ae2c5eec522e634e39bbe97dd758dfc84">CreatePartition</a> (<a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition_definition.html">CachePartitionDefinition</a> cachePartitionInfo)</td></tr>
+<tr class="memdesc:ae2c5eec522e634e39bbe97dd758dfc84 inherit pub_methods_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates ICachePartition in ICacheStore using CachePartitionDefinition  <a href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#ae2c5eec522e634e39bbe97dd758dfc84">More...</a><br /></td></tr>
+<tr class="separator:ae2c5eec522e634e39bbe97dd758dfc84 inherit pub_methods_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a62bf589788db6e2ce76b6e5d7bdacafe"><td class="memItemLeft" align="right" valign="top">Action&lt; MemoryCacheOptions &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html#a62bf589788db6e2ce76b6e5d7bdacafe">CacheOptions</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a62bf589788db6e2ce76b6e5d7bdacafe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or Sets MemoryCacheOptions  <a href="#a62bf589788db6e2ce76b6e5d7bdacafe">More...</a><br /></td></tr>
-<tr class="separator:a62bf589788db6e2ce76b6e5d7bdacafe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeebe71a27bf12b0808fcf173c74be29b"><td class="memItemLeft" align="right" valign="top">MemoryCacheOptions&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html#aeebe71a27bf12b0808fcf173c74be29b">CacheOptions</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aeebe71a27bf12b0808fcf173c74be29b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or Sets MemoryCacheOptions  <a href="#aeebe71a27bf12b0808fcf173c74be29b">More...</a><br /></td></tr>
+<tr class="separator:aeebe71a27bf12b0808fcf173c74be29b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c4c28fe041173140f43cbf3e4235ac7"><td class="memItemLeft" align="right" valign="top"><a id="a0c4c28fe041173140f43cbf3e4235ac7"></a>
 IDictionary&lt; string, <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html#a0c4c28fe041173140f43cbf3e4235ac7">CachePartitions</a> = new Dictionary&lt;string, <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a>&gt;()<code> [get]</code></td></tr>
 <tr class="separator:a0c4c28fe041173140f43cbf3e4235ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfd4d624d6e6c389b355db841a269edf"><td class="memItemLeft" align="right" valign="top"><a id="abfd4d624d6e6c389b355db841a269edf"></a>
+<a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_serializer.html">ISerializer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html#abfd4d624d6e6c389b355db841a269edf">Serializer</a> = new <a class="el" href="class_pavalisoft_1_1_caching_1_1_serializers_1_1_default_serializer.html">DefaultSerializer</a>()<code> [get]</code></td></tr>
+<tr class="separator:abfd4d624d6e6c389b355db841a269edf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td colspan="2" onclick="javascript:toggleInherit('properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">Pavalisoft.Caching.Interfaces.ICacheStore&lt; MemoryCacheOptions &gt;</a></td></tr>
-<tr class="memitem:a342e74cc414712f9e4f592eb7bac406c inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memItemLeft" align="right" valign="top">Action&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#a342e74cc414712f9e4f592eb7bac406c">CacheOptions</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a342e74cc414712f9e4f592eb7bac406c inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or Sets Cache Options  <a href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#a342e74cc414712f9e4f592eb7bac406c">More...</a><br /></td></tr>
-<tr class="separator:a342e74cc414712f9e4f592eb7bac406c inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf3ad632ebca82b7590088e9d16fa9ae inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#acf3ad632ebca82b7590088e9d16fa9ae">CacheOptions</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:acf3ad632ebca82b7590088e9d16fa9ae inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or Sets Cache Options  <a href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#acf3ad632ebca82b7590088e9d16fa9ae">More...</a><br /></td></tr>
+<tr class="separator:acf3ad632ebca82b7590088e9d16fa9ae inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada61785d79fded2f5e3f4e32722f136a inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memItemLeft" align="right" valign="top">IDictionary&lt; string, <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#ada61785d79fded2f5e3f4e32722f136a">CachePartitions</a><code> [get]</code></td></tr>
 <tr class="memdesc:ada61785d79fded2f5e3f4e32722f136a inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all available ICachePartitions  <a href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#ada61785d79fded2f5e3f4e32722f136a">More...</a><br /></td></tr>
 <tr class="separator:ada61785d79fded2f5e3f4e32722f136a inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c47548f3051712a28d5841f863d339e inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memItemLeft" align="right" valign="top">Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#a2c47548f3051712a28d5841f863d339e">CacheType</a><code> [get]</code></td></tr>
-<tr class="memdesc:a2c47548f3051712a28d5841f863d339e inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Cache Type  <a href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#a2c47548f3051712a28d5841f863d339e">More...</a><br /></td></tr>
-<tr class="separator:a2c47548f3051712a28d5841f863d339e inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb64c1a4aca81538490167e802681368 inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_serializer.html">ISerializer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#abb64c1a4aca81538490167e802681368">Serializer</a><code> [get]</code></td></tr>
+<tr class="memdesc:abb64c1a4aca81538490167e802681368 inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets ISerializer to be used for Cached Object serialization  <a href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html#abb64c1a4aca81538490167e802681368">More...</a><br /></td></tr>
+<tr class="separator:abb64c1a4aca81538490167e802681368 inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides MemoryCache version of the ICacheStore&lt;T&gt; </p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab43e303e3034c1c04a7a3ce242e7c846"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab43e303e3034c1c04a7a3ce242e7c846">&#9670;&nbsp;</a></span>CacheType</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a440ba28f49cd90926ed6468bf6873236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a440ba28f49cd90926ed6468bf6873236">&#9670;&nbsp;</a></span>InMemoryStore()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Type Pavalisoft.Caching.InMemory.InMemoryStore.CacheType =&gt; typeof(MemoryCache)</td>
+          <td class="memname">Pavalisoft.Caching.InMemory.InMemoryStore.InMemoryStore </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_serializer.html">ISerializer</a>&#160;</td>
+          <td class="paramname"><em>serializer</em> = <code>default</code></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Type as MemoryCache </p>
+<p>Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html" title="Provides MemoryCache version of the ICacheStore&lt;T&gt;">InMemoryStore</a> with <em>serializer</em>  serializer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serializer</td><td>The ISerializerserializer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aecb59af87129bbe55331ba4ce93cf6b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb59af87129bbe55331ba4ce93cf6b1">&#9670;&nbsp;</a></span>CreatePartition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a> Pavalisoft.Caching.InMemory.InMemoryStore.CreatePartition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition_definition.html">CachePartitionDefinition</a>&#160;</td>
+          <td class="paramname"><em>cachePartitionInfo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html" title="Provides Api to interact with ICachePartition">CachePartition</a> in <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html" title="Provides MemoryCache version of the ICacheStore&lt;T&gt;">InMemoryStore</a> using <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition_definition.html" title="Represents the Cache Partition Configuration Information">CachePartitionDefinition</a> </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html" title="Provides Api to interact with ICachePartition">CachePartition</a> object created in <a class="el" href="class_pavalisoft_1_1_caching_1_1_in_memory_1_1_in_memory_store.html" title="Provides MemoryCache version of the ICacheStore&lt;T&gt;">InMemoryStore</a></dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a id="a62bf589788db6e2ce76b6e5d7bdacafe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62bf589788db6e2ce76b6e5d7bdacafe">&#9670;&nbsp;</a></span>CacheOptions</h2>
+<a id="aeebe71a27bf12b0808fcf173c74be29b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeebe71a27bf12b0808fcf173c74be29b">&#9670;&nbsp;</a></span>CacheOptions</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,7 +205,7 @@ IDictionary&lt; string, <a class="el" href="interface_pavalisoft_1_1_caching_1_1
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Action&lt;MemoryCacheOptions&gt; Pavalisoft.Caching.InMemory.InMemoryStore.CacheOptions</td>
+          <td class="memname">MemoryCacheOptions Pavalisoft.Caching.InMemory.InMemoryStore.CacheOptions</td>
         </tr>
       </table>
   </td>
