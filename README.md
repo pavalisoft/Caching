@@ -177,14 +177,15 @@ Below are the list of serializers options available, which can be used to serial
 
 ## Builds
 Get latest builds from [nuget](https://www.nuget.org/packages/Pavalisoft.Caching/)
-Package	|	Version	|
--------	|	-------	|
-[Pavalisoft.Caching](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching)	|	[1.2](https://www.nuget.org/packages/Pavalisoft.Caching/1.2)	|
-[Pavalisoft.Caching.TagHelpers](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.TagHelpers/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.TagHelpers/1.0)	|
-[Pavalisoft.Caching.InMemory](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.InMemory/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.InMemory/1.0)	|
-[Pavalisoft.Caching.Redis](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.Redis/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.Redis/1.0)	|
-[Pavalisoft.Caching.MySql](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.MySql/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.MySql/1.0)	|
-[Pavalisoft.Caching.SqlServer](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.SqlServer/)	|	[1.0](https://www.nuget.org/packages/Pavalisoft.Caching.SqlServer/1.0)	|
+
+| Package | Version |
+| :--- | :---: |
+| [Pavalisoft.Caching](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching) | [1.2](https://www.nuget.org/packages/Pavalisoft.Caching/1.2) |
+| [Pavalisoft.Caching.TagHelpers](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.TagHelpers/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.TagHelpers/1.0) |
+| [Pavalisoft.Caching.InMemory](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.InMemory/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.InMemory/1.0) |
+| [Pavalisoft.Caching.Redis](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.Redis/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.Redis/1.0) |
+| [Pavalisoft.Caching.MySql](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.MySql/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.MySql/1.0) |
+| [Pavalisoft.Caching.SqlServer](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.SqlServer/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.SqlServer/1.0) |
 
 ## Contributing
 **Getting started with Git and GitHub**
