@@ -190,9 +190,9 @@ Get latest builds from [nuget](https://www.nuget.org/packages/Pavalisoft.Caching
 ## Contributing
 **Getting started with Git and GitHub**
 
- * [Setting up Git for Windows and connecting to GitHub](http://help.github.com/win-set-up-git/)
- * [Forking a GitHub repository](http://help.github.com/fork-a-repo/)
- * [The simple guide to GIT guide](http://rogerdudler.github.com/git-guide/)
+ * [Setting up Git for Windows and connecting to GitHub](http://help.github.com/win-set-up-git)
+ * [Forking a GitHub repository](http://help.github.com/fork-a-repo)
+ * [The simple guide to GIT guide](http://rogerdudler.github.com/git-guide)
  * [Open an issue](https://github.com/pavalisoft/caching/issues) if you encounter a bug or have a suggestion for improvements/features
 
 Once you're familiar with Git and GitHub, clone the repository and start contributing.
