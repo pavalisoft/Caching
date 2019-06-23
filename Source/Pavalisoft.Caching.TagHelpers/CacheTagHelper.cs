@@ -19,10 +19,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.Primitives;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.TagHelpers
@@ -53,8 +55,7 @@ namespace Pavalisoft.Caching.TagHelpers
         /// <param name="cacheManager">The <see cref="ICacheManager"/> instance
         /// used by the <see cref="CacheTagHelper"/>.</param>
         /// <param name="htmlEncoder">The <see cref="HtmlEncoder"/> to use.</param>
-        public CacheTagHelper(ICacheManager cacheManager,
-            HtmlEncoder htmlEncoder)
+        public CacheTagHelper(ICacheManager cacheManager, HtmlEncoder htmlEncoder)
             : base(htmlEncoder)
         {
             _cacheManager = cacheManager;
@@ -79,11 +80,10 @@ namespace Pavalisoft.Caching.TagHelpers
                 var cacheKey = new CacheTagKey(this, context);
                 if (!_cacheManager.TryGetValue(CachePartition, cacheKey.GenerateHashedKey(), out Task<IHtmlContent> cachedResult))
                 {
-                    // There is either some value already not cached (as a Task) or a worker processing the output.                    
-                    cachedResult = ProcessContentAsync(output);
-                    _cacheManager.Set(CachePartition, cacheKey.GenerateHashedKey(), cachedResult);
+                    cachedResult = AddToCache(output, cacheKey);
                 }
-                content = await cachedResult;                
+
+                content = await GetContent(cachedResult);
             }
             else
             {
@@ -93,6 +93,45 @@ namespace Pavalisoft.Caching.TagHelpers
             // Clear the contents of the "cache" element since we don't want to render it.
             output.SuppressOutput();
             output.Content.SetHtmlContent(content);
+        }
+
+        private static async Task<IHtmlContent> GetContent(Task<IHtmlContent> cachedResult)
+        {
+            TaskCompletionSource<IHtmlContent> tcs = new TaskCompletionSource<IHtmlContent>(TaskCreationOptions.RunContinuationsAsynchronously);
+            IHtmlContent content;
+            try
+            {
+                content = await cachedResult;
+                tcs.SetResult(content);
+            }
+            catch (Exception ex)
+            {
+                tcs.TrySetException(ex);
+                throw;
+            }
+
+            return content;
+        }
+
+        private Task<IHtmlContent> AddToCache(TagHelperOutput output, CacheTagKey cacheKey)
+        {
+            using (var tokenSource = new CancellationTokenSource())
+            {
+                IChangeToken taskToken = new CancellationChangeToken(tokenSource.Token);
+
+                try
+                {
+                    // There is either some value already not cached (as a Task) or a worker processing the output.                    
+                    Task<IHtmlContent> cachedResult = ProcessContentAsync(output);
+                    _cacheManager.Set(CachePartition, cacheKey.GenerateHashedKey(), cachedResult, taskToken);
+                    return cachedResult;
+                }
+                catch
+                {
+                    tokenSource.Cancel();
+                    throw;
+                }
+            }            
         }
 
         private async Task<IHtmlContent> ProcessContentAsync(TagHelperOutput output)

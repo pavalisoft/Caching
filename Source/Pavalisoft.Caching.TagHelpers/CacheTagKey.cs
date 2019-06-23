@@ -47,9 +47,8 @@ namespace Pavalisoft.Caching.TagHelpers
         private const string VaryByCookieName = "VaryByCookie";
         private const string VaryByUserName = "VaryByUser";
         private const string VaryByCulture = "VaryByCulture";
-        private const string CachePartition = "CachePartition";
 
-        private readonly string _prefix = "PavalisoftCacheTagHelper";
+        private readonly string _prefix; // = "PavalisoftCacheTagHelper";
         private readonly string _varyBy;
         private readonly IList<KeyValuePair<string, string>> _headers;
         private readonly IList<KeyValuePair<string, string>> _queries;
@@ -93,6 +92,8 @@ namespace Pavalisoft.Caching.TagHelpers
             _varyByUser = tagHelper.VaryByUser;
             _varyByCulture = tagHelper.VaryByCulture;
             _cachePartition = tagHelper.CachePartition;
+
+            _prefix = nameof(CacheTagHelper) + _cachePartition;
 
             if (_varyByUser)
             {

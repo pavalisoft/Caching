@@ -81,7 +81,7 @@ Refer https://github.com/pavalisoft/Caching/tree/master/Samples for reference im
 }
 ```
 
-2. Add [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) to services
+2. Add [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) to services. Also add the [Pavalisoft.Caching.InMemory](https://www.nuget.org/packages/Pavalisoft.Caching.InMemory/) , [Pavalisoft.Caching.MySql](https://www.nuget.org/packages/Pavalisoft.Caching.MySql/) , [Pavalisoft.Caching.Redis](https://www.nuget.org/packages/Pavalisoft.Caching.Redis/) and [Pavalisoft.Caching.SqlServer](https://www.nuget.org/packages/Pavalisoft.Caching.SqlServer/) Cache store implementations to services based on usage.
 
 ```csharp
 ...
@@ -238,7 +238,7 @@ namespace Pavalisoft.Caching.Sample
 }
 ```
 
-2. Add [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) to services
+2. Add [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) to services. Also add the [Pavalisoft.Caching.InMemory](https://www.nuget.org/packages/Pavalisoft.Caching.InMemory/) , [Pavalisoft.Caching.MySql](https://www.nuget.org/packages/Pavalisoft.Caching.MySql/) , [Pavalisoft.Caching.Redis](https://www.nuget.org/packages/Pavalisoft.Caching.Redis/) and [Pavalisoft.Caching.SqlServer](https://www.nuget.org/packages/Pavalisoft.Caching.SqlServer/) Cache store implementations to services based on usage.
 
 ```csharp
 ...
@@ -286,58 +286,13 @@ namespace Pavalisoft.Caching.Sample
 }
 ```
 
-3. Use [CacheManager](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_manager.html) methods to add, get, refresh and remove items in Cache.
+3. To use `pavalisoft-cache` tag helper, add the below to _ViewImport.cshtml
 
 ```csharp
-// Add required using statements
-using Pavalisoft.Caching;
-using Pavalisoft.Caching.Interfaces;
-using Microsoft.Extensions.Primitives;
-using System;
-
-namespace Pavalisoft.Caching.Sample
-{
-	public class CachingSample
-	{
-		private const string CachePartitionName = "FrequentData";		
-		private readonly ICacheManager _cacheManager;
-		public CachingSample(ICacheManager cacheManager)
-		{
-			_cacheManager = cacheManager;
-		}
-
-		public AppUser GetAppUser(HttpContext httpContext)
-		{
-			var userName = httpContext.User.Identity.Name;
-			AppUser appUser;
-			
-			// Try to get the appUser from cache
-			if (!_cacheManager.TryGetValue(CachePartitionName, userName, out appUser))
-			{
-				// If not available in Cache then create new instance of AppUser
-				appUser = new AppUser(userName);
-
-				// Add appUser object to Cache
-				_cacheManager.Set(CachePartitionName, userName, appUser);                `
-			}
-			return appUser;
-		}
-	}
-}
-```
-
-4. To use `pavalisoft-cache` tag helper, add the below to _ViewImport.cshtml
-
-```csharp
-@using Pavalisoft.Caching.TagHelpers
-@using Pavalisoft.Caching.InMemory
-@using Pavalisoft.Caching.Redis
-@using Pavalisoft.Caching.MySql
-@using Pavalisoft.Caching.SqlServer
 @addTagHelper *, Pavalisoft.Caching.TagHelpers
 ```
 
-5. Use the `pavalisoft-cache` tag helper in the view wherever required.
+4. Use the `pavalisoft-cache` tag helper in the view wherever required.
 
 ```html
 <div class="col-md-12">
