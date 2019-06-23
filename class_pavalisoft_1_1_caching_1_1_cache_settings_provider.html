@@ -30,8 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.0.0.1</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
+   <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
   </td>
  </tr>
  </tbody>
@@ -88,6 +89,7 @@ $(document).ready(function(){initNavTree('class_pavalisoft_1_1_caching_1_1_cache
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Pavalisoft.Caching.CacheSettingsProvider Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -115,22 +117,63 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a489d3a68c54a1edea443febe46772047"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html">CacheSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a489d3a68c54a1edea443febe46772047">GetCacheSettings</a> ()</td></tr>
 <tr class="memdesc:a489d3a68c54a1edea443febe46772047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html" title="Provides configuration structure for the Cache manager and its partitions including Cache stores.">CacheSettings</a> from configuration  <a href="#a489d3a68c54a1edea443febe46772047">More...</a><br /></td></tr>
 <tr class="separator:a489d3a68c54a1edea443febe46772047"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70005bb8f34518182c85ba53dc8347ec"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a70005bb8f34518182c85ba53dc8347ec">GetCacheStores</a> ()</td></tr>
-<tr class="memdesc:a70005bb8f34518182c85ba53dc8347ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets ICacheStore&lt;T&gt; from <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html" title="Provides configuration structure for the Cache manager and its partitions including Cache stores.">CacheSettings</a>  <a href="#a70005bb8f34518182c85ba53dc8347ec">More...</a><br /></td></tr>
-<tr class="separator:a70005bb8f34518182c85ba53dc8347ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abca4241cf7b2366e3b6ad0e347d962b2"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#abca4241cf7b2366e3b6ad0e347d962b2">GetCacheStore</a> (string storeName)</td></tr>
-<tr class="memdesc:abca4241cf7b2366e3b6ad0e347d962b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store having cache store name <em>storeName</em>   <a href="#abca4241cf7b2366e3b6ad0e347d962b2">More...</a><br /></td></tr>
-<tr class="separator:abca4241cf7b2366e3b6ad0e347d962b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a732008ebf3d02fffdb8742fa09e2a1cf"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">ICacheStore</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a732008ebf3d02fffdb8742fa09e2a1cf">GetCacheStores</a> ()</td></tr>
+<tr class="memdesc:a732008ebf3d02fffdb8742fa09e2a1cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets ICacheStore&lt;T&gt; from <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html" title="Provides configuration structure for the Cache manager and its partitions including Cache stores.">CacheSettings</a>  <a href="#a732008ebf3d02fffdb8742fa09e2a1cf">More...</a><br /></td></tr>
+<tr class="separator:a732008ebf3d02fffdb8742fa09e2a1cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e4638f7cf95f1d41e2ca15768d4fd62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">ICacheStore</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a1e4638f7cf95f1d41e2ca15768d4fd62">GetCacheStore</a> (string storeName)</td></tr>
+<tr class="memdesc:a1e4638f7cf95f1d41e2ca15768d4fd62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store having cache store name <em>storeName</em>   <a href="#a1e4638f7cf95f1d41e2ca15768d4fd62">More...</a><br /></td></tr>
+<tr class="separator:a1e4638f7cf95f1d41e2ca15768d4fd62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b3bf06ae3b59357a4cc074146351c27"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a6b3bf06ae3b59357a4cc074146351c27">GetCachePartitions</a> ()</td></tr>
 <tr class="memdesc:a6b3bf06ae3b59357a4cc074146351c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Partitions in the <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html" title="Provides configuration structure for the Cache manager and its partitions including Cache stores.">CacheSettings</a>  <a href="#a6b3bf06ae3b59357a4cc074146351c27">More...</a><br /></td></tr>
 <tr class="separator:a6b3bf06ae3b59357a4cc074146351c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3f5bee30f4216a73444e194e45275ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html">ICachePartition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#ad3f5bee30f4216a73444e194e45275ec">GetCachePartition</a> (string name)</td></tr>
 <tr class="memdesc:ad3f5bee30f4216a73444e194e45275ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Partition having cache partition name <em>name</em>   <a href="#ad3f5bee30f4216a73444e194e45275ec">More...</a><br /></td></tr>
 <tr class="separator:ad3f5bee30f4216a73444e194e45275ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ad84b983fe3b4b481bb64372990035324"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#ad84b983fe3b4b481bb64372990035324">CacheSettingsProvider</a> (IServiceProvider serviceProvider)</td></tr>
+<tr class="memdesc:ad84b983fe3b4b481bb64372990035324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html" title="Provides base implementation for ICacheSettingsProvider">CacheSettingsProvider</a>  <a href="#ad84b983fe3b4b481bb64372990035324">More...</a><br /></td></tr>
+<tr class="separator:ad84b983fe3b4b481bb64372990035324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides base implementation for ICacheSettingsProvider </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad84b983fe3b4b481bb64372990035324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad84b983fe3b4b481bb64372990035324">&#9670;&nbsp;</a></span>CacheSettingsProvider()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Pavalisoft.Caching.CacheSettingsProvider.CacheSettingsProvider </td>
+          <td>(</td>
+          <td class="paramtype">IServiceProvider&#160;</td>
+          <td class="paramname"><em>serviceProvider</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html" title="Provides base implementation for ICacheSettingsProvider">CacheSettingsProvider</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serviceProvider</td><td>Dependency Service Provider</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="ad3f5bee30f4216a73444e194e45275ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad3f5bee30f4216a73444e194e45275ec">&#9670;&nbsp;</a></span>GetCachePartition()</h2>
 
@@ -204,14 +247,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abca4241cf7b2366e3b6ad0e347d962b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abca4241cf7b2366e3b6ad0e347d962b2">&#9670;&nbsp;</a></span>GetCacheStore()</h2>
+<a id="a1e4638f7cf95f1d41e2ca15768d4fd62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e4638f7cf95f1d41e2ca15768d4fd62">&#9670;&nbsp;</a></span>GetCacheStore()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">object Pavalisoft.Caching.CacheSettingsProvider.GetCacheStore </td>
+          <td class="memname"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">ICacheStore</a> Pavalisoft.Caching.CacheSettingsProvider.GetCacheStore </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>storeName</em></td><td>)</td>
@@ -229,18 +272,18 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store</dd></dl>
 
-<p>Implements <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_settings_provider.html#a1a92dd1e4f2b9ce05b26b45ba3e092b0">Pavalisoft.Caching.Interfaces.ICacheSettingsProvider</a>.</p>
+<p>Implements <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_settings_provider.html#ac71b9fc8e14d1bd9fe81267f908f7bd1">Pavalisoft.Caching.Interfaces.ICacheSettingsProvider</a>.</p>
 
 </div>
 </div>
-<a id="a70005bb8f34518182c85ba53dc8347ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70005bb8f34518182c85ba53dc8347ec">&#9670;&nbsp;</a></span>GetCacheStores()</h2>
+<a id="a732008ebf3d02fffdb8742fa09e2a1cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a732008ebf3d02fffdb8742fa09e2a1cf">&#9670;&nbsp;</a></span>GetCacheStores()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">IEnumerable&lt;object&gt; Pavalisoft.Caching.CacheSettingsProvider.GetCacheStores </td>
+          <td class="memname">IEnumerable&lt;<a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">ICacheStore</a>&gt; Pavalisoft.Caching.CacheSettingsProvider.GetCacheStores </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -249,9 +292,9 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets ICacheStore&lt;T&gt; from <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html" title="Provides configuration structure for the Cache manager and its partitions including Cache stores.">CacheSettings</a> </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_stores.html">Stores</a></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Stores</dd></dl>
 
-<p>Implements <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_settings_provider.html#ae164b20cab5b3422f643e9b999ae5750">Pavalisoft.Caching.Interfaces.ICacheSettingsProvider</a>.</p>
+<p>Implements <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_settings_provider.html#a6ab8a807fa130d150d4faa17104920bf">Pavalisoft.Caching.Interfaces.ICacheSettingsProvider</a>.</p>
 
 </div>
 </div>

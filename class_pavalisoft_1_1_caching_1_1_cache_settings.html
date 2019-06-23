@@ -30,8 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.0.0.1</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
+   <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
   </td>
  </tr>
  </tbody>
@@ -99,20 +100,19 @@ $(document).ready(function(){initNavTree('class_pavalisoft_1_1_caching_1_1_cache
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:abacbfb422d22fd66190f2350901b8797"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_info.html">CacheStoreInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html#abacbfb422d22fd66190f2350901b8797">Stores</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:abacbfb422d22fd66190f2350901b8797"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or Sets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_stores.html">Stores</a> Information  <a href="#abacbfb422d22fd66190f2350901b8797">More...</a><br /></td></tr>
-<tr class="separator:abacbfb422d22fd66190f2350901b8797"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a132238e26cb3fd3005fb2ebdcc36a36f"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition_info.html">CachePartitionInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html#a132238e26cb3fd3005fb2ebdcc36a36f">Partitions</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a132238e26cb3fd3005fb2ebdcc36a36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or Sets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Partition Configuration Information  <a href="#a132238e26cb3fd3005fb2ebdcc36a36f">More...</a><br /></td></tr>
-<tr class="separator:a132238e26cb3fd3005fb2ebdcc36a36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad83d968c9d72031080b9164034faeba7"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html">CacheStoreDefinition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html#ad83d968c9d72031080b9164034faeba7">Stores</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad83d968c9d72031080b9164034faeba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or Sets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Stores Information  <a href="#ad83d968c9d72031080b9164034faeba7">More...</a><br /></td></tr>
+<tr class="separator:ad83d968c9d72031080b9164034faeba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc36363c4ebc0f1c0df774904e5f1d0b"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition_definition.html">CachePartitionDefinition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html#afc36363c4ebc0f1c0df774904e5f1d0b">Partitions</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:afc36363c4ebc0f1c0df774904e5f1d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or Sets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Partition Configuration Information  <a href="#afc36363c4ebc0f1c0df774904e5f1d0b">More...</a><br /></td></tr>
+<tr class="separator:afc36363c4ebc0f1c0df774904e5f1d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides configuration structure for the <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> manager and its partitions including <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> stores. </p>
-<p>{ "Caching" : { "Stores" : [ { "Name" : "DistributedInMemory", "Type" : "Memory", "StoreConfig" : "{\"ExpirationScanFrequency":"00:05:00"}"},
-            { "Name" : "DistributedRedis", "Type" : "Redis", "StoreConfig" : "{"Configuration":"00:05:00", "InstanceName":"localhost"}"} ], "Partitions" : [ { "Name" : "MasterData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" }, { "Name" : "LocalizationData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" }, { "Name" : "IncrementalData", "StoreName" : "DistributedInMemory", "SlidingExpiration" : "00:00:30" } ] } } </p>
+<p>The below is the sample configuration { "Caching": { "Stores": [ { "Name": "InMemory", "Type": "Pavalisoft.Caching.InMemory.InMemoryCacheStoreType, Pavalisoft.Caching.InMemory", "StoreConfig": "{\"ExpirationScanFrequency":"00:05:00"}" }, { "Name": "DistributedInMemory", "Type": "Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType,Pavalisoft.Caching.InMemory", "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching", "StoreConfig": "{\"ExpirationScanFrequency":"00:05:00"}" }, { "Name": "SqlServer", "Type": "Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType,Pavalisoft.Caching.SqlServer", "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching", "StoreConfig": "{\"ExpiredItemsDeletionInterval":"00:05:00", "ConnectionString":"Data Source=localhost;Initial Catalog=DistributedCache;Integrated Security=True", "SchemaName":"store", "TableName":"<a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a>", "DefaultSlidingExpiration":"00:05:00"}" }, { "Name": "MySql", "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType,Pavalisoft.Caching.MySql", "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching", "StoreConfig": "{\"ExpiredItemsDeletionInterval":"00:05:00", "ConnectionString":"Data Source=localhost;User Id=root;Password=root;Allow User Variables=true", "SchemaName":"store", "TableName":"cache", "DefaultSlidingExpiration":"00:05:00"}" }, { "Name": "Redis", "Type": "Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType,Pavalisoft.Caching.Redis", "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching", "StoreConfig": "{\"Configuration":"00:05:00", "InstanceName":"localhost"}" } ], "Partitions": [ { "Name": "FrequentData", "StoreName": "InMemory", "SlidingExpiration": "00:05:00" }, { "Name": "DistibutedFrequentData", "StoreName": "DistributedInMemory", "SlidingExpiration": "00:05:00" }, { "Name": "MySqlLocalizationData", "StoreName": "MySql", "Priority": "NeverRemove" }, { "Name": "LocalizationData", "StoreName": "SqlServer", "Priority": "NeverRemove" }, { "Name": "MasterData", "StoreName": "Redis", "SlidingExpiration": "00:05:00" } ] } } </p>
 </div><h2 class="groupheader">Property Documentation</h2>
-<a id="a132238e26cb3fd3005fb2ebdcc36a36f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a132238e26cb3fd3005fb2ebdcc36a36f">&#9670;&nbsp;</a></span>Partitions</h2>
+<a id="afc36363c4ebc0f1c0df774904e5f1d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc36363c4ebc0f1c0df774904e5f1d0b">&#9670;&nbsp;</a></span>Partitions</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,7 +121,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt;<a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition_info.html">CachePartitionInfo</a>&gt; Pavalisoft.Caching.CacheSettings.Partitions</td>
+          <td class="memname">List&lt;<a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition_definition.html">CachePartitionDefinition</a>&gt; Pavalisoft.Caching.CacheSettings.Partitions</td>
         </tr>
       </table>
   </td>
@@ -135,8 +135,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="abacbfb422d22fd66190f2350901b8797"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abacbfb422d22fd66190f2350901b8797">&#9670;&nbsp;</a></span>Stores</h2>
+<a id="ad83d968c9d72031080b9164034faeba7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad83d968c9d72031080b9164034faeba7">&#9670;&nbsp;</a></span>Stores</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -145,7 +145,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt;<a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_info.html">CacheStoreInfo</a>&gt; Pavalisoft.Caching.CacheSettings.Stores</td>
+          <td class="memname">List&lt;<a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html">CacheStoreDefinition</a>&gt; Pavalisoft.Caching.CacheSettings.Stores</td>
         </tr>
       </table>
   </td>
@@ -155,7 +155,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets or Sets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_stores.html">Stores</a> Information </p>
+<p>Gets or Sets <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Stores Information </p>
 
 </div>
 </div>

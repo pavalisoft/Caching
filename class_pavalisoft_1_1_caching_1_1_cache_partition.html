@@ -30,8 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.0.0.1</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
+   <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
   </td>
  </tr>
  </tbody>
@@ -109,9 +110,9 @@ Inheritance diagram for Pavalisoft.Caching.CachePartition:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a64e2c01142d159a19388151664d258b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html#a64e2c01142d159a19388151664d258b0">CachePartition</a> (string name, DateTimeOffset? absoluteExpiration, TimeSpan? absoluteExpirationRelativeToNow, TimeSpan? slidingExpiration, object store, CacheItemPriority priority, long? size)</td></tr>
-<tr class="memdesc:a64e2c01142d159a19388151664d258b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html" title="Provides Api to interact with ICachePartition">CachePartition</a>  <a href="#a64e2c01142d159a19388151664d258b0">More...</a><br /></td></tr>
-<tr class="separator:a64e2c01142d159a19388151664d258b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab46e8b86cc950fcb8f5de917ee2f470b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html#ab46e8b86cc950fcb8f5de917ee2f470b">CachePartition</a> (string name, DateTimeOffset? absoluteExpiration, TimeSpan? absoluteExpirationRelativeToNow, TimeSpan? slidingExpiration, <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache.html">ICache</a> cache, CacheItemPriority priority, long? size)</td></tr>
+<tr class="memdesc:ab46e8b86cc950fcb8f5de917ee2f470b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html" title="Provides Api to interact with ICachePartition">CachePartition</a>  <a href="#ab46e8b86cc950fcb8f5de917ee2f470b">More...</a><br /></td></tr>
+<tr class="separator:ab46e8b86cc950fcb8f5de917ee2f470b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -127,9 +128,6 @@ Properties</h2></td></tr>
 <tr class="memitem:a8e3b110ccab079743d7fa5ccd0b60749"><td class="memItemLeft" align="right" valign="top">TimeSpan?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html#a8e3b110ccab079743d7fa5ccd0b60749">SlidingExpiration</a><code> [get]</code></td></tr>
 <tr class="memdesc:a8e3b110ccab079743d7fa5ccd0b60749"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets how long a cache entry can be inactive (e.g. not accessed) before it will be removed in this ICachePartition. This will not extend the entry lifetime beyond the absolute expiration (if set).  <a href="#a8e3b110ccab079743d7fa5ccd0b60749">More...</a><br /></td></tr>
 <tr class="separator:a8e3b110ccab079743d7fa5ccd0b60749"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace8e246a05768f52b2329711e7cdfef8"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html#ace8e246a05768f52b2329711e7cdfef8">Store</a><code> [get]</code></td></tr>
-<tr class="memdesc:ace8e246a05768f52b2329711e7cdfef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store in this ICachePartition  <a href="#ace8e246a05768f52b2329711e7cdfef8">More...</a><br /></td></tr>
-<tr class="separator:ace8e246a05768f52b2329711e7cdfef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bab1175a894d66ea2ae30a3b882646d"><td class="memItemLeft" align="right" valign="top">CacheItemPriority&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_partition.html#a3bab1175a894d66ea2ae30a3b882646d">Priority</a><code> [get]</code></td></tr>
 <tr class="memdesc:a3bab1175a894d66ea2ae30a3b882646d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the CacheItemPriority applicable for this ICachePartition  <a href="#a3bab1175a894d66ea2ae30a3b882646d">More...</a><br /></td></tr>
 <tr class="separator:a3bab1175a894d66ea2ae30a3b882646d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,9 +150,6 @@ Properties</h2></td></tr>
 <tr class="memitem:a676bbf0e4658b76284de66f1249d9fa9 inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition"><td class="memItemLeft" align="right" valign="top">TimeSpan?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#a676bbf0e4658b76284de66f1249d9fa9">SlidingExpiration</a><code> [get]</code></td></tr>
 <tr class="memdesc:a676bbf0e4658b76284de66f1249d9fa9 inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets how long a cache entry can be inactive (e.g. not accessed) before it will be removed in this <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html" title="Represents ICachePartition implementation">ICachePartition</a>. This will not extend the entry lifetime beyond the absolute expiration (if set).  <a href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#a676bbf0e4658b76284de66f1249d9fa9">More...</a><br /></td></tr>
 <tr class="separator:a676bbf0e4658b76284de66f1249d9fa9 inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af34b86e8f30612cfc019034d47d56545 inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#af34b86e8f30612cfc019034d47d56545">Store</a><code> [get]</code></td></tr>
-<tr class="memdesc:af34b86e8f30612cfc019034d47d56545 inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store in this <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html" title="Represents ICachePartition implementation">ICachePartition</a>  <a href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#af34b86e8f30612cfc019034d47d56545">More...</a><br /></td></tr>
-<tr class="separator:af34b86e8f30612cfc019034d47d56545 inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d9c7d49fb5e338f9ace60c8c581d1ed inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition"><td class="memItemLeft" align="right" valign="top">CacheItemPriority&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#a5d9c7d49fb5e338f9ace60c8c581d1ed">Priority</a><code> [get]</code></td></tr>
 <tr class="memdesc:a5d9c7d49fb5e338f9ace60c8c581d1ed inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the CacheItemPriority applicable for this <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html" title="Represents ICachePartition implementation">ICachePartition</a>  <a href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#a5d9c7d49fb5e338f9ace60c8c581d1ed">More...</a><br /></td></tr>
 <tr class="separator:a5d9c7d49fb5e338f9ace60c8c581d1ed inherit properties_interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,8 +163,8 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides Api to interact with ICachePartition </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a64e2c01142d159a19388151664d258b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64e2c01142d159a19388151664d258b0">&#9670;&nbsp;</a></span>CachePartition()</h2>
+<a id="ab46e8b86cc950fcb8f5de917ee2f470b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab46e8b86cc950fcb8f5de917ee2f470b">&#9670;&nbsp;</a></span>CachePartition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -201,8 +196,8 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>store</em>, </td>
+          <td class="paramtype"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache.html">ICache</a>&#160;</td>
+          <td class="paramname"><em>cache</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -231,7 +226,7 @@ Properties</h2></td></tr>
     <tr><td class="paramname">absoluteExpiration</td><td>An absolute expiration date for the cache entry in this ICachePartition.</td></tr>
     <tr><td class="paramname">absoluteExpirationRelativeToNow</td><td>An absolute expiration time, relative to now in this ICachePartition.</td></tr>
     <tr><td class="paramname">slidingExpiration</td><td>Sliding expiration time for the cache entry in this ICachePartition.</td></tr>
-    <tr><td class="paramname">store</td><td>ICacheStore&lt;T&gt; where the partition should be created</td></tr>
+    <tr><td class="paramname">cache</td><td>ICache associated with cache partition</td></tr>
     <tr><td class="paramname">priority</td><td>CacheItemPriority to be applied to the cache items in this ICachePartition</td></tr>
     <tr><td class="paramname">size</td><td>ICachePartition size</td></tr>
   </table>
@@ -406,30 +401,6 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets how long a cache entry can be inactive (e.g. not accessed) before it will be removed in this ICachePartition. This will not extend the entry lifetime beyond the absolute expiration (if set). </p>
-
-</div>
-</div>
-<a id="ace8e246a05768f52b2329711e7cdfef8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace8e246a05768f52b2329711e7cdfef8">&#9670;&nbsp;</a></span>Store</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">object Pavalisoft.Caching.CachePartition.Store</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Store in this ICachePartition </p>
 
 </div>
 </div>
