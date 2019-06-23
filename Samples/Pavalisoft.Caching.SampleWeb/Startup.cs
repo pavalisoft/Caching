@@ -29,7 +29,7 @@ using Pavalisoft.Caching.Redis;
 //Import the below namespace to use SqlServer Cache Store implementation
 using Pavalisoft.Caching.SqlServer;
 
-namespace Pavalisoft.Caching.SampleWeb
+namespace Pavalisoft.Caching.TagHelpers.Sample
 {
     public class Startup
     {

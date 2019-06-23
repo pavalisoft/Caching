@@ -28,19 +28,22 @@ using Pavalisoft.Caching.Interfaces;
 namespace Pavalisoft.Caching.TagHelpers
 {
     /// <summary>
-    /// <see cref="TagHelper"/> implementation targeting &lt;cache&gt; elements.
+    /// <see cref="TagHelper"/> implementation targeting &lt;pavalisoft-cache&gt; elements.
     /// </summary>
     /// <example> The below is the usage example
-    /// <cache enabled="true">
+    /// <pavalisoft-cache enabled="true" cache-partition="FrequentData">
     ///    Current Time Inside Cache Tag Helper: @DateTime.Now
-    /// </cache>
+    /// </pavalisoft-cache>
     /// </example>
+    [HtmlTargetElement("pavalisoft-cache")]
     public class CacheTagHelper : CacheTagHelperBase
     {
         /// <summary>
         /// Prefix used by <see cref="CacheTagHelper"/> instances when creating entries in <see cref="ICache"/>.
         /// </summary>
         public static readonly string CacheKeyPrefix = nameof(CacheTagHelper);
+
+        //private const string NameAttributeName = "name";
 
         private readonly ICacheManager _cacheManager;
 

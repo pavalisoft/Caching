@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Pavalisoft.Caching.SampleWeb.Models
+namespace Pavalisoft.Caching.TagHelpers.Sample.Models
 {
     public class ErrorViewModel
     {

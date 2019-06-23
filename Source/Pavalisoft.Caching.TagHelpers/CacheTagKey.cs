@@ -49,7 +49,7 @@ namespace Pavalisoft.Caching.TagHelpers
         private const string VaryByCulture = "VaryByCulture";
         private const string CachePartition = "CachePartition";
 
-        private readonly string _prefix;
+        private readonly string _prefix = "PavalisoftCacheTagHelper";
         private readonly string _varyBy;
         private readonly IList<KeyValuePair<string, string>> _headers;
         private readonly IList<KeyValuePair<string, string>> _queries;
@@ -75,7 +75,6 @@ namespace Pavalisoft.Caching.TagHelpers
             : this(tagHelper)
         {
             Key = context.UniqueId;
-            _prefix = nameof(CacheTagHelper);
         }
 
         private CacheTagKey(CacheTagHelperBase tagHelper)
@@ -125,7 +124,9 @@ namespace Pavalisoft.Caching.TagHelpers
             var builder = new StringBuilder(_prefix);
             builder
                 .Append(CacheKeyTokenSeparator)
-                .Append(Key);
+                .Append(Key)
+                .Append(CacheKeyTokenSeparator)
+                .Append(_cachePartition);
 
             if (!string.IsNullOrEmpty(_varyBy))
             {

@@ -15,4 +15,10 @@
     <ProjectReference Include="..\..\Source\Pavalisoft.Caching.SqlServer\Pavalisoft.Caching.SqlServer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

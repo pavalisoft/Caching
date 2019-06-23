@@ -19,9 +19,9 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pavalisoft.Caching.Interfaces;
-using Pavalisoft.Caching.SampleWeb.Models;
+using Pavalisoft.Caching.TagHelpers.Sample.Models;
 
-namespace Pavalisoft.Caching.SampleWeb.Controllers
+namespace Pavalisoft.Caching.TagHelpers.Sample.Controllers
 {
     public class HomeController : Controller
     {
@@ -60,8 +60,8 @@ namespace Pavalisoft.Caching.SampleWeb.Controllers
                 appUser = new AppUser(userName);
 
                 // Add appUser object to Cache
-                _cacheManager.Set(CachePartitionName, userName, appUser);                
-			}
+                _cacheManager.Set(CachePartitionName, userName, appUser);
+            }
             return appUser;
         }
     }

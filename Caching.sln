@@ -34,7 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{C615
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.TagHelpers.Tests", "Tests\Pavalisoft.Caching.TagHelpers.Tests\Pavalisoft.Caching.TagHelpers.Tests.csproj", "{0FCFFA51-74DF-4207-B5B1-E53AABB84CB4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.SampleWeb", "Samples\Pavalisoft.Caching.SampleWeb\Pavalisoft.Caching.SampleWeb.csproj", "{8E110B1F-4B6E-4C4F-9E8C-E81262473A04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.TagHelpers.Sample", "Samples\Pavalisoft.Caching.SampleWeb\Pavalisoft.Caching.TagHelpers.Sample.csproj", "{8E110B1F-4B6E-4C4F-9E8C-E81262473A04}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.InMemory.Sample", "Samples\Pavalisoft.Caching.InMemory.Sample\Pavalisoft.Caching.InMemory.Sample.csproj", "{8371639E-5E23-4AC2-A285-0348BC115A5B}"
 EndProject
@@ -47,6 +47,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.SqlServer.Sample", "Samples\Pavalisoft.Caching.SqlServer.Sample\Pavalisoft.Caching.SqlServer.Sample.csproj", "{328E0B74-A7D3-40D3-B2C2-BDED33D889B9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.SqlServer.ConcurencySample", "Samples\Pavalisoft.Caching.SqlServer.ConsurencySample\Pavalisoft.Caching.SqlServer.ConcurencySample.csproj", "{533E3645-5A1D-4716-944A-BF6004B7F970}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.MySql.Sample", "Samples\Pavalisoft.Caching.MySql.Sample\Pavalisoft.Caching.MySql.Sample.csproj", "{DFF98893-D30E-4D9D-A76A-9E4B170E1397}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.MySql.ConcurencySample", "Samples\Pavalisoft.Caching.MySql.ConcurencySample\Pavalisoft.Caching.MySql.ConcurencySample.csproj", "{4C7EE476-8E32-4172-A187-AC1E92AB12F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,6 +122,14 @@ Global
 		{533E3645-5A1D-4716-944A-BF6004B7F970}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{533E3645-5A1D-4716-944A-BF6004B7F970}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{533E3645-5A1D-4716-944A-BF6004B7F970}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFF98893-D30E-4D9D-A76A-9E4B170E1397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFF98893-D30E-4D9D-A76A-9E4B170E1397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFF98893-D30E-4D9D-A76A-9E4B170E1397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFF98893-D30E-4D9D-A76A-9E4B170E1397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C7EE476-8E32-4172-A187-AC1E92AB12F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C7EE476-8E32-4172-A187-AC1E92AB12F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C7EE476-8E32-4172-A187-AC1E92AB12F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C7EE476-8E32-4172-A187-AC1E92AB12F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,6 +151,8 @@ Global
 		{7059066F-E016-4635-9D54-3A9BC45579F9} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
 		{328E0B74-A7D3-40D3-B2C2-BDED33D889B9} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
 		{533E3645-5A1D-4716-944A-BF6004B7F970} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
+		{DFF98893-D30E-4D9D-A76A-9E4B170E1397} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
+		{4C7EE476-8E32-4172-A187-AC1E92AB12F4} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF59F50D-83DE-40D4-8210-14F661BC4952}

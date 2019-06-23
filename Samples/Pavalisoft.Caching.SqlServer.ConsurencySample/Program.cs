@@ -15,65 +15,83 @@
 */
 
 using System;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Caching.SqlServer;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.SqlServer.ConcurencySample
 {
     /// <summary>
     /// This sample requires setting up a Microsoft SQL Server based cache database.
-    /// 1. Install the .NET Core sql-cache tool globally by installing the dotnet-sql-cache package.
+    /// 1. Install the latest .NET Core sql-cache tool globally by installing the dotnet-sql-cache package from https://www.nuget.org/packages/dotnet-sql-cache/.
     /// 2. Create a new database in the SQL Server or use an existing one.
-    /// 3. Run the command "dotnet sql-cache create <connectionstring> <schemaName> <tableName>" to setup the table and indexes.
-    /// 4. Run this sample by doing "dotnet run"
+    /// 3. Run the command "dotnet sql-cache create <connectionstring> <schemaName> <tableName>" to setup the table and indexes.  
+    /// 4. Update the connectionstring, SchemaName and TableName in the appsettings.json file
+    /// 5. Run this sample by doing "dotnet run"
     /// </summary>
     public class Program
     {
-        private const string Key = "MyKey";
+        private const string SqlServerStorePartition = "LocalizationData";
+        private const string Key = "SampleKey";
         private static readonly Random Random = new Random();
-        private static DistributedCacheEntryOptions _cacheEntryOptions;
+        private static ICacheManager _cacheManager;
 
         public static void Main()
         {
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder
-                .AddJsonFile("config.json")
-                .AddEnvironmentVariables();
-            var configuration = configurationBuilder.Build();
+            _cacheManager = CreateCacheManager();
 
-            _cacheEntryOptions = new DistributedCacheEntryOptions();
-            _cacheEntryOptions.SetSlidingExpiration(TimeSpan.FromSeconds(10));
+            SetKey("0");
 
-            var cache = new SqlServerCache(new SqlServerCacheOptions()
-            {
-                ConnectionString = configuration["ConnectionString"],
-                SchemaName = configuration["SchemaName"],
-                TableName = configuration["TableName"]
-            });
+            PeriodicallyReadKey(TimeSpan.FromSeconds(1));
 
-            SetKey(cache, "0");
+            PeriodicallyRemoveKey(TimeSpan.FromSeconds(11));
 
-            PeriodicallyReadKey(cache, TimeSpan.FromSeconds(1));
-
-            PeriodciallyRemoveKey(cache, TimeSpan.FromSeconds(11));
-
-            PeriodciallySetKey(cache, TimeSpan.FromSeconds(13));
+            PeriodicallySetKey(TimeSpan.FromSeconds(13));
 
             Console.ReadLine();
             Console.WriteLine("Shutting down");
         }
 
-        private static void SetKey(IDistributedCache cache, string value)
+        private static void SetKey(string value)
         {
             Console.WriteLine("Setting: " + value);
-            cache.Set(Key, Encoding.UTF8.GetBytes(value), _cacheEntryOptions);
+            _cacheManager.Set(SqlServerStorePartition, Key, value, null, CreatePostEvictionCallbackRegistration());
         }
 
-        private static void PeriodciallySetKey(IDistributedCache cache, TimeSpan interval)
+        private static ICacheManager CreateCacheManager()
+        {
+            IServiceCollection services = new ServiceCollection();
+
+            // build configuration
+            IConfiguration configuration = new ConfigurationBuilder()
+              .SetBasePath(Directory.GetCurrentDirectory())
+              .AddJsonFile("appsettings.json", true, true)
+              .Build();
+            services.AddOptions();
+            services.AddSingleton(configuration);
+
+            services.AddCaching().AddSqlServerCache();
+
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+            ICacheManager cacheManager = serviceProvider.GetService<ICacheManager>();
+            return cacheManager;
+        }
+
+        private static PostEvictionCallbackRegistration CreatePostEvictionCallbackRegistration()
+        {
+            return new PostEvictionCallbackRegistration
+            {
+                EvictionCallback = (echoKey, value, reason, substate) =>
+                {
+                    Console.WriteLine($"Evicted. {echoKey} : {value} was evicted due to {reason}");
+                }
+            };
+        }
+
+        private static void PeriodicallySetKey(TimeSpan interval)
         {
             Task.Run(async () =>
             {
@@ -81,12 +99,12 @@ namespace Pavalisoft.Caching.SqlServer.ConcurencySample
                 {
                     await Task.Delay(interval);
 
-                    SetKey(cache, "A");
+                    SetKey("A");
                 }
             });
         }
 
-        private static void PeriodicallyReadKey(IDistributedCache cache, TimeSpan interval)
+        private static void PeriodicallyReadKey(TimeSpan interval)
         {
             Task.Run(async () =>
             {
@@ -102,10 +120,10 @@ namespace Pavalisoft.Caching.SqlServer.ConcurencySample
                     else
                     {
                         Console.Write("Reading...");
-                        object result = cache.Get(Key);
-                        if (result != null)
+                        if (!_cacheManager.TryGetValue(SqlServerStorePartition, Key, out object result))
                         {
-                            cache.Set(Key, Encoding.UTF8.GetBytes("B"), _cacheEntryOptions);
+                            result = "B";
+                            SetKey(result.ToString());
                         }
                         Console.WriteLine("Read: " + (result ?? "(null)"));
                     }
@@ -113,7 +131,7 @@ namespace Pavalisoft.Caching.SqlServer.ConcurencySample
             });
         }
 
-        private static void PeriodciallyRemoveKey(IDistributedCache cache, TimeSpan interval)
+        private static void PeriodicallyRemoveKey(TimeSpan interval)
         {
             Task.Run(async () =>
             {
@@ -122,7 +140,7 @@ namespace Pavalisoft.Caching.SqlServer.ConcurencySample
                     await Task.Delay(interval);
 
                     Console.WriteLine("Removing...");
-                    cache.Remove(Key);
+                    _cacheManager.Remove(SqlServerStorePartition, Key);
                 }
             });
         }

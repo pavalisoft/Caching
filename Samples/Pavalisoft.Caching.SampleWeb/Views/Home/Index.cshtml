@@ -3,6 +3,36 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Pavalisoft.Caching.TagHelpers</h1>
+    <div class="row">
+
+        <div class="col-md-12">
+            <h2>Pavalisoft Cache TagHelper</h2>
+            <div class="row">
+                <pavalisoft-cache cache-partition="FrequentData">
+                    This will be cached in server memory. expires-after 05 minutes
+                </pavalisoft-cache>
+            </div>
+            <div class="row">
+                <pavalisoft-cache cache-partition="DistibutedFrequentData">
+                    This will be cached in server distributed memory. expires-sliding (05 minutes)
+                </pavalisoft-cache>
+            </div>
+            <div class="row">
+                <pavalisoft-cache cache-partition="MySqlLocalizationData">
+                    This will be cached in MySQL distributed memory. expires-after 05 minutes
+                </pavalisoft-cache>
+            </div>
+            <div class="row">
+                <pavalisoft-cache cache-partition="LocalizationData">
+                    This will be cached in Sql Server distributed memory. expires-after 05 minutes
+                </pavalisoft-cache>
+            </div>
+            <div class="row">
+                <pavalisoft-cache cache-partition="MasterData">
+                    This will be cached in Redis distributed memory. expires-sliding (05 minutes)
+                </pavalisoft-cache>
+            </div>
+        </div>
+    </div>
 </div>

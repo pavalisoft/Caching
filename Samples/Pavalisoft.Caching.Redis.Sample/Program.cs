@@ -15,49 +15,51 @@
 */
 
 using System;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.Redis.Sample
 {
+    /// <summary>
+    /// This sample assumes that a redis server is running on the local machine. You can set this up by doing the following:
+    /// 1. Install this chocolatey package: http://chocolatey.org/packages/redis-64/
+    /// 2. run "redis-server" from command prompt.
+    /// OR
+    /// 1. Install Redis on windows 10 using https://redislabs.com/blog/redis-on-windows-10/  
+    /// 2. run "redis-server" from command prompt.
+    /// </summary>
     public class Program
     {
+        private const string RedisStorePartition = "MasterData";
+
         public static void Main(string[] args)
         {
             RunSampleAsync().Wait();
         }
-
-        /// <summary>
-        /// This sample assumes that a redis server is running on the local machine. You can set this up by doing the following:
-        /// Install this chocolatey package: http://chocolatey.org/packages/redis-64/
-        /// run "redis-server" from command prompt.
-        /// </summary>
-        /// <param name="args"></param>
+        
         public static async Task RunSampleAsync()
         {
-            var key = "myKey";
+            var key = Guid.NewGuid().ToString();
             var message = "Hello, World!";
-            var value = Encoding.UTF8.GetBytes(message);
 
             Console.WriteLine("Connecting to cache");
-            var cache = new RedisCache(new RedisCacheOptions
-            {
-                Configuration = "localhost",
-                InstanceName = "SampleInstance"
-            });
+            ICacheManager cacheManager = CreateCacheManager();
             Console.WriteLine("Connected");
 
+            Console.WriteLine("Cache item key: {0}", key);
             Console.WriteLine($"Setting value '{message}' in cache");
-            await cache.SetAsync(key, value, new DistributedCacheEntryOptions());
+
+            await cacheManager.SetAsync(RedisStorePartition, key, message);
             Console.WriteLine("Set");
 
             Console.WriteLine("Getting value from cache");
-            value = await cache.GetAsync(key);
-            if (value != null)
+            message = await cacheManager.GetAsync<string>(RedisStorePartition, key);
+            if (!string.IsNullOrWhiteSpace(message))
             {
-                Console.WriteLine("Retrieved: " + Encoding.UTF8.GetString(value));
+                Console.WriteLine("Retrieved: " + message);
             }
             else
             {
@@ -65,18 +67,18 @@ namespace Pavalisoft.Caching.Redis.Sample
             }
 
             Console.WriteLine("Refreshing value in cache");
-            await cache.RefreshAsync(key);
+            await cacheManager.RefreshAsync(RedisStorePartition, key);
             Console.WriteLine("Refreshed");
 
             Console.WriteLine("Removing value from cache");
-            await cache.RemoveAsync(key);
+            await cacheManager.RemoveAsync(RedisStorePartition, key);
             Console.WriteLine("Removed");
 
             Console.WriteLine("Getting value from cache again");
-            value = await cache.GetAsync(key);
-            if (value != null)
+            message = await cacheManager.GetAsync<string>(RedisStorePartition, key);
+            if (!string.IsNullOrWhiteSpace(message))
             {
-                Console.WriteLine("Retrieved: " + Encoding.UTF8.GetString(value));
+                Console.WriteLine("Retrieved: " + message);
             }
             else
             {
@@ -84,6 +86,25 @@ namespace Pavalisoft.Caching.Redis.Sample
             }
 
             Console.ReadLine();
+        }
+
+        private static ICacheManager CreateCacheManager()
+        {
+            IServiceCollection services = new ServiceCollection();
+
+            // build configuration
+            IConfiguration configuration = new ConfigurationBuilder()
+              .SetBasePath(Directory.GetCurrentDirectory())
+              .AddJsonFile("appsettings.json", true, true)
+              .Build();
+            services.AddOptions();
+            services.AddSingleton(configuration);
+
+            services.AddCaching().AddRedisCache();
+
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+            ICacheManager cacheManager = serviceProvider.GetService<ICacheManager>();
+            return cacheManager;
         }
     }
 }

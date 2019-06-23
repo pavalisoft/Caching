@@ -28,6 +28,9 @@ Sample Cache TahHelper implematation samples added
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
-    <PackageReference Include="Pavalisoft.Caching" Version="1.0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pavalisoft.Caching\Pavalisoft.Caching.csproj" />
   </ItemGroup>
 </Project>

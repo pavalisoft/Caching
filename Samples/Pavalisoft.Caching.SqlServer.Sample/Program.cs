@@ -15,23 +15,26 @@
 */
 
 using System;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.SqlServer;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.SqlServer.Sample
 {
     /// <summary>
     /// This sample requires setting up a Microsoft SQL Server based cache database.
-    /// 1. Install the .NET Core sql-cache tool globally by installing the dotnet-sql-cache package.
+    /// 1. Install the latest .NET Core sql-cache tool globally by installing the dotnet-sql-cache package from https://www.nuget.org/packages/dotnet-sql-cache/.
     /// 2. Create a new database in the SQL Server or use an existing one.
-    /// 3. Run the command "dotnet sql-cache create <connectionstring> <schemaName> <tableName>" to setup the table and indexes.
-    /// 4. Run this sample by doing "dotnet run"
+    /// 3. Run the command "dotnet sql-cache create <connectionstring> <schemaName> <tableName>" to setup the table and indexes.  
+    /// 4. Update the connectionstring, SchemaName and TableName in the appsettings.json file
+    /// 5. Run this sample by doing "dotnet run"
     /// </summary>
     public class Program
     {
+        private const string SqlServerStorePartition = "LocalizationData";
+
         public static void Main()
         {
             RunSampleAsync().Wait();
@@ -39,39 +42,24 @@ namespace Pavalisoft.Caching.SqlServer.Sample
 
         public static async Task RunSampleAsync()
         {
-            var configurationBuilder = new ConfigurationBuilder();
-            var configuration = configurationBuilder
-                .AddJsonFile("config.json")
-                .AddEnvironmentVariables()
-                .Build();
-
             var key = Guid.NewGuid().ToString();
             var message = "Hello, World!";
-            var value = Encoding.UTF8.GetBytes(message);
 
             Console.WriteLine("Connecting to cache");
-            var cache = new SqlServerCache(new SqlServerCacheOptions()
-            {
-                ConnectionString = configuration["ConnectionString"],
-                SchemaName = configuration["SchemaName"],
-                TableName = configuration["TableName"]
-            });
-
+            ICacheManager cacheManager = CreateCacheManager();
             Console.WriteLine("Connected");
 
             Console.WriteLine("Cache item key: {0}", key);
             Console.WriteLine($"Setting value '{message}' in cache");
-            await cache.SetAsync(
-                key,
-                value,
-                new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(10)));
+
+            await cacheManager.SetAsync(SqlServerStorePartition, key, message);
             Console.WriteLine("Set");
 
             Console.WriteLine("Getting value from cache");
-            value = await cache.GetAsync(key);
-            if (value != null)
+            message = await cacheManager.GetAsync<string>(SqlServerStorePartition, key);
+            if (!string.IsNullOrWhiteSpace(message))
             {
-                Console.WriteLine("Retrieved: " + Encoding.UTF8.GetString(value, 0, value.Length));
+                Console.WriteLine("Retrieved: " + message);
             }
             else
             {
@@ -79,18 +67,18 @@ namespace Pavalisoft.Caching.SqlServer.Sample
             }
 
             Console.WriteLine("Refreshing value in cache");
-            await cache.RefreshAsync(key);
+            await cacheManager.RefreshAsync(SqlServerStorePartition, key);
             Console.WriteLine("Refreshed");
 
             Console.WriteLine("Removing value from cache");
-            await cache.RemoveAsync(key);
+            await cacheManager.RemoveAsync(SqlServerStorePartition, key);
             Console.WriteLine("Removed");
 
             Console.WriteLine("Getting value from cache again");
-            value = await cache.GetAsync(key);
-            if (value != null)
+            message = await cacheManager.GetAsync<string>(SqlServerStorePartition, key);
+            if (!string.IsNullOrWhiteSpace(message))
             {
-                Console.WriteLine("Retrieved: " + Encoding.UTF8.GetString(value, 0, value.Length));
+                Console.WriteLine("Retrieved: " + message);
             }
             else
             {
@@ -98,6 +86,25 @@ namespace Pavalisoft.Caching.SqlServer.Sample
             }
 
             Console.ReadLine();
+        }
+
+        private static ICacheManager CreateCacheManager()
+        {
+            IServiceCollection services = new ServiceCollection();
+
+            // build configuration
+            IConfiguration configuration = new ConfigurationBuilder()
+              .SetBasePath(Directory.GetCurrentDirectory())
+              .AddJsonFile("appsettings.json", true, true)
+              .Build();
+            services.AddOptions();
+            services.AddSingleton(configuration);
+
+            services.AddCaching().AddSqlServerCache();
+
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+            ICacheManager cacheManager = serviceProvider.GetService<ICacheManager>();
+            return cacheManager;
         }
     }
 }

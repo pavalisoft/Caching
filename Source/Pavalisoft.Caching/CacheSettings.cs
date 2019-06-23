@@ -30,7 +30,7 @@ namespace Pavalisoft.Caching
     ///    "Stores": [
     ///      {
     ///        "Name": "InMemory",
-    ///        "Type": "Pavalisoft.Caching.InMemory.InMemoryCacheStoreType, Pavalisoft.Caching.InMemory"
+    ///        "Type": "Pavalisoft.Caching.InMemory.InMemoryCacheStoreType, Pavalisoft.Caching.InMemory",
     ///        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
     ///      },
     ///      {
@@ -49,7 +49,7 @@ namespace Pavalisoft.Caching
     ///        "Name": "MySql",
     ///        "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType,Pavalisoft.Caching.MySql",
     ///        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
-    ///        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost:9001;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+    ///        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost;User Id=root;Password=root;Allow User Variables=true\", \"SchemaName\":\"store\", \"TableName\":\"cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
     ///      },
     ///      {
     ///        "Name": "Redis",
@@ -87,7 +87,6 @@ namespace Pavalisoft.Caching
     ///    ]
     ///  }
     /// }
-    ///
     /// </example>
     public class CacheSettings
     {
