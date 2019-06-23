@@ -17,7 +17,7 @@ Refer https://github.com/pavalisoft/Caching/tree/master/Samples for reference im
 - [**Pavalisoft.Caching.Redis.Sample**](https://github.com/pavalisoft/Caching/tree/master/Samples/Pavalisoft.Caching.Redis.Sample) - `CacheManager` with `Redis` cache stores.
 - [**Pavalisoft.Caching.MySql.Sample**](https://github.com/pavalisoft/Caching/tree/master/Samples/Pavalisoft.Caching.MySql.Sample) - `CacheManager` with `MySql` cache stores.
 - [**Pavalisoft.Caching.SqlServer.Sample**](https://github.com/pavalisoft/Caching/tree/master/Samples/Pavalisoft.Caching.SqlServer.Sample) - `CacheManager` with `SqlServer` cache stores.
-- [**Pavalisoft.Caching.TagHelpers.Sample**](https://github.com/pavalisoft/Caching/tree/master/Samples/Pavalisoft.Caching.TagHelpers.Sample) - `CacheManager` with `CacheTagHelper` cache stores.
+- [**Pavalisoft.Caching.TagHelpers.Sample**](https://github.com/pavalisoft/Caching/tree/master/Samples/Pavalisoft.Caching.SampleWeb) - `CacheManager` with `CacheTagHelper` cache stores.
 
 ## Cache Manager Usage
 
