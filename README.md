@@ -41,7 +41,7 @@ Refer https://github.com/pavalisoft/Caching/tree/master/Samples for reference im
         "Name": "MySql",
         "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType,Pavalisoft.Caching.MySql",
         "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
-        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost:9001;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost;User Id=root;Password=root;Allow User Variables=true\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
       },
       {
         "Name": "Redis",
@@ -57,7 +57,7 @@ Refer https://github.com/pavalisoft/Caching/tree/master/Samples for reference im
         "SlidingExpiration": "00:05:00"
       },
       {
-        "Name": "DistibutedFrequentData",
+        "Name": "DistributedFrequentData",
         "StoreName": "DistributedInMemory",
         "SlidingExpiration": "00:05:00"
       },
@@ -167,6 +167,207 @@ namespace Pavalisoft.Caching.Sample
 		}
 	}
 }
+```
+
+## Usage
+
+1. Define the [Cache Stores](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#abacbfb422d22fd66190f2350901b8797) and [Partitions](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#a132238e26cb3fd3005fb2ebdcc36a36f) in Caching configuration section in appSettings.json.
+
+```json
+{
+  "Caching": {
+    "Stores": [
+      {
+        "Name": "InMemory",
+        "Type": "Pavalisoft.Caching.InMemory.InMemoryCacheStoreType, Pavalisoft.Caching.InMemory",
+        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+      },
+      {
+        "Name": "DistributedInMemory",
+        "Type": "Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType,Pavalisoft.Caching.InMemory",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
+        "StoreConfig": "{\"ExpirationScanFrequency\":\"00:05:00\"}"
+      },
+      {
+        "Name": "SqlServer",
+        "Type": "Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType,Pavalisoft.Caching.SqlServer",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
+        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost;Initial Catalog=DistributedCache;Integrated Security=True\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+      },
+      {
+        "Name": "MySql",
+        "Type": "Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType,Pavalisoft.Caching.MySql",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
+        "StoreConfig": "{\"ExpiredItemsDeletionInterval\":\"00:05:00\", \"ConnectionString\":\"Data Source=localhost;User Id=root;Password=root;Allow User Variables=true\", \"SchemaName\":\"store\", \"TableName\":\"Cache\", \"DefaultSlidingExpiration\":\"00:05:00\"}"
+      },
+      {
+        "Name": "Redis",
+        "Type": "Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType,Pavalisoft.Caching.Redis",
+        "SerializerType": "Pavalisoft.Caching.Serializers.JsonSerializer,Pavalisoft.Caching",
+        "StoreConfig": "{\"Configuration\":\"00:05:00\", \"InstanceName\":\"localhost\"}"
+      }
+    ],
+    "Partitions": [
+      {
+        "Name": "FrequentData",
+        "StoreName": "InMemory",
+        "SlidingExpiration": "00:05:00"
+      },
+      {
+        "Name": "DistributedFrequentData",
+        "StoreName": "DistributedInMemory",
+        "SlidingExpiration": "00:05:00"
+      },
+      {
+        "Name": "MySqlLocalizationData",
+        "StoreName": "MySql",
+        "Priority": "NeverRemove"
+      },
+      {
+        "Name": "LocalizationData",
+        "StoreName": "SqlServer",
+        "Priority": "NeverRemove"
+      },
+      {
+        "Name": "MasterData",
+        "StoreName": "Redis",
+        "SlidingExpiration": "00:05:00"
+      }
+    ]
+  }
+}
+```
+
+2. Add [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) to services
+
+```csharp
+...
+//Import the below namespace to use InMemory and DitributedInMemory cache store implementations
+using Pavalisoft.Caching.InMemory;
+//Import the below namespace to use MySql cache store implementation
+using Pavalisoft.Caching.MySql;
+//Import the below namespace to use Redis Cache Store implementation
+using Pavalisoft.Caching.Redis;
+//Import the below namespace to use SqlServer Cache Store implementation
+using Pavalisoft.Caching.SqlServer;
+...
+
+namespace Pavalisoft.Caching.Sample
+{
+    public class Startup
+    {
+		...
+        public Startup(IConfiguration configuration)
+        {
+			...
+            Configuration = configuration;
+			...
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            ...
+            // Adds CacheManager servcice to services
+            services.AddCaching()
+                // Adds InMemory and Distributed InMemory Cache Store implementations to CacheManager
+                .AddInMemoryCache()
+                // Adds MySql Cache Store implementations to CacheManager
+                .AddMySqlCache()
+                // Adds Redis Cache Store implementations to CacheManager
+                .AddRedisCache()
+                // Adds SqlServer Cache Store implementations to CacheManager
+                .AddSqlServerCache();
+			...
+        }
+		...
+    }
+}
+```
+
+3. Use [CacheManager](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_manager.html) methods to add, get, refresh and remove items in Cache.
+
+```csharp
+// Add required using statements
+using Pavalisoft.Caching;
+using Pavalisoft.Caching.Interfaces;
+using Microsoft.Extensions.Primitives;
+using System;
+
+namespace Pavalisoft.Caching.Sample
+{
+	public class CachingSample
+	{
+		private const string CachePartitionName = "FrequentData";		
+		private readonly ICacheManager _cacheManager;
+		public CachingSample(ICacheManager cacheManager)
+		{
+			_cacheManager = cacheManager;
+		}
+
+		public AppUser GetAppUser(HttpContext httpContext)
+		{
+			var userName = httpContext.User.Identity.Name;
+			AppUser appUser;
+			
+			// Try to get the appUser from cache
+			if (!_cacheManager.TryGetValue(CachePartitionName, userName, out appUser))
+			{
+				// If not available in Cache then create new instance of AppUser
+				appUser = new AppUser(userName);
+
+				// Add appUser object to Cache
+				_cacheManager.Set(CachePartitionName, userName, appUser);                `
+			}
+			return appUser;
+		}
+	}
+}
+```
+
+4. To use `pavalisoft-cache` tag helper, add the below to _ViewImport.cshtml
+
+```csharp
+@using Pavalisoft.Caching.TagHelpers
+@using Pavalisoft.Caching.InMemory
+@using Pavalisoft.Caching.Redis
+@using Pavalisoft.Caching.MySql
+@using Pavalisoft.Caching.SqlServer
+@addTagHelper *, Pavalisoft.Caching.TagHelpers
+```
+
+5. Use the `pavalisoft-cache` tag helper in the view wherever required.
+
+```html
+<div class="col-md-12">
+    <h2>Pavalisoft Cache TagHelper</h2>
+    <div class="row">
+        <pavalisoft-cache cache-partition="FrequentData">
+            This will be cached in server memory. expires-after 05 minutes
+        </pavalisoft-cache>
+    </div>
+    <div class="row">
+        <pavalisoft-cache cache-partition="DistributedFrequentData">
+            This will be cached in server distributed memory. expires-sliding (05 minutes)
+        </pavalisoft-cache>
+    </div>
+    <div class="row">
+        <pavalisoft-cache cache-partition="MySqlLocalizationData">
+            This will be cached in MySQL distributed memory. expires-after 05 minutes
+        </pavalisoft-cache>
+    </div>
+    <div class="row">
+        <pavalisoft-cache cache-partition="LocalizationData">
+            This will be cached in Sql Server distributed memory. expires-after 05 minutes
+        </pavalisoft-cache>
+    </div>
+    <div class="row">
+        <pavalisoft-cache cache-partition="MasterData">
+            This will be cached in Redis distributed memory. expires-sliding (05 minutes)
+        </pavalisoft-cache>
+    </div>
+</div>
 ```
 
 ## Serializers
