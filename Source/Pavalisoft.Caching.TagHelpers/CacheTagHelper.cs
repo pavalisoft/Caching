@@ -15,16 +15,14 @@
 */
 
 using System;
-using System.Diagnostics;
+using System.Collections.Concurrent;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.Extensions.Primitives;
 using Pavalisoft.Caching.Interfaces;
 
 namespace Pavalisoft.Caching.TagHelpers
@@ -40,13 +38,7 @@ namespace Pavalisoft.Caching.TagHelpers
     [HtmlTargetElement("pavalisoft-cache")]
     public class CacheTagHelper : CacheTagHelperBase
     {
-        /// <summary>
-        /// Prefix used by <see cref="CacheTagHelper"/> instances when creating entries in <see cref="ICache"/>.
-        /// </summary>
-        public static readonly string CacheKeyPrefix = nameof(CacheTagHelper);
-
-        //private const string NameAttributeName = "name";
-
+        private readonly ConcurrentDictionary<CacheTagKey, Task<IHtmlContent>> _workers;
         private readonly ICacheManager _cacheManager;
 
         /// <summary>
@@ -59,6 +51,7 @@ namespace Pavalisoft.Caching.TagHelpers
             : base(htmlEncoder)
         {
             _cacheManager = cacheManager;
+            _workers = new ConcurrentDictionary<CacheTagKey, Task<IHtmlContent>>();
         }
 
         /// <inheritdoc />
@@ -78,129 +71,182 @@ namespace Pavalisoft.Caching.TagHelpers
             if (Enabled)
             {
                 var cacheKey = new CacheTagKey(this, context);
-                if (!_cacheManager.TryGetValue(CachePartition, cacheKey.GenerateHashedKey(), out Task<IHtmlContent> cachedResult))
-                {
-                    cachedResult = AddToCache(output, cacheKey);
-                }
 
-                content = await GetContent(cachedResult);
+                content = await ProcessContentAsync(output, cacheKey);
             }
             else
             {
                 content = await output.GetChildContentAsync();
             }
 
-            // Clear the contents of the "cache" element since we don't want to render it.
             output.SuppressOutput();
             output.Content.SetHtmlContent(content);
         }
 
-        private static async Task<IHtmlContent> GetContent(Task<IHtmlContent> cachedResult)
+        private async Task<IHtmlContent> ProcessContentAsync(TagHelperOutput output, CacheTagKey key)
         {
-            TaskCompletionSource<IHtmlContent> tcs = new TaskCompletionSource<IHtmlContent>(TaskCreationOptions.RunContinuationsAsynchronously);
-            IHtmlContent content;
-            try
+            IHtmlContent content = null;
+            while (content == null)
             {
-                content = await cachedResult;
-                tcs.SetResult(content);
-            }
-            catch (Exception ex)
-            {
-                tcs.TrySetException(ex);
-                throw;
-            }
+                Task<IHtmlContent> result;
+                if (!_workers.TryGetValue(key, out result))
+                {
+                    var tcs = new TaskCompletionSource<IHtmlContent>(creationOptions: TaskCreationOptions.RunContinuationsAsynchronously);
 
+                    _workers.TryAdd(key, tcs.Task);
+
+                    try
+                    {
+                        var serializedKey = Encoding.UTF8.GetBytes(key.GenerateKey());
+                        var storageKey = key.GenerateHashedKey();
+                        var value = await GetAsync(storageKey);
+
+                        if (value == null)
+                        {
+                            var processedContent = await output.GetChildContentAsync();
+
+                            var stringBuilder = new StringBuilder();
+                            using (var writer = new StringWriter(stringBuilder))
+                            {
+                                processedContent.WriteTo(writer, HtmlEncoder);
+                            }
+
+                            HtmlString htmlString = new HtmlString(stringBuilder.ToString());
+
+                            value = await SerializeAsync(htmlString);
+
+                            var encodeValue = Encode(value, serializedKey);
+
+                            await SetAsync(storageKey, encodeValue);
+
+                            content = htmlString;
+                        }
+                        else
+                        {
+                            byte[] decodedValue = Decode(value, serializedKey);
+
+                            try
+                            {
+                                if (decodedValue != null)
+                                {
+                                    content = await DeserializeAsync(decodedValue);
+                                }
+                            }
+                            catch
+                            {
+                                throw;
+                            }
+                            finally
+                            {
+                                if (content == null)
+                                {
+                                    content = await output.GetChildContentAsync();
+                                }
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        content = null;
+                        throw;
+                    }
+                    finally
+                    {
+                        _workers.TryRemove(key, out result);
+                        tcs.TrySetResult(content);
+                    }
+                }
+            }
             return content;
         }
 
-        private Task<IHtmlContent> AddToCache(TagHelperOutput output, CacheTagKey cacheKey)
+        #region ICacheManager
+        private Task<byte[]> GetAsync(string key)
         {
-            using (var tokenSource = new CancellationTokenSource())
+            if (key == null)
             {
-                IChangeToken taskToken = new CancellationChangeToken(tokenSource.Token);
-
-                try
-                {
-                    // There is either some value already not cached (as a Task) or a worker processing the output.                    
-                    Task<IHtmlContent> cachedResult = ProcessContentAsync(output);
-                    _cacheManager.Set(CachePartition, cacheKey.GenerateHashedKey(), cachedResult, taskToken);
-                    return cachedResult;
-                }
-                catch
-                {
-                    tokenSource.Cancel();
-                    throw;
-                }
-            }            
+                throw new ArgumentNullException(nameof(key));
+            }
+            string htmlString = _cacheManager.GetAsync<string>(CachePartition, key).Result;
+            return Task.FromResult(string.IsNullOrWhiteSpace(htmlString) ? (byte[])null : Convert.FromBase64String(htmlString));
         }
 
-        private async Task<IHtmlContent> ProcessContentAsync(TagHelperOutput output)
+        private Task SetAsync(string key, byte[] value)
         {
-            var content = await output.GetChildContentAsync();
-
-            using (var writer = new CharBufferTextWriter())
+            if (key == null)
             {
-                content.WriteTo(writer, HtmlEncoder);
-                return new CharBufferHtmlContent(writer.Buffer);
+                throw new ArgumentNullException(nameof(key));
+            }
+
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+            return _cacheManager.SetAsync(CachePartition, key, Convert.ToBase64String(value));
+        }
+        #endregion
+
+        #region HtmlString Serialization
+        private Task<byte[]> SerializeAsync(HtmlString html)
+        {
+            if (html == null)
+            {
+                throw new ArgumentNullException(nameof(html));
+            }
+
+            var serialized = Encoding.UTF8.GetBytes(html.ToString());
+            return Task.FromResult(serialized);
+        }
+
+        private Task<HtmlString> DeserializeAsync(byte[] value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            var content = Encoding.UTF8.GetString(value);
+            return Task.FromResult(new HtmlString(content));
+        }
+        #endregion
+
+        #region HtmlString Formating
+        private byte[] Encode(byte[] value, byte[] serializedKey)
+        {
+            using (var buffer = new MemoryStream())
+            {
+                var keyLength = BitConverter.GetBytes(serializedKey.Length);
+
+                buffer.Write(keyLength, 0, keyLength.Length);
+                buffer.Write(serializedKey, 0, serializedKey.Length);
+                buffer.Write(value, 0, value.Length);
+
+                return buffer.ToArray();
             }
         }
 
-        private class CharBufferTextWriter : TextWriter
+        private byte[] Decode(byte[] value, byte[] expectedKey)
         {
-            public CharBufferTextWriter()
+            byte[] decoded = null;
+
+            using (var buffer = new MemoryStream(value))
             {
-                Buffer = new PagedCharBuffer(CharArrayBufferSource.Instance);
-            }
+                var keyLengthBuffer = new byte[sizeof(int)];
+                buffer.Read(keyLengthBuffer, 0, keyLengthBuffer.Length);
 
-            public override Encoding Encoding => Null.Encoding;
+                var keyLength = BitConverter.ToInt32(keyLengthBuffer, 0);
+                var serializedKeyBuffer = new byte[keyLength];
+                buffer.Read(serializedKeyBuffer, 0, serializedKeyBuffer.Length);
 
-            public PagedCharBuffer Buffer { get; }
-
-            public override void Write(char value)
-            {
-                Buffer.Append(value);
-            }
-
-            public override void Write(char[] buffer, int index, int count)
-            {
-                Buffer.Append(buffer, index, count);
-            }
-
-            public override void Write(string value)
-            {
-                Buffer.Append(value);
-            }
-        }
-
-        private class CharBufferHtmlContent : IHtmlContent
-        {
-            private readonly PagedCharBuffer _buffer;
-
-            public CharBufferHtmlContent(PagedCharBuffer buffer)
-            {
-                _buffer = buffer;
-            }
-
-            public PagedCharBuffer Buffer => _buffer;
-
-            public void WriteTo(TextWriter writer, HtmlEncoder encoder)
-            {
-                var length = Buffer.Length;
-                if (length == 0)
+                if (serializedKeyBuffer.SequenceEqual(expectedKey))
                 {
-                    return;
+                    decoded = new byte[value.Length - keyLengthBuffer.Length - serializedKeyBuffer.Length];
+                    buffer.Read(decoded, 0, decoded.Length);
                 }
-
-                for (var i = 0; i < Buffer.Pages.Count; i++)
-                {
-                    var page = Buffer.Pages[i];
-                    var pageLength = Math.Min(length, page.Length);
-                    writer.Write(page, index: 0, count: pageLength);
-                    length -= pageLength;
-                }
-
-                Debug.Assert(length == 0);
             }
+
+            return decoded;
         }
+        #endregion
     }
 }
