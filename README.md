@@ -12,7 +12,7 @@ The below diagram explains the [Pavalisoft.Caching](https://www.nuget.org/packag
 Complete Documentation is available at https://pavalisoft.github.io/Caching/ for [Pavalisoft.Caching](https://github.com/pavalisoft/Caching) API
 Refer https://github.com/pavalisoft/Caching/tree/master/Samples for reference implementations
 
-## Usage
+## Cache Manager Usage
 
 1. Define the [Cache Stores](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#abacbfb422d22fd66190f2350901b8797) and [Partitions](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#a132238e26cb3fd3005fb2ebdcc36a36f) in Caching configuration section in appSettings.json.
 
@@ -169,7 +169,7 @@ namespace Pavalisoft.Caching.Sample
 }
 ```
 
-## Usage
+## Cache Tag Helper Usage
 
 1. Define the [Cache Stores](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#abacbfb422d22fd66190f2350901b8797) and [Partitions](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_settings.html#a132238e26cb3fd3005fb2ebdcc36a36f) in Caching configuration section in appSettings.json.
 
