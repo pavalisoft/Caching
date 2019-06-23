@@ -6,18 +6,13 @@
     <members>
         <member name="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper">
             <summary>
-            <see cref="T:Microsoft.AspNetCore.Razor.TagHelpers.TagHelper"/> implementation targeting &lt;cache&gt; elements.
+            <see cref="T:Microsoft.AspNetCore.Razor.TagHelpers.TagHelper"/> implementation targeting &lt;pavalisoft-cache&gt; elements.
             </summary>
             <example> The below is the usage example
-            <cache enabled="true">
+            <pavalisoft-cache enabled="true" cache-partition="FrequentData">
                Current Time Inside Cache Tag Helper: @DateTime.Now
-            </cache>
+            </pavalisoft-cache>
             </example>
-        </member>
-        <member name="F:Pavalisoft.Caching.TagHelpers.CacheTagHelper.CacheKeyPrefix">
-            <summary>
-            Prefix used by <see cref="T:Pavalisoft.Caching.TagHelpers.CacheTagHelper"/> instances when creating entries in <see cref="T:Pavalisoft.Caching.Interfaces.ICache"/>.
-            </summary>
         </member>
         <member name="M:Pavalisoft.Caching.TagHelpers.CacheTagHelper.#ctor(Pavalisoft.Caching.Interfaces.ICacheManager,System.Text.Encodings.Web.HtmlEncoder)">
             <summary>

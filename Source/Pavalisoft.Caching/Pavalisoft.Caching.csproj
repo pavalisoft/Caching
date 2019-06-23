@@ -7,8 +7,8 @@
     <DelaySign>false</DelaySign>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>Venkataswamy Pavali</Authors>
-    <Company>https://github.com/pavalisoft</Company>
-    <Description>Pavalisoft.Caching is an open source caching extension for .NET written in C# to provide single unified API for both MemoryCache and DistributedCache implementations. It's additional feature CacheManager supports various cache providers and implements many advanced features which can be used in single project/application.
+    <Company>https://www.pavalisoft.com</Company>
+    <Description>Pavalisoft.Caching is .NET Standard caching extension for .NET written in C# to provide single unified API for both MemoryCache and DistributedCache implementations. It's additional feature CacheManager supports various cache providers and implements many advanced features which can be used in single project/application.
 
 Refer https://pavalisoft.github.io/Caching/ for complete API Documentation.
 
@@ -20,7 +20,7 @@ With Pavalisoft.Caching, it is possible to implement multiple layers of caching 
     <RepositoryUrl>https://github.com/pavalisoft/Caching</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>Cache Tag Helpers created (Pavalisoft.Caching.TagHelpers) which used Pavalisoft.Caching.
+    <PackageReleaseNotes>Cache Tag Helpers created (Pavalisoft.Caching.TagHelpers) which uses Pavalisoft.Caching.
 Separated Cache Stores from Pavalisoft.Caching to 
 - Pavalisoft.Caching.InMemory
 - Pavalisoft.Caching.MySql

@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Venkataswamy Pavali</Authors>
-    <Company>https://github.com/pavalisoft</Company>
-    <Description>Pavalisoft.Caching.InMemory is a Cache store implementation of InMemory and MemoryDistributed implementations of Pavalisoft.Caching</Description>
+    <Company>https://www.pavalisoft.com</Company>
+    <Description>Pavalisoft.Caching.InMemory is a Pavalisoft.Caching specific Cache store implementation of InMemory and MemoryDistributed cache</Description>
     <Copyright>Copyright (c) 2019 Pavalisoft</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://www.nuget.org/packages/Pavalisoft.Caching.InMemory/</PackageProjectUrl>

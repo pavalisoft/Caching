@@ -37,6 +37,12 @@
             Provides <see cref="T:Pavalisoft.Caching.MySql.ExtendedMySqlCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
             </summary>
         </member>
+        <member name="M:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.#ctor(Pavalisoft.Caching.Interfaces.ISerializer)">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> with <paramref name="serializer"/> serializer.
+            </summary>
+            <param name="serializer">The <see cref="T:Pavalisoft.Caching.Interfaces.ISerializer"/>serializer. </param>
+        </member>
         <member name="P:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.CacheOptions">
             <summary>
             Gets or Sets <see cref="T:Pomelo.Extensions.Caching.MySql.MySqlCacheOptions"/>
@@ -45,53 +51,32 @@
         <member name="P:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.CachePartitions">
             <inheritdoc />
         </member>
-        <member name="P:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.CacheType">
+        <member name="P:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.Serializer">
+            <inheritdoc />
+        </member>
+        <member name="M:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore.CreatePartition(Pavalisoft.Caching.CachePartitionDefinition)">
             <summary>
-            Gets Cache Type as <see cref="T:Pavalisoft.Caching.MySql.ExtendedMySqlCache"/>
+            Creates <see cref="T:Pavalisoft.Caching.CachePartition"/> in <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> using <see cref="T:Pavalisoft.Caching.CachePartitionDefinition"/>
             </summary>
+            <returns><see cref="T:Pavalisoft.Caching.CachePartition"/> object created in <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/></returns>
         </member>
         <member name="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType">
             <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.MySql.MySqlStoreInfo"/>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> from <see cref="!:MySqlStoreInfo"/>
             </summary>
         </member>
-        <member name="M:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+        <member name="M:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType.#ctor(System.IServiceProvider)">
             <summary>
-            Creates <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType"/> with <see cref="T:System.IServiceProvider"/>
             </summary>
-            <param name="cacheStoreInfo">MySQL <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
+            <param name="serviceProvider">The <see cref="T:System.IServiceProvider"/> instance. </param>
+        </member>
+        <member name="M:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreDefinition)">
+            <summary>
+            Creates <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/>
+            </summary>
+            <param name="cacheStoreInfo">MySQL <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/> configuration</param>
             <returns><see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> object</returns>
-        </member>
-        <member name="T:Pavalisoft.Caching.MySql.MySqlStoreInfo">
-            <summary>
-            Represents MySQL Cache Store Configuration Information
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.ExpiredItemsDeletionInterval">
-            <summary>
-            Gets ot Sets the periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.ConnectionString">
-            <summary>
-            Gets or Sets the connection string to the database.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.SchemaName">
-            <summary>
-            Gets or Sets the schema name of the cache table.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.TableName">
-            <summary>
-            Gets or Sets the Name of the table where the cache items are stored.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.MySql.MySqlStoreInfo.DefaultSlidingExpiration">
-            <summary>
-            The default sliding expiration set for a cache entry if neither Absolute or SlidingExpiration has been set explicitly.
-            By default, its 20 minutes.
-            </summary>
         </member>
         <member name="T:Pavalisoft.Caching.MySql.ServiceCollectionExtensions">
             <summary>

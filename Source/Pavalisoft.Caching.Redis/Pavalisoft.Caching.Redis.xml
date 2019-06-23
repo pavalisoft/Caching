@@ -37,6 +37,12 @@
             Provides <see cref="T:Pavalisoft.Caching.Redis.ExtendedRedisCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
             </summary>
         </member>
+        <member name="M:Pavalisoft.Caching.Redis.RedisDistributedCacheStore.#ctor(Pavalisoft.Caching.Interfaces.ISerializer)">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> with <paramref name="serializer"/> serializer.
+            </summary>
+            <param name="serializer">The <see cref="T:Pavalisoft.Caching.Interfaces.ISerializer"/>serializer. </param>
+        </member>
         <member name="P:Pavalisoft.Caching.Redis.RedisDistributedCacheStore.CacheOptions">
             <summary>
             Gets or Sets <see cref="T:Microsoft.Extensions.Caching.Redis.RedisCacheOptions"/>
@@ -45,37 +51,32 @@
         <member name="P:Pavalisoft.Caching.Redis.RedisDistributedCacheStore.CachePartitions">
             <inheritdoc />
         </member>
-        <member name="P:Pavalisoft.Caching.Redis.RedisDistributedCacheStore.CacheType">
+        <member name="P:Pavalisoft.Caching.Redis.RedisDistributedCacheStore.Serializer">
+            <inheritdoc />
+        </member>
+        <member name="M:Pavalisoft.Caching.Redis.RedisDistributedCacheStore.CreatePartition(Pavalisoft.Caching.CachePartitionDefinition)">
             <summary>
-            Gets Cache Type <see cref="T:Pavalisoft.Caching.Redis.ExtendedRedisCache"/>
+            Creates <see cref="T:Pavalisoft.Caching.CachePartition"/> in <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> using <see cref="T:Pavalisoft.Caching.CachePartitionDefinition"/>
             </summary>
+            <returns><see cref="T:Pavalisoft.Caching.CachePartition"/> object created in <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/></returns>
         </member>
         <member name="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType">
             <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.Redis.RedisStoreInfo"/>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> from <see cref="!:RedisStoreInfo"/>
             </summary>
         </member>
-        <member name="M:Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+        <member name="M:Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType.#ctor(System.IServiceProvider)">
             <summary>
-            Creates <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration
+            Creates an instance of <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType"/> with <see cref="T:System.IServiceProvider"/>
             </summary>
-            <param name="cacheStoreInfo">Redis <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
+            <param name="serviceProvider">The <see cref="T:System.IServiceProvider"/> instance. </param>
+        </member>
+        <member name="M:Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreDefinition)">
+            <summary>
+            Creates <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/> configuration
+            </summary>
+            <param name="cacheStoreInfo">Redis <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/> configuration</param>
             <returns><see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> object</returns>
-        </member>
-        <member name="T:Pavalisoft.Caching.Redis.RedisStoreInfo">
-            <summary>
-            Represents Redis Cache Store Configuration Information
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Redis.RedisStoreInfo.Configuration">
-            <summary>
-            Gets or Sets the configuration used to connect to Redis.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.Redis.RedisStoreInfo.InstanceName">
-            <summary>
-            Gets or Sets the Redis instance name.
-            </summary>
         </member>
         <member name="T:Pavalisoft.Caching.Redis.ServiceCollectionExtensions">
             <summary>

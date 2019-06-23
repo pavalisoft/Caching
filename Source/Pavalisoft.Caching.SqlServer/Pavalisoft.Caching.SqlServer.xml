@@ -49,6 +49,12 @@
             Provides <see cref="T:Pavalisoft.Caching.SqlServer.ExtendedSqlServerCache"/> version of the <see cref="T:Pavalisoft.Caching.Interfaces.ICacheStore`1"/>
             </summary>
         </member>
+        <member name="M:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore.#ctor(Pavalisoft.Caching.Interfaces.ISerializer)">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> with <paramref name="serializer"/> serializer.
+            </summary>
+            <param name="serializer">The <see cref="T:Pavalisoft.Caching.Interfaces.ISerializer"/>serializer. </param>
+        </member>
         <member name="P:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore.CacheOptions">
             <summary>
             Gets or Sets <see cref="T:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions"/>
@@ -57,53 +63,32 @@
         <member name="P:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore.CachePartitions">
             <inheritdoc />
         </member>
-        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore.CacheType">
+        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore.Serializer">
+            <inheritdoc />
+        </member>
+        <member name="M:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore.CreatePartition(Pavalisoft.Caching.CachePartitionDefinition)">
             <summary>
-            Gets Cache Type as <see cref="T:Pavalisoft.Caching.SqlServer.ExtendedSqlServerCache"/>
+            Creates <see cref="T:Pavalisoft.Caching.CachePartition"/> in <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> using <see cref="T:Pavalisoft.Caching.CachePartitionDefinition"/>
             </summary>
+            <returns><see cref="T:Pavalisoft.Caching.CachePartition"/> object created in <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/></returns>
         </member>
         <member name="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType">
             <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo"/>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> from <see cref="!:SqlServerStoreInfo"/>
             </summary>
         </member>
-        <member name="M:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+        <member name="M:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType.#ctor(System.IServiceProvider)">
             <summary>
-            Creates <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType"/> with <see cref="T:System.IServiceProvider"/>
             </summary>
-            <param name="cacheStoreInfo">SQL Server <see cref="T:Pavalisoft.Caching.CacheStoreInfo"/> configuration</param>
+            <param name="serviceProvider">The <see cref="T:System.IServiceProvider"/> instance. </param>
+        </member>
+        <member name="M:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreDefinition)">
+            <summary>
+            Creates <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/>
+            </summary>
+            <param name="cacheStoreInfo">SQL Server <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/> configuration</param>
             <returns><see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> object</returns>
-        </member>
-        <member name="T:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo">
-            <summary>
-            Represents SQL Server Cache Store Configuration Information
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.ExpiredItemsDeletionInterval">
-            <summary>
-            Gets ot Sets the periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.ConnectionString">
-            <summary>
-            Gets or Sets the connection string to the database.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.SchemaName">
-            <summary>
-            Gets or Sets the schema name of the cache table.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.TableName">
-            <summary>
-            Gets or Sets the Name of the table where the cache items are stored.
-            </summary>
-        </member>
-        <member name="P:Pavalisoft.Caching.SqlServer.SqlServerStoreInfo.DefaultSlidingExpiration">
-            <summary>
-            The default sliding expiration set for a cache entry if neither Absolute or SlidingExpiration has been set explicitly.
-            By default, its 20 minutes.
-            </summary>
         </member>
     </members>
 </doc>

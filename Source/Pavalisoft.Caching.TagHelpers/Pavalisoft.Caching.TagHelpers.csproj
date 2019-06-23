@@ -6,13 +6,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseFile></PackageLicenseFile>
     <Authors>Venkataswamy Pavali</Authors>
-    <Company>https://github.com/pavalisoft</Company>
+    <Company>https://www.pavalisoft.com</Company>
     <Description>ASP.NET Core MVC Cache Tag Helper using Pavalisoft.Caching</Description>
     <Copyright>Copyright (c) 2019 Pavalisoft</Copyright>
     <PackageProjectUrl>https://www.nuget.org/packages/Pavalisoft.Caching.TagHelpers/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pavalisoft/Caching</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes>Separated Cache TagHelper implementation from Pavalisoft.Caching
+    <PackageReleaseNotes>Cache TagHelper implementation from Pavalisoft.Caching
 Sample Cache TahHelper implematation samples added
 - Pavalisoft.Caching.SampleWeb</PackageReleaseNotes>
     <NeutralLanguage>English</NeutralLanguage>

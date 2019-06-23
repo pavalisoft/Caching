@@ -33,12 +33,6 @@
             </summary>
             <typeparam name="T">Custom Cache Store Type</typeparam>
         </member>
-        <member name="M:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.#ctor(System.Type)">
-            <summary>
-            Creates an instance of <see cref="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1"/>
-            </summary>
-            <param name="cacheType">Cache Store type</param>
-        </member>
         <member name="P:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.CacheOptions">
             <summary>
             Gets or Sets Custom Distributed Cache Options
@@ -47,22 +41,32 @@
         <member name="P:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.CachePartitions">
             <inheritdoc />
         </member>
-        <member name="P:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.CacheType">
+        <member name="P:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.Serializer">
+            <inheritdoc />
+        </member>
+        <member name="M:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.CreatePartition(Pavalisoft.Caching.CachePartitionDefinition)">
             <summary>
-            Gets Cache Type
+            Creates <see cref="T:Pavalisoft.Caching.CachePartition"/> in <see cref="!:RedisDistributedCacheStore"/> using <see cref="T:Pavalisoft.Caching.CachePartitionDefinition"/>
             </summary>
+            <returns><see cref="T:Pavalisoft.Caching.CachePartition"/> object created in <see cref="!:RedisDistributedCacheStore"/></returns>
         </member>
         <member name="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStoreType">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Pavalisoft.Caching.Custom.CustomDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreInfo)">
+        <member name="M:Pavalisoft.Caching.Custom.CustomDistributedCacheStoreType.#ctor(System.IServiceProvider)">
             <summary>
-            
+            Creates an instance of <see cref="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStoreType"/> with <see cref="T:System.IServiceProvider"/>
             </summary>
-            <param name="cacheStoreInfo"></param>
-            <returns></returns>
+            <param name="serviceProvider">The <see cref="T:System.IServiceProvider"/> instance. </param>
+        </member>
+        <member name="M:Pavalisoft.Caching.Custom.CustomDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreDefinition)">
+            <summary>
+            Creates <see cref="!:RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/> configuration
+            </summary>
+            <param name="cacheStoreInfo">Redis <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/> configuration</param>
+            <returns><see cref="!:CustomDistributedCacheStore"/> object</returns>
         </member>
         <member name="T:Pavalisoft.Caching.Custom.ServiceCollectionExtensions">
             <summary>

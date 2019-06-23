@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Venkataswamy Pavali</Authors>
-    <Company>https://github.com/pavalisoft</Company>
+    <Company>https://www.pavalisoft.com</Company>
     <Description>Pavalisoft.Caching.SqlServer is a Cache store implementation of Pavalisoft.Caching</Description>
     <Copyright>Copyright (c) 2019 Pavalisoft</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
