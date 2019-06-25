@@ -36,9 +36,10 @@ Sample Projects added to all types of Cache Stores
 - Pavalisoft.Caching.SqlServer.Sample
 - Pavalisoft.Caching.SqlServer.ConcurencySample</PackageReleaseNotes>
     <PackageTags>caching;memorycache;distributedcache;caching;cache-manager;cachemanager</PackageTags>
-    <AssemblyOriginatorKeyFile>..\..\Pavalisoft.Caching.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\..\Pavalisoft.pfx</AssemblyOriginatorKeyFile>
     <Version>1.2</Version>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageIconUrl>https://secure.gravatar.com/avatar/7967778615733d0a09563016e438f8f5?s=512&amp;r=g&amp;d=retro</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

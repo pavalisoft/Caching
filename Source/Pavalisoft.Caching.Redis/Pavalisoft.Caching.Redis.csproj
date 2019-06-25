@@ -9,7 +9,7 @@
     <Copyright>Copyright (c) 2019 Pavalisoft</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://www.nuget.org/packages/Pavalisoft.Caching.Redis/</PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
+    <PackageIconUrl>https://secure.gravatar.com/avatar/7967778615733d0a09563016e438f8f5?s=512&amp;r=g&amp;d=retro</PackageIconUrl>
     <RepositoryUrl>https://github.com/pavalisoft/Caching</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>caching;memorycache;distributedcache;caching;cache-manager;cachemanager;redis;ditributedcache</PackageTags>
@@ -20,7 +20,7 @@ Sample Redis Cache Store implematation samples added
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyOriginatorKeyFile>..\..\Pavalisoft.Caching.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\..\Pavalisoft.pfx</AssemblyOriginatorKeyFile>
     <Version>1.0.0</Version>
   </PropertyGroup>
 

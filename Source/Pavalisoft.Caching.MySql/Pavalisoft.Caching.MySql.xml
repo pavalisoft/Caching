@@ -62,7 +62,7 @@
         </member>
         <member name="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType">
             <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> from <see cref="!:MySqlStoreInfo"/>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.MySql.MySqlDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/>
             </summary>
         </member>
         <member name="M:Pavalisoft.Caching.MySql.MySqlDistributedCacheStoreType.#ctor(System.IServiceProvider)">

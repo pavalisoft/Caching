@@ -74,7 +74,7 @@
         </member>
         <member name="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType">
             <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> from <see cref="!:SqlServerStoreInfo"/>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/>
             </summary>
         </member>
         <member name="M:Pavalisoft.Caching.SqlServer.SqlServerDistributedCacheStoreType.#ctor(System.IServiceProvider)">

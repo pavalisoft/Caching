@@ -965,6 +965,11 @@
         <member name="M:Pavalisoft.Caching.Serializers.BinaryFormatterSerializer.SerializeAsync``1(``0)">
             <inheritdoc />
         </member>
+        <member name="T:Pavalisoft.Caching.Serializers.DefaultSerializer">
+            <summary>
+            Represents the Object to byte array serialiser used while storing cache object in Distributed Cache.
+            </summary>
+        </member>
         <member name="T:Pavalisoft.Caching.Serializers.JsonSerializer">
             <summary>
             Json implementation of Cache object <see cref="T:Pavalisoft.Caching.Interfaces.ISerializer"/>

@@ -22,7 +22,7 @@ using System;
 namespace Pavalisoft.Caching.SqlServer
 {
     /// <summary>
-    /// Provides implementation to create <see cref="SqlServerDistributedCacheStore"/> from <see cref="SqlServerStoreInfo"/>
+    /// Provides implementation to create <see cref="SqlServerDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/>
     /// </summary>
     public class SqlServerDistributedCacheStoreType : ICacheStoreType
     {

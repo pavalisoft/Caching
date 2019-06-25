@@ -62,7 +62,7 @@
         </member>
         <member name="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType">
             <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> from <see cref="!:RedisStoreInfo"/>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.Redis.RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/>
             </summary>
         </member>
         <member name="M:Pavalisoft.Caching.Redis.RedisDistributedCacheStoreType.#ctor(System.IServiceProvider)">

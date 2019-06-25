@@ -22,7 +22,7 @@ using System;
 namespace Pavalisoft.Caching.Redis
 {
     /// <summary>
-    /// Provides implementation to create <see cref="RedisDistributedCacheStore"/> from <see cref="RedisStoreInfo"/>
+    /// Provides implementation to create <see cref="RedisDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/>
     /// </summary>
     public class RedisDistributedCacheStoreType : ICacheStoreType
     {

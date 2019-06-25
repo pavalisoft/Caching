@@ -22,7 +22,7 @@ using System;
 namespace Pavalisoft.Caching.InMemory
 {
     /// <summary>
-    /// Provides implementation to create <see cref="MemoryDistributedCacheStore"/> from <see cref="MemoryStoreInfo"/>
+    /// Provides implementation to create <see cref="MemoryDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/>
     /// </summary>
     public class MemoryDistributedCacheStoreType : ICacheStoreType
     {

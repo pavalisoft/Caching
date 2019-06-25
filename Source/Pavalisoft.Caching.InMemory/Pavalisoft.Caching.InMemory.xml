@@ -89,6 +89,18 @@
             <param name="options">Distributed cache options. <see cref="T:Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions"/></param>
             <param name="token"><see cref="T:System.Threading.CancellationToken"/> to be used while setting cache item</param>
         </member>
+        <member name="M:Pavalisoft.Caching.InMemory.ExtendedMemoryCache.Pavalisoft#Caching#Interfaces#IExtendedMemoryCache#Get(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Pavalisoft.Caching.InMemory.ExtendedMemoryCache.Pavalisoft#Caching#Interfaces#IExtendedMemoryCache#GetAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Pavalisoft.Caching.InMemory.ExtendedMemoryCache.Set(System.String,System.Object,Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Pavalisoft.Caching.InMemory.ExtendedMemoryCache.SetAsync(System.String,System.Object,Pavalisoft.Caching.Cache.ExtendedDistributedCacheEntryOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:Pavalisoft.Caching.InMemory.ExtendedMemoryDistributedCache">
             <summary>
             Provides distributed cache implementation using <see cref="T:Microsoft.Extensions.Caching.Memory.MemoryCache"/>
@@ -176,7 +188,7 @@
         </member>
         <member name="T:Pavalisoft.Caching.InMemory.InMemoryCacheStoreType">
             <summary>
-            Provides implementation to create <see cref="!:MemoryStoreInfo"/> from <see cref="T:Pavalisoft.Caching.InMemory.MemoryDistributedCacheStore"/>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.InMemory.InMemoryStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/>
             </summary>
         </member>
         <member name="M:Pavalisoft.Caching.InMemory.InMemoryCacheStoreType.#ctor(System.IServiceProvider)">
@@ -250,7 +262,7 @@
         </member>
         <member name="T:Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType">
             <summary>
-            Provides implementation to create <see cref="T:Pavalisoft.Caching.InMemory.MemoryDistributedCacheStore"/> from <see cref="!:MemoryStoreInfo"/>
+            Provides implementation to create <see cref="T:Pavalisoft.Caching.InMemory.MemoryDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/>
             </summary>
         </member>
         <member name="M:Pavalisoft.Caching.InMemory.MemoryDistributedCacheStoreType.#ctor(System.IServiceProvider)">

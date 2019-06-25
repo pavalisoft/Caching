@@ -42,9 +42,9 @@ namespace Pavalisoft.Caching.Custom
         public ISerializer Serializer { get; } = new DefaultSerializer();
 
         /// <summary>
-        /// Creates <see cref="CachePartition"/> in <see cref="RedisDistributedCacheStore"/> using <see cref="CachePartitionDefinition"/>
+        /// Creates <see cref="CachePartition"/> in <see cref="CustomDistributedCacheStore{T}"/> using <see cref="CachePartitionDefinition"/>
         /// </summary>
-        /// <returns><see cref="CachePartition"/> object created in <see cref="RedisDistributedCacheStore"/></returns>
+        /// <returns><see cref="CachePartition"/> object created in <see cref="CachePartitionDefinition"/></returns>
         public ICachePartition CreatePartition(CachePartitionDefinition cachePartitionInfo)
         {
             ICachePartition cachePartition = new CachePartition(cachePartitionInfo.Name, cachePartitionInfo.AbsoluteExpiration,

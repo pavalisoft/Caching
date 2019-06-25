@@ -46,9 +46,9 @@
         </member>
         <member name="M:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1.CreatePartition(Pavalisoft.Caching.CachePartitionDefinition)">
             <summary>
-            Creates <see cref="T:Pavalisoft.Caching.CachePartition"/> in <see cref="!:RedisDistributedCacheStore"/> using <see cref="T:Pavalisoft.Caching.CachePartitionDefinition"/>
+            Creates <see cref="T:Pavalisoft.Caching.CachePartition"/> in <see cref="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1"/> using <see cref="T:Pavalisoft.Caching.CachePartitionDefinition"/>
             </summary>
-            <returns><see cref="T:Pavalisoft.Caching.CachePartition"/> object created in <see cref="!:RedisDistributedCacheStore"/></returns>
+            <returns><see cref="T:Pavalisoft.Caching.CachePartition"/> object created in <see cref="T:Pavalisoft.Caching.CachePartitionDefinition"/></returns>
         </member>
         <member name="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStoreType">
             <summary>
@@ -63,10 +63,10 @@
         </member>
         <member name="M:Pavalisoft.Caching.Custom.CustomDistributedCacheStoreType.CreateCacheStore(Pavalisoft.Caching.CacheStoreDefinition)">
             <summary>
-            Creates <see cref="!:RedisDistributedCacheStore"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/> configuration
+            Creates <see cref="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1"/> from <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/> configuration
             </summary>
             <param name="cacheStoreInfo">Redis <see cref="T:Pavalisoft.Caching.CacheStoreDefinition"/> configuration</param>
-            <returns><see cref="!:CustomDistributedCacheStore"/> object</returns>
+            <returns><see cref="T:Pavalisoft.Caching.Custom.CustomDistributedCacheStore`1"/> object</returns>
         </member>
         <member name="T:Pavalisoft.Caching.Custom.ServiceCollectionExtensions">
             <summary>

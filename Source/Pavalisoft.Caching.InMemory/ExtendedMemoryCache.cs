@@ -264,8 +264,9 @@ namespace Pavalisoft.Caching.InMemory
 
             Set(key, value, options);
             return CompletedTask;
-        }        
+        }
 
+        /// <inheritdoc />
         object IExtendedMemoryCache.Get(string key)
         {
             if (key == null)
@@ -277,6 +278,7 @@ namespace Pavalisoft.Caching.InMemory
             return null;
         }
 
+        /// <inheritdoc />
         Task<object> IExtendedMemoryCache.GetAsync(string key, CancellationToken token)
         {
             if (key == null)
@@ -287,7 +289,7 @@ namespace Pavalisoft.Caching.InMemory
                 return Task.FromResult(result);
             return Task.FromResult((object)null);
         }
-
+        /// <inheritdoc />
         public void Set(string key, object value, ExtendedDistributedCacheEntryOptions options)
         {
             if (key == null)
@@ -320,6 +322,7 @@ namespace Pavalisoft.Caching.InMemory
             }
         }
 
+        /// <inheritdoc />
         public Task SetAsync(string key, object value, ExtendedDistributedCacheEntryOptions options, CancellationToken token = default)
         {
             if (key == null)

@@ -22,7 +22,7 @@ using System;
 namespace Pavalisoft.Caching.MySql
 {
     /// <summary>
-    /// Provides implementation to create <see cref="MySqlDistributedCacheStore"/> from <see cref="MySqlStoreInfo"/>
+    /// Provides implementation to create <see cref="MySqlDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/>
     /// </summary>
     public class MySqlDistributedCacheStoreType : ICacheStoreType
     {

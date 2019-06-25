@@ -20,10 +20,10 @@ namespace Pavalisoft.Caching.Custom
         }
 
         /// <summary>
-        /// Creates <see cref="RedisDistributedCacheStore"/> from <see cref="CacheStoreDefinition"/> configuration
+        /// Creates <see cref="CustomDistributedCacheStore{T}"/> from <see cref="CacheStoreDefinition"/> configuration
         /// </summary>
         /// <param name="cacheStoreInfo">Redis <see cref="CacheStoreDefinition"/> configuration</param>
-        /// <returns><see cref="CustomDistributedCacheStore"/> object</returns>
+        /// <returns><see cref="CustomDistributedCacheStore{T}"/> object</returns>
         public ICacheStore CreateCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
             ICacheStore cacheStore = null;

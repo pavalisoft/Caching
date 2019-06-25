@@ -16,6 +16,9 @@
 
 namespace Pavalisoft.Caching.Serializers
 {
+    /// <summary>
+    /// Represents the Object to byte array serialiser used while storing cache object in Distributed Cache.
+    /// </summary>
     public sealed class DefaultSerializer : JsonSerializer
     {
     }
