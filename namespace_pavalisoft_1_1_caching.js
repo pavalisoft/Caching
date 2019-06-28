@@ -9,6 +9,7 @@ var namespace_pavalisoft_1_1_caching =
     [ "Serializers", "namespace_pavalisoft_1_1_caching_1_1_serializers.html", "namespace_pavalisoft_1_1_caching_1_1_serializers" ],
     [ "SqlServer", "namespace_pavalisoft_1_1_caching_1_1_sql_server.html", "namespace_pavalisoft_1_1_caching_1_1_sql_server" ],
     [ "TagHelpers", "namespace_pavalisoft_1_1_caching_1_1_tag_helpers.html", "namespace_pavalisoft_1_1_caching_1_1_tag_helpers" ],
+    [ "BaseCacheSettingsProvider", "class_pavalisoft_1_1_caching_1_1_base_cache_settings_provider.html", "class_pavalisoft_1_1_caching_1_1_base_cache_settings_provider" ],
     [ "CacheManager", "class_pavalisoft_1_1_caching_1_1_cache_manager.html", "class_pavalisoft_1_1_caching_1_1_cache_manager" ],
     [ "CachePartition", "class_pavalisoft_1_1_caching_1_1_cache_partition.html", "class_pavalisoft_1_1_caching_1_1_cache_partition" ],
     [ "CachePartitionDefinition", "class_pavalisoft_1_1_caching_1_1_cache_partition_definition.html", "class_pavalisoft_1_1_caching_1_1_cache_partition_definition" ],

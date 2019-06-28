@@ -30,9 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.2.1</span>
    </div>
-   <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
+   <div id="projectbrief">A single unified Caching Api for both MemoryCache and DistributedCache implementations including CacheManager</div>
   </td>
  </tr>
  </tbody>
@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('class_pavalisoft_1_1_caching_1_1_cache
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
 <a href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Pavalisoft.Caching.CacheSettingsProvider Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -105,7 +106,8 @@ Inheritance diagram for Pavalisoft.Caching.CacheSettingsProvider:</div>
   <img src="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.png" usemap="#Pavalisoft.Caching.CacheSettingsProvider_map" alt=""/>
   <map id="Pavalisoft.Caching.CacheSettingsProvider_map" name="Pavalisoft.Caching.CacheSettingsProvider_map">
 <area href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_settings_provider.html" title="Represents ICacheSettingsProvider" alt="Pavalisoft.Caching.Interfaces.ICacheSettingsProvider" shape="rect" coords="0,0,328,24"/>
-<area href="class_pavalisoft_1_1_caching_1_1_configuration_cache_settings_provider.html" title="Provides Json based CacheSettings configuration" alt="Pavalisoft.Caching.ConfigurationCacheSettingsProvider" shape="rect" coords="0,112,328,136"/>
+<area href="class_pavalisoft_1_1_caching_1_1_base_cache_settings_provider.html" title="Provides Base implementation CacheSettingsProvider of CacheSettings configuration" alt="Pavalisoft.Caching.BaseCacheSettingsProvider" shape="rect" coords="0,112,328,136"/>
+<area href="class_pavalisoft_1_1_caching_1_1_configuration_cache_settings_provider.html" title="Provides Json based CacheSettings configuration" alt="Pavalisoft.Caching.ConfigurationCacheSettingsProvider" shape="rect" coords="0,168,328,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -135,6 +137,12 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ad84b983fe3b4b481bb64372990035324"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#ad84b983fe3b4b481bb64372990035324">CacheSettingsProvider</a> (IServiceProvider serviceProvider)</td></tr>
 <tr class="memdesc:ad84b983fe3b4b481bb64372990035324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html" title="Provides base implementation for ICacheSettingsProvider">CacheSettingsProvider</a>  <a href="#ad84b983fe3b4b481bb64372990035324">More...</a><br /></td></tr>
 <tr class="separator:ad84b983fe3b4b481bb64372990035324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:add96dc4d9442123662f40aa10aa4553f"><td class="memItemLeft" align="right" valign="top">IServiceProvider&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#add96dc4d9442123662f40aa10aa4553f">ServiceProvider</a><code> [get]</code></td></tr>
+<tr class="memdesc:add96dc4d9442123662f40aa10aa4553f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets IServiceProvider instance  <a href="#add96dc4d9442123662f40aa10aa4553f">More...</a><br /></td></tr>
+<tr class="separator:add96dc4d9442123662f40aa10aa4553f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides base implementation for ICacheSettingsProvider </p>
@@ -324,7 +332,32 @@ Protected Member Functions</h2></td></tr>
 <p>Loads <a class="el" href="namespace_pavalisoft_1_1_caching_1_1_cache.html">Cache</a> Settings Configuration </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_settings.html" title="Provides configuration structure for the Cache manager and its partitions including Cache stores.">CacheSettings</a> object</dd></dl>
 
-<p>Implemented in <a class="el" href="class_pavalisoft_1_1_caching_1_1_configuration_cache_settings_provider.html#a1b0e18169366d29ee8b38965ebf14944">Pavalisoft.Caching.ConfigurationCacheSettingsProvider</a>.</p>
+<p>Implemented in <a class="el" href="class_pavalisoft_1_1_caching_1_1_configuration_cache_settings_provider.html#a1b0e18169366d29ee8b38965ebf14944">Pavalisoft.Caching.ConfigurationCacheSettingsProvider</a>, and <a class="el" href="class_pavalisoft_1_1_caching_1_1_base_cache_settings_provider.html#af8bc04dac54c01a13c2f7c27b48dbccd">Pavalisoft.Caching.BaseCacheSettingsProvider</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="add96dc4d9442123662f40aa10aa4553f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add96dc4d9442123662f40aa10aa4553f">&#9670;&nbsp;</a></span>ServiceProvider</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IServiceProvider Pavalisoft.Caching.CacheSettingsProvider.ServiceProvider</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets IServiceProvider instance </p>
 
 </div>
 </div>

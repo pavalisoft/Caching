@@ -20,7 +20,9 @@ var hierarchy =
     ] ],
     [ "Pavalisoft.Caching.Interfaces.ICacheSettingsProvider", "interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_settings_provider.html", [
       [ "Pavalisoft.Caching.CacheSettingsProvider", "class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html", [
-        [ "Pavalisoft.Caching.ConfigurationCacheSettingsProvider", "class_pavalisoft_1_1_caching_1_1_configuration_cache_settings_provider.html", null ]
+        [ "Pavalisoft.Caching.BaseCacheSettingsProvider", "class_pavalisoft_1_1_caching_1_1_base_cache_settings_provider.html", [
+          [ "Pavalisoft.Caching.ConfigurationCacheSettingsProvider", "class_pavalisoft_1_1_caching_1_1_configuration_cache_settings_provider.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "ICacheStore", null, [

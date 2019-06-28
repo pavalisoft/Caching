@@ -44,7 +44,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html#a676bbf0e4658b76284de66f1249d9fa9"
+"interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_partition.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

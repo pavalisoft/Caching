@@ -6,5 +6,6 @@ var class_pavalisoft_1_1_caching_1_1_cache_settings_provider =
     [ "GetCacheSettings", "class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a489d3a68c54a1edea443febe46772047", null ],
     [ "GetCacheStore", "class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a1e4638f7cf95f1d41e2ca15768d4fd62", null ],
     [ "GetCacheStores", "class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a732008ebf3d02fffdb8742fa09e2a1cf", null ],
-    [ "LoadCacheSettings", "class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a72a808055d6e437776286c280618de23", null ]
+    [ "LoadCacheSettings", "class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#a72a808055d6e437776286c280618de23", null ],
+    [ "ServiceProvider", "class_pavalisoft_1_1_caching_1_1_cache_settings_provider.html#add96dc4d9442123662f40aa10aa4553f", null ]
 ];

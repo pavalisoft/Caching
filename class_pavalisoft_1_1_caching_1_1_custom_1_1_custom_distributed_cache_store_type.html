@@ -30,9 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pavalisoft.Caching
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.2.1</span>
    </div>
-   <div id="projectbrief">Pavalisoft.Caching Pavalisoft.Caching.TagHelpers</div>
+   <div id="projectbrief">A single unified Caching Api for both MemoryCache and DistributedCache implementations including CacheManager</div>
   </td>
  </tr>
  </tbody>
@@ -113,7 +113,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad7c3bba1eb88a9fce971634095d52c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of <a class="el" href="class_pavalisoft_1_1_caching_1_1_custom_1_1_custom_distributed_cache_store_type.html">CustomDistributedCacheStoreType</a> with IServiceProvider  <a href="#ad7c3bba1eb88a9fce971634095d52c25">More...</a><br /></td></tr>
 <tr class="separator:ad7c3bba1eb88a9fce971634095d52c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a085772354557c0ec5935d05720d9c4f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store.html">ICacheStore</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pavalisoft_1_1_caching_1_1_custom_1_1_custom_distributed_cache_store_type.html#a085772354557c0ec5935d05720d9c4f0">CreateCacheStore</a> (<a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html">CacheStoreDefinition</a> cacheStoreInfo)</td></tr>
-<tr class="memdesc:a085772354557c0ec5935d05720d9c4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates RedisDistributedCacheStore from <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html" title="Represents Cache Store Information">CacheStoreDefinition</a> configuration  <a href="#a085772354557c0ec5935d05720d9c4f0">More...</a><br /></td></tr>
+<tr class="memdesc:a085772354557c0ec5935d05720d9c4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates CustomDistributedCacheStore&lt;T&gt; from <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html" title="Represents Cache Store Information">CacheStoreDefinition</a> configuration  <a href="#a085772354557c0ec5935d05720d9c4f0">More...</a><br /></td></tr>
 <tr class="separator:a085772354557c0ec5935d05720d9c4f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -161,14 +161,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates RedisDistributedCacheStore from <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html" title="Represents Cache Store Information">CacheStoreDefinition</a> configuration </p>
+<p>Creates CustomDistributedCacheStore&lt;T&gt; from <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html" title="Represents Cache Store Information">CacheStoreDefinition</a> configuration </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cacheStoreInfo</td><td><a class="el" href="namespace_pavalisoft_1_1_caching_1_1_redis.html">Redis</a> <a class="el" href="class_pavalisoft_1_1_caching_1_1_cache_store_definition.html" title="Represents Cache Store Information">CacheStoreDefinition</a> configuration</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_pavalisoft_1_1_caching_1_1_custom_1_1_custom_distributed_cache_store.html" title="Provides extension to implement custom ICacheStore&lt;T&gt;">CustomDistributedCacheStore</a> object</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>CustomDistributedCacheStore&lt;T&gt; object</dd></dl>
 
 <p>Implements <a class="el" href="interface_pavalisoft_1_1_caching_1_1_interfaces_1_1_i_cache_store_type.html#ac2aa2a8e9618e9fac82b6ad6d5b111e5">Pavalisoft.Caching.Interfaces.ICacheStoreType</a>.</p>
 
