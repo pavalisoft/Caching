@@ -1,4 +1,5 @@
 # Caching
+
 [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) is an open source caching extension for .NET Standard written in C#, which provides single unified API for both [MemoryCache](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-2.2) and [DistributedCache](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-2.2) implementations.
 
 The main goal of the [Pavalisoft.Caching](https://www.nuget.org/packages/Pavalisoft.Caching/) package is to make developer's life easier to handle even very complex caching scenarios and concentrate on functionality. It's additional feature [CacheManager](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_manager.html) supports various cache providers and implements many advanced features which can be used in single project/application.
@@ -9,6 +10,7 @@ The below diagram explains the [Pavalisoft.Caching](https://www.nuget.org/packag
 ![](CacheManager.svg)
 
 ## Documentation & Samples
+
 Complete Documentation is available at https://pavalisoft.github.io/Caching/ for [Pavalisoft.Caching](https://github.com/pavalisoft/Caching) API
 
 Refer https://github.com/pavalisoft/Caching/tree/master/Samples for reference implementations
@@ -18,6 +20,7 @@ Refer https://github.com/pavalisoft/Caching/tree/master/Samples for reference im
 - [**Pavalisoft.Caching.MySql.Sample**](https://github.com/pavalisoft/Caching/tree/master/Samples/Pavalisoft.Caching.MySql.Sample) - `CacheManager` with `MySql` cache stores.
 - [**Pavalisoft.Caching.SqlServer.Sample**](https://github.com/pavalisoft/Caching/tree/master/Samples/Pavalisoft.Caching.SqlServer.Sample) - `CacheManager` with `SqlServer` cache stores.
 - [**Pavalisoft.Caching.TagHelpers.Sample**](https://github.com/pavalisoft/Caching/tree/master/Samples/Pavalisoft.Caching.SampleWeb) - `CacheManager` with `CacheTagHelper` cache stores.
+- [**Pavalisoft.Caching.InMemory.NoConfigSample**](https://github.com/pavalisoft/Caching/tree/master/Samples/Pavalisoft.Caching.InMemory.NoConfigSample) - `CacheManager` with `InMemory` and `DistributedCache` cache stores without using json configuration.
 
 ## Cache Manager Usage
 
@@ -92,7 +95,7 @@ Refer https://github.com/pavalisoft/Caching/tree/master/Samples for reference im
 
 ```csharp
 ...
-//Import the below namespace to use InMemory and DitributedInMemory cache store implementations
+//Import the below namespace to use InMemory and DistributedInMemory cache store implementations
 using Pavalisoft.Caching.InMemory;
 //Import the below namespace to use MySql cache store implementation
 using Pavalisoft.Caching.MySql;
@@ -119,7 +122,7 @@ namespace Pavalisoft.Caching.Sample
         public void ConfigureServices(IServiceCollection services)
         {
             ...
-            // Adds CacheManager servcice to services
+            // Adds CacheManager service to services
             services.AddCaching()
                 // Adds InMemory and Distributed InMemory Cache Store implementations to CacheManager
                 .AddInMemoryCache()
@@ -136,7 +139,98 @@ namespace Pavalisoft.Caching.Sample
 }
 ```
 
-3. Use [CacheManager](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_manager.html) methods to add, get, refresh and remove items in Cache.
+3. Use `AddCaching(CacheSettings cacheSettings)` extension method to pass the `CacheSettings` instead of json in appsettings.json file
+
+```csharp
+...
+//Import the below namespace to use InMemory and DistributedInMemory cache store implementations
+using Pavalisoft.Caching.InMemory;
+//Import the below namespace to use MySql cache store implementation
+using Pavalisoft.Caching.MySql;
+//Import the below namespace to use Redis Cache Store implementation
+using Pavalisoft.Caching.Redis;
+//Import the below namespace to use SqlServer Cache Store implementation
+using Pavalisoft.Caching.SqlServer;
+...
+
+namespace Pavalisoft.Caching.Sample
+{
+    public class Startup
+    {
+		...
+        public Startup(IConfiguration configuration)
+        {
+			...
+            Configuration = configuration;
+			...
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            ...
+            // Adds CacheManager service to services
+            services.AddCaching(CreateCacheSettings())
+                // Adds InMemory and Distributed InMemory Cache Store implementations to CacheManager
+                .AddInMemoryCache()
+                // Adds MySql Cache Store implementations to CacheManager
+                .AddMySqlCache()
+                // Adds Redis Cache Store implementations to CacheManager
+                .AddRedisCache()
+                // Adds SqlServer Cache Store implementations to CacheManager
+                .AddSqlServerCache();
+			...
+        }
+        private static CacheSettings CreateCacheSettings()
+        {
+            return new CacheSettings
+            {
+                Stores = new List<CacheStoreDefinition>
+                {
+                    new CacheStoreDefinition
+                    {
+                        Name = "InMemory",
+                        Type = typeof(InMemoryCacheStoreType).AssemblyQualifiedName,
+                        StoreConfig = JsonConvert.SerializeObject( new MemoryCacheOptions
+                        {
+                            ExpirationScanFrequency = new TimeSpan(0,5,0)
+                        })
+                    },
+                    new CacheStoreDefinition
+                    {
+                        Name = "DistributedInMemory",
+                        Type = typeof(MemoryDistributedCacheStoreType).AssemblyQualifiedName,
+                        SerializerType = typeof(Serializers.JsonSerializer).AssemblyQualifiedName,
+                        StoreConfig = JsonConvert.SerializeObject( new MemoryDistributedCacheOptions
+                        {
+                            ExpirationScanFrequency = new TimeSpan(0,5,0)
+                        })
+                    }
+                },
+                Partitions = new List<CachePartitionDefinition>
+                {
+                    new CachePartitionDefinition
+                    {
+                        Name = "FrequentData",
+                        StoreName = "InMemory",
+                        SlidingExpiration = new TimeSpan(0,5,0)
+                    },
+                    new CachePartitionDefinition
+                    {
+                        Name = "DistributedFrequentData",
+                        StoreName = "DistributedInMemory",
+                        SlidingExpiration = new TimeSpan(0,5,0)
+                    }
+                }
+            };
+        }
+		...
+    }
+}
+```
+
+4. Use [CacheManager](https://pavalisoft.github.io/Caching/class_pavalisoft_1_1_caching_1_1_cache_manager.html) methods to add, get, refresh and remove items in Cache.
 
 ```csharp
 // Add required using statements
@@ -249,7 +343,7 @@ namespace Pavalisoft.Caching.Sample
 
 ```csharp
 ...
-//Import the below namespace to use InMemory and DitributedInMemory cache store implementations
+//Import the below namespace to use InMemory and DistributedInMemory cache store implementations
 using Pavalisoft.Caching.InMemory;
 //Import the below namespace to use MySql cache store implementation
 using Pavalisoft.Caching.MySql;
@@ -276,7 +370,7 @@ namespace Pavalisoft.Caching.Sample
         public void ConfigureServices(IServiceCollection services)
         {
             ...
-            // Adds CacheManager servcice to services
+            // Adds CacheManager service to services
             services.AddCaching()
                 // Adds InMemory and Distributed InMemory Cache Store implementations to CacheManager
                 .AddInMemoryCache()
@@ -293,13 +387,104 @@ namespace Pavalisoft.Caching.Sample
 }
 ```
 
-3. To use `pavalisoft-cache` tag helper, add the below to _ViewImport.cshtml
+3. Use `AddCaching(CacheSettings cacheSettings)` extension method to pass the `CacheSettings` instead of json in appsettings.json file
+
+```csharp
+...
+//Import the below namespace to use InMemory and DistributedInMemory cache store implementations
+using Pavalisoft.Caching.InMemory;
+//Import the below namespace to use MySql cache store implementation
+using Pavalisoft.Caching.MySql;
+//Import the below namespace to use Redis Cache Store implementation
+using Pavalisoft.Caching.Redis;
+//Import the below namespace to use SqlServer Cache Store implementation
+using Pavalisoft.Caching.SqlServer;
+...
+
+namespace Pavalisoft.Caching.Sample
+{
+    public class Startup
+    {
+		...
+        public Startup(IConfiguration configuration)
+        {
+			...
+            Configuration = configuration;
+			...
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            ...
+            // Adds CacheManager service to services
+            services.AddCaching(CreateCacheSettings())
+                // Adds InMemory and Distributed InMemory Cache Store implementations to CacheManager
+                .AddInMemoryCache()
+                // Adds MySql Cache Store implementations to CacheManager
+                .AddMySqlCache()
+                // Adds Redis Cache Store implementations to CacheManager
+                .AddRedisCache()
+                // Adds SqlServer Cache Store implementations to CacheManager
+                .AddSqlServerCache();
+			...
+        }
+        private static CacheSettings CreateCacheSettings()
+        {
+            return new CacheSettings
+            {
+                Stores = new List<CacheStoreDefinition>
+                {
+                    new CacheStoreDefinition
+                    {
+                        Name = "InMemory",
+                        Type = typeof(InMemoryCacheStoreType).AssemblyQualifiedName,
+                        StoreConfig = JsonConvert.SerializeObject( new MemoryCacheOptions
+                        {
+                            ExpirationScanFrequency = new TimeSpan(0,5,0)
+                        })
+                    },
+                    new CacheStoreDefinition
+                    {
+                        Name = "DistributedInMemory",
+                        Type = typeof(MemoryDistributedCacheStoreType).AssemblyQualifiedName,
+                        SerializerType = typeof(Serializers.JsonSerializer).AssemblyQualifiedName,
+                        StoreConfig = JsonConvert.SerializeObject( new MemoryDistributedCacheOptions
+                        {
+                            ExpirationScanFrequency = new TimeSpan(0,5,0)
+                        })
+                    }
+                },
+                Partitions = new List<CachePartitionDefinition>
+                {
+                    new CachePartitionDefinition
+                    {
+                        Name = "FrequentData",
+                        StoreName = "InMemory",
+                        SlidingExpiration = new TimeSpan(0,5,0)
+                    },
+                    new CachePartitionDefinition
+                    {
+                        Name = "DistributedFrequentData",
+                        StoreName = "DistributedInMemory",
+                        SlidingExpiration = new TimeSpan(0,5,0)
+                    }
+                }
+            };
+        }
+		...
+    }
+}
+```
+
+4. To use `pavalisoft-cache` tag helper, add the below to _ViewImport.cshtml
 
 ```csharp
 @addTagHelper *, Pavalisoft.Caching.TagHelpers
 ```
 
-4. Use the `pavalisoft-cache` tag helper in the view wherever required.
+5. Use the `pavalisoft-cache` tag helper in the view wherever required.
 
 ```html
 <div class="col-md-12">
@@ -332,23 +517,35 @@ namespace Pavalisoft.Caching.Sample
 </div>
 ```
 
+## Cache Store Configurations
+
+The below classes are used for providing the `StoreConfig` to the respective `CacheStore`s.
+
+- [**MemoryCacheOptions**](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycacheoptions) for `InMemoryStore` cache stores.
+- [**MemoryDistributedCacheOptions**](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorydistributedcacheoptions) for `MemoryDistributedCacheStore` cache store.
+- [**RedisCacheOptions**](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.redis.rediscacheoptions) for `RedisDistributedCacheStore` cache store.
+- [**SqlServerCacheOptions**](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.sqlserver.sqlservercacheoptions) for `SqlServerDistributedCacheStore` cache store.
+- [**MySqlCacheOptions**](https://github.com/PomeloFoundation/Caching-MySQL/blob/master/src/Pomelo.Extensions.Caching.MySql/MySqlCacheOptions.cs) for `MySqlDistributedCacheStore` cache store.
+
 ## Serializers
+
 Below are the list of serializers options available, which can be used to serialize and deserialize object from and to Distributed Cache Stores.
 
-- [**BinaryFormatter**](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.formatters.binary.binaryformatter?view=netstandard-2.0) - Requires the classes decoarated with `SerializableAttribute` to store into Distributed Cache Stores.
+- [**BinaryFormatter**](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.formatters.binary.binaryformatter?view=netstandard-2.0) - Requires the classes decorated with `SerializableAttribute` to store into Distributed Cache Stores.
 - [**Newtonsoft.Json**](https://github.com/JamesNK/Newtonsoft.Json) - Uses Newtonsoft.Json to serialize a class without `SerializableAttribute`.
 
 ## Builds
+
 Get latest builds from [nuget](https://www.nuget.org/packages/Pavalisoft.Caching/)
 
 | Package | Version |
 | :--- | :---: |
-| [Pavalisoft.Caching](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching) | [1.2](https://www.nuget.org/packages/Pavalisoft.Caching/1.2) |
-| [Pavalisoft.Caching.TagHelpers](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.TagHelpers/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.TagHelpers/1.0) |
-| [Pavalisoft.Caching.InMemory](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.InMemory/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.InMemory/1.0) |
-| [Pavalisoft.Caching.Redis](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.Redis/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.Redis/1.0) |
-| [Pavalisoft.Caching.MySql](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.MySql/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.MySql/1.0) |
-| [Pavalisoft.Caching.SqlServer](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.SqlServer/) | [1.0](https://www.nuget.org/packages/Pavalisoft.Caching.SqlServer/1.0) |
+| [Pavalisoft.Caching](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching) | [1.2.1](https://www.nuget.org/packages/Pavalisoft.Caching/1.2.1) |
+| [Pavalisoft.Caching.TagHelpers](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.TagHelpers/) | [1.0.0](https://www.nuget.org/packages/Pavalisoft.Caching.TagHelpers/1.0.0) |
+| [Pavalisoft.Caching.InMemory](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.InMemory/) | [1.0.0](https://www.nuget.org/packages/Pavalisoft.Caching.InMemory/1.0.0) |
+| [Pavalisoft.Caching.Redis](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.Redis/) | [1.0.0](https://www.nuget.org/packages/Pavalisoft.Caching.Redis/1.0.0) |
+| [Pavalisoft.Caching.MySql](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.MySql/) | [1.0.0](https://www.nuget.org/packages/Pavalisoft.Caching.MySql/1.0.0) |
+| [Pavalisoft.Caching.SqlServer](https://github.com/pavalisoft/Caching/tree/master/Source/Pavalisoft.Caching.SqlServer/) | [1.0.0](https://www.nuget.org/packages/Pavalisoft.Caching.SqlServer/1.0.0) |
 
 ## Contributing
 **Getting started with Git and GitHub**

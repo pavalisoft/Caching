@@ -30,8 +30,13 @@ namespace Pavalisoft.Caching
         private CacheSettings _cacheSettings;
         private IReadOnlyDictionary<string, ICacheStore> _cacheStores;
         private IReadOnlyDictionary<string, ICachePartition> _cachePartitions;
-        private readonly IServiceProvider _serviceProvider;
+
         private CacheSettings CacheSettings => _cacheSettings ?? (_cacheSettings = LoadCacheSettings());
+
+        /// <summary>
+        /// Gets <see cref="IServiceProvider"/> instance
+        /// </summary>
+        protected IServiceProvider ServiceProvider { get; }
 
         /// <summary>
         /// Creates an instance of <see cref="CacheSettingsProvider"/>
@@ -39,7 +44,7 @@ namespace Pavalisoft.Caching
         /// <param name="serviceProvider">Dependency Service Provider</param>
         protected CacheSettingsProvider(IServiceProvider serviceProvider)
         {
-            _serviceProvider = serviceProvider;
+            ServiceProvider = serviceProvider;
         }
         /// <summary>
         /// Loads Cache Settings Configuration
@@ -149,7 +154,7 @@ namespace Pavalisoft.Caching
         private ICacheStore ConstructCacheStore(CacheStoreDefinition cacheStoreInfo)
         {
             ICacheStoreType cacheStoreType =
-                _serviceProvider.GetService(Type.GetType(cacheStoreInfo.Type)) as ICacheStoreType;
+                ServiceProvider.GetService(Type.GetType(cacheStoreInfo.Type)) as ICacheStoreType;
             return cacheStoreType?.CreateCacheStore(cacheStoreInfo);
         }
     }

@@ -20,24 +20,14 @@ With Pavalisoft.Caching, it is possible to implement multiple layers of caching 
     <RepositoryUrl>https://github.com/pavalisoft/Caching</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>Cache Tag Helpers created (Pavalisoft.Caching.TagHelpers) which uses Pavalisoft.Caching.
-Separated Cache Stores from Pavalisoft.Caching to 
-- Pavalisoft.Caching.InMemory
-- Pavalisoft.Caching.MySql
-- Pavalisoft.Caching.Redis
-- Pavalisoft.Caching.SqlServer
+    <PackageReleaseNotes>Json Configuration (appsettings.json) is not mandatory to configure Cache Stores and Partitions. 
+Developer can create the CacheSettings object with case stores and partitions then pass to the CacheManager IServiceCollcetion.AddCaching(CacheSettings cacheSettings) extension method.
 
-Sample Projects added to all types of Cache Stores
-- Pavalisoft.Caching.InMemory.Sample
-- Pavalisoft.Caching.InMemory.FileWatchSample
-- Pavalisoft.Caching.InMemory.ConcurencySample
-- Pavalisoft.Caching.Redis.Sample
-- Pavalisoft.Caching.SampleWeb
-- Pavalisoft.Caching.SqlServer.Sample
-- Pavalisoft.Caching.SqlServer.ConcurencySample</PackageReleaseNotes>
+No Config Sample Project as reference implementation
+- Pavalisoft.Caching.InMemory.NoConfigSample</PackageReleaseNotes>
     <PackageTags>caching;memorycache;distributedcache;caching;cache-manager;cachemanager</PackageTags>
     <AssemblyOriginatorKeyFile>..\..\..\Pavalisoft.pfx</AssemblyOriginatorKeyFile>
-    <Version>1.2</Version>
+    <Version>1.2.1</Version>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageIconUrl>https://secure.gravatar.com/avatar/7967778615733d0a09563016e438f8f5?s=512&amp;r=g&amp;d=retro</PackageIconUrl>
   </PropertyGroup>

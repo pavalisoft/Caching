@@ -30,18 +30,32 @@ namespace Pavalisoft.Caching
         /// Adds Caching Middleware to pipeline with Cache Manager functionality
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/> instance</param>
+        /// <param name="cacheSettings"><see cref="CacheSettings"/> object to be used in <see cref="ICacheManager"/></param>
         /// <returns><see cref="IServiceCollection"/> add with Cache Manager</returns>
-        public static IServiceCollection AddCaching(this IServiceCollection services)
+        public static IServiceCollection AddCaching(this IServiceCollection services, CacheSettings cacheSettings = default)
+        {
+            ConfigureCaching(services);
+
+            if(cacheSettings != null)
+            {
+                services.AddSingleton<ICacheSettingsProvider, BaseCacheSettingsProvider>();
+                services.AddSingleton(cacheSettings);
+            }                
+            else
+                services.AddSingleton<ICacheSettingsProvider, ConfigurationCacheSettingsProvider>();
+
+            return services;
+        }
+
+        private static void ConfigureCaching(IServiceCollection services)
         {
             services.AddTransient<ICache, DistributedCache>();
             services.AddTransient<ICachePartition, CachePartition>();
 
             services.AddSingleton<ICacheManager, CacheManager>();
-            services.AddSingleton<ICacheSettingsProvider, ConfigurationCacheSettingsProvider>();
 
             services.AddTransient<JsonSerializer>();
             services.AddTransient<BinaryFormatterSerializer>();
-            return services;
         }
     }
 }

@@ -51,6 +51,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.MySql.Sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pavalisoft.Caching.MySql.ConcurencySample", "Samples\Pavalisoft.Caching.MySql.ConcurencySample\Pavalisoft.Caching.MySql.ConcurencySample.csproj", "{4C7EE476-8E32-4172-A187-AC1E92AB12F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavalisoft.Caching.InMemory.NoConfigSample", "Samples\Pavalisoft.Caching.InMemory.NoConfigSample\Pavalisoft.Caching.InMemory.NoConfigSample.csproj", "{7599C2FA-044A-457B-8615-5FA62454C7B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{4C7EE476-8E32-4172-A187-AC1E92AB12F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C7EE476-8E32-4172-A187-AC1E92AB12F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C7EE476-8E32-4172-A187-AC1E92AB12F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7599C2FA-044A-457B-8615-5FA62454C7B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7599C2FA-044A-457B-8615-5FA62454C7B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7599C2FA-044A-457B-8615-5FA62454C7B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7599C2FA-044A-457B-8615-5FA62454C7B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +158,7 @@ Global
 		{533E3645-5A1D-4716-944A-BF6004B7F970} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
 		{DFF98893-D30E-4D9D-A76A-9E4B170E1397} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
 		{4C7EE476-8E32-4172-A187-AC1E92AB12F4} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
+		{7599C2FA-044A-457B-8615-5FA62454C7B9} = {C61533B0-E7CD-4DF1-BDA3-F0C83772AAAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF59F50D-83DE-40D4-8210-14F661BC4952}

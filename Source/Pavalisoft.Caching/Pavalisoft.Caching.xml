@@ -4,6 +4,23 @@
         <name>Pavalisoft.Caching</name>
     </assembly>
     <members>
+        <member name="T:Pavalisoft.Caching.BaseCacheSettingsProvider">
+            <summary>
+            Provides Base implementation <see cref="T:Pavalisoft.Caching.CacheSettingsProvider"/> of <see cref="T:Pavalisoft.Caching.CacheSettings"/> configuration
+            </summary>
+        </member>
+        <member name="M:Pavalisoft.Caching.BaseCacheSettingsProvider.#ctor(System.IServiceProvider)">
+            <summary>
+            Creates an instance of <see cref="T:Pavalisoft.Caching.ConfigurationCacheSettingsProvider"/> with <see cref="T:System.IServiceProvider"/>
+            </summary>
+            <param name="serviceProvider"><see cref="T:System.IServiceProvider"/></param>
+        </member>
+        <member name="M:Pavalisoft.Caching.BaseCacheSettingsProvider.LoadCacheSettings">
+            <summary>
+            Loads <see cref="T:Pavalisoft.Caching.CacheSettings"/> object from "Caching" configuration section in appSettings.json
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Pavalisoft.Caching.CacheManager">
             <summary>
             Provides Cache Api <see cref="T:Pavalisoft.Caching.Interfaces.ICacheManager"/>to interact with Cache Partitions for cache
@@ -335,6 +352,11 @@
         <member name="T:Pavalisoft.Caching.CacheSettingsProvider">
             <summary>
             Provides base implementation for <see cref="T:Pavalisoft.Caching.Interfaces.ICacheSettingsProvider"/>
+            </summary>
+        </member>
+        <member name="P:Pavalisoft.Caching.CacheSettingsProvider.ServiceProvider">
+            <summary>
+            Gets <see cref="T:System.IServiceProvider"/> instance
             </summary>
         </member>
         <member name="M:Pavalisoft.Caching.CacheSettingsProvider.#ctor(System.IServiceProvider)">
@@ -998,11 +1020,12 @@
             Provides <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> extensions for Cache Manger integration
             </summary>
         </member>
-        <member name="M:Pavalisoft.Caching.ServiceCollectionExtensions.AddCaching(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Pavalisoft.Caching.ServiceCollectionExtensions.AddCaching(Microsoft.Extensions.DependencyInjection.IServiceCollection,Pavalisoft.Caching.CacheSettings)">
             <summary>
             Adds Caching Middleware to pipeline with Cache Manager functionality
             </summary>
             <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> instance</param>
+            <param name="cacheSettings"><see cref="T:Pavalisoft.Caching.CacheSettings"/> object to be used in <see cref="T:Pavalisoft.Caching.Interfaces.ICacheManager"/></param>
             <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> add with Cache Manager</returns>
         </member>
     </members>
